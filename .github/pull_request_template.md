@@ -1,4 +1,4 @@
-# Abstract
+## Abstract
 
 Please include a summary of the changes and the related issue. At minimum, describe:
 
@@ -12,27 +12,27 @@ Please include a summary of the changes and the related issue. At minimum, descr
 
 Basically, explain to your teammates reviewing this PR how to navigate the code you're submitting.
 
-# Issues
+## Issues
 
 Mention any issues that are being closed by this PR, using the `Closes #<issue number>` syntax so
 that they are linked to this PR and automatically closed when the PR is merged.
 
 Closes #(issue)
 
-# Type of Change
+## Type of Change
 
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] Other (explain below)
 
-# Testing
+## Testing
 
 Describe the tests that you wrote to verify your changes, or any manual testing you performed to
 verify your changes. Provide instructions so we can reproduce. Note that **only** manually testing
 is **not sufficient** since it is not repeatable and does not protect against regressions.
 
-# Checklist
+## Checklist
 
 Perform a self-review using the following checklist. Some items may not apply to your PR if it
 is for a bug fix. You can check an item by replacing the [ ] with [x].
@@ -60,7 +60,7 @@ is for a bug fix. You can check an item by replacing the [ ] with [x].
   - [ ] The changes include tests that prove the fix is effective or that the feature fully works.
   - [ ] The changes generate no new failed tests, build errors, or warnings.
 
-# Closing Thoughts
+## Closing Thoughts
 
 - Is there anything else that needs to be done before this PR can be merged?
 - Is there any future work to be done?
