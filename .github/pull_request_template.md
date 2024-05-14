@@ -10,12 +10,12 @@ Please include a summary of the changes and the related issue. At minimum, descr
   - What are their responsibilities?
   - How do they integrate or interoperate?
 
-Basically, explain to your teammates reviewing this PR how to navigate the code you're submitting. 
+Basically, explain to your teammates reviewing this PR how to navigate the code you're submitting.
 
 # Issues
 
 Mention any issues that are being closed by this PR, using the `Closes #<issue number>` syntax so
-that they are linked to this PR and automatically closed when the PR is merged. 
+that they are linked to this PR and automatically closed when the PR is merged.
 
 Closes #(issue)
 
@@ -34,21 +34,24 @@ is **not sufficient** since it is not repeatable and does not protect against re
 
 # Checklist
 
-Perform a self-review using the following checklist. Some items may not apply to your PR if it 
+Perform a self-review using the following checklist. Some items may not apply to your PR if it
 is for a bug fix. You can check an item by replacing the [ ] with [x].
 
 - [ ] **The code meets the specification.**
+
   - [ ] The code implements the features described by the user story.
   - [ ] The implementation has taken into account the scenarios ("As a... I want to... so that...") as well.
   - [ ] The implementation has taken into account any clarifications posted on Piazza.
 
 - [ ] **The code is understandable.**
+
   - [ ] The code is follows formatting conventions (spacing, indents, etc).
   - [ ] The code makes use of names that sound like behavior.
   - [ ] The code is commented in hard-to-understand areas.
   - [ ] The code contains changes to documentation if needed.
 
 - [ ] **The code is well structured.**
+
   - [ ] The code is organized into logical components.
   - [ ] The components sound like the behavior (requirements) they implement.
   - [ ] The components have clearly defined single responsibilities.
@@ -59,6 +62,6 @@ is for a bug fix. You can check an item by replacing the [ ] with [x].
 
 # Closing Thoughts
 
-- Is there anything else that needs to be done before this PR can be merged? 
+- Is there anything else that needs to be done before this PR can be merged?
 - Is there any future work to be done?
 - Are there concerns about whether this implementation introduces technical debt?

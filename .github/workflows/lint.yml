@@ -12,7 +12,7 @@ name: Lint Code Base
 on:
   pull_request:
     paths-ignore:
-      - 'test-results/**'
+      - "test-results/**"
 
 ###############
 # Set the Job #
@@ -50,4 +50,3 @@ jobs:
           FILTER_REGEX_EXCLUDE: (.*node_modules/.*|.*coverage/.*)
           VALIDATE_MARKDOWN: false
           VALIDATE_JSPD: false
-          
