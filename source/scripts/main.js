@@ -143,7 +143,7 @@ document.addToScheduled = function (exercise) {
  * @param {Object} exercise - exercise card
  */
 document.addToCompleted = function (exercise) {
-  const completedContainer = document.getElementById("completedContainer");
+  const completedContainer = document.getElementById("completed-container");
   const completedList =
     completedContainer.getElementsByTagName("exercise-card");
 
@@ -168,7 +168,7 @@ document.addToCompleted = function (exercise) {
  */
 document.updateData = function () {
   const scheduledContainer = document.getElementById("scheduled-container");
-  const completedContainer = document.getElementById("completedContainer");
+  const completedContainer = document.getElementById("completed-container");
 
   const scheduledList =
     scheduledContainer.getElementsByTagName("exercise-card");

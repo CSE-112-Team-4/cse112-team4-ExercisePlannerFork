@@ -45,7 +45,7 @@ h3 {
   flex-direction: column;
 }
 
-#completedContainer {
+#completed-container {
   display: flex;
   flex-direction: column;
 }
