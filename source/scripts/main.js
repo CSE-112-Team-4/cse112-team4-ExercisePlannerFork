@@ -1,3 +1,5 @@
+/* global localStorage */
+
 // Wait for window to load
 window.addEventListener("DOMContentLoaded", init);
 
@@ -83,7 +85,7 @@ function addExerciseListener(scheduledContainer) {
       exercise.shadowRoot.getElementById("editButton").click();
       scheduledContainer.insertBefore(
         exercise,
-        document.getElementById("insertPoint"),
+        document.getElementById("insertPoint")
       );
     });
 }
