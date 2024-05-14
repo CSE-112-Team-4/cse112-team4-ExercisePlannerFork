@@ -85,7 +85,7 @@ function addExerciseListener(scheduledContainer) {
       exercise.shadowRoot.getElementById("editButton").click();
       scheduledContainer.insertBefore(
         exercise,
-        document.getElementById("insertPoint")
+        document.getElementById("insert-point")
       );
     });
 }
