@@ -32,7 +32,7 @@ describe("Basic user flow for Website", () => {
   // Check that "+" button creates an <exercise-card> in edit mode in the "Scheduled" section
   it('Checking that the "+" button adds an exercise in edit mode', async () => {
     console.log('Clicking the "+" button...');
-    const addBt = await page.$("#fixedAddButton");
+    const addBt = await page.$("#fixed-add-button");
     await addBt.evaluate((b) => b.click());
     const numCards = await page.$$eval("exercise-card", (el) => el.length);
     expect(numCards).toBe(1);

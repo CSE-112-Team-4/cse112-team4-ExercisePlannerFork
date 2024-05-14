@@ -64,7 +64,7 @@ function initializeStorage() {
  */
 function addExerciseListener(scheduledContainer) {
   document
-    .getElementById("fixedAddButton")
+    .getElementById("fixed-add-button")
     .addEventListener("click", function () {
       const exercise = document.createElement("exercise-card");
       const yourDate = new Date();
