@@ -92,7 +92,7 @@ function addExerciseListener(scheduledContainer) {
 
 function init() {
   // Populate page
-  const scheduledContainer = document.getElementById("scheduledContainer");
+  const scheduledContainer = document.getElementById("scheduled-container");
 
   const data = initializeStorage();
 
@@ -118,7 +118,7 @@ function init() {
  * @param {Object} exercise - Exercise card
  */
 document.addToScheduled = function (exercise) {
-  const scheduledContainer = document.getElementById("scheduledContainer");
+  const scheduledContainer = document.getElementById("scheduled-container");
   const scheduledList =
     scheduledContainer.getElementsByTagName("exercise-card");
 
@@ -167,7 +167,7 @@ document.addToCompleted = function (exercise) {
  * Saves current state of page & put it in local storage
  */
 document.updateData = function () {
-  const scheduledContainer = document.getElementById("scheduledContainer");
+  const scheduledContainer = document.getElementById("scheduled-container");
   const completedContainer = document.getElementById("completedContainer");
 
   const scheduledList =

@@ -40,7 +40,7 @@ h3 {
   margin: auto;
 }
 
-#scheduledContainer {
+#scheduled-container {
   display: flex;
   flex-direction: column;
 }
