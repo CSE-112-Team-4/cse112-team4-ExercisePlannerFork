@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Exercise Tracker Page</title>
+    <style>
+      .mainContainer {
+        background-color: rgb(124, 136, 224, 0.5);
+        background-image: linear-gradient(
+          240deg,
+          rgb(124, 136, 224) 0%,
+          #c3f4fc 100%
+        );
+        border-radius: 1%;
+        margin-bottom: 5%;
+        overflow: hidden;
+        box-shadow: 3px 3px 5px gray;
+        padding: 10px;
+      }
+
+      .headerContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1%;
+      }
+
+      .exerciseHeader {
+        font-size: 20px;
+      }
+
+      .expand-button {
+        cursor: pointer;
+      }
+
+      .contentContainer {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        margin-bottom: 1%;
+      }
+
+      .statsContainer {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .input-label {
+        font-weight: bold;
+        margin-bottom: 1%;
+      }
+
+      .input-field {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        width: 200px;
+      }
+
+      .notes {
+        resize: vertical;
+        padding: 8px;
+        margin-left: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        width: 100%;
+        flex: 1;
+      }
+
+      .footerContainer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="headerContainer">
+        <div>
+          <input type="checkbox" id="completed" name="completed" />
+          <label for="completed">Completed</label>
+        </div>
+        <div class="exerciseHeader">Exercise Card</div>
+        <input
+          style="display: inline-block"
+          class="schedule-edit date-input"
+          type="date"
+          value="2024-05-15"
+        />
+        <button>Delete</button>
+      </div>
+      <div class="contentContainer">
+        <div class="statsContainer">
+          <label class="input-label" for="calories">Calories Burned:</label>
+          <input
+            type="number"
+            id="calories"
+            name="calories"
+            min="0"
+            class="input-field"
+            placeholder="Enter calories burned"
+          />
+
+          <label class="input-label" for="sets">Sets Completed:</label>
+          <input
+            type="number"
+            id="sets"
+            name="sets"
+            min="0"
+            class="input-field"
+            placeholder="Enter sets completed"
+          />
+
+          <label class="input-label" for="time">Time:</label>
+          <input type="time" id="time" name="time" class="input-field" />
+        </div>
+        <textarea
+          id="notes"
+          name="notes"
+          class="notes"
+          rows="4"
+          placeholder="Enter any additional notes"
+        ></textarea>
+      </div>
+      <div class="footerContainer">
+        <button>Save</button>
+        <button>Discard</button>
+      </div>
+    </div>
+  </body>
+</html>
