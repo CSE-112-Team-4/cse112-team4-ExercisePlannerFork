@@ -11,7 +11,8 @@
   font-weight: bold;
 }
 
-* { /* requires a generic font family to fall back into e.g. sans-serif */
+* {
+  /* requires a generic font family to fall back into e.g. sans-serif */
   font-family: Inter, sans-serif;
   font-weight: normal;
 }
@@ -80,4 +81,49 @@ input[disabled] {
 #fixedAddButton:hover {
   background-color: #02aef2;
   cursor: pointer;
+}
+
+/* Adding Card */
+.mainContainer {
+  background-color: #53cbfb;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  box-shadow: 3px 3px 5px gray;
+}
+
+.exerciseHeader {
+  width: 100%;
+  position: static;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.exerciseHeader > * {
+  margin: 10px;
+}
+
+.exerciseContent {
+  width: 100%;
+  display: none;
+  overflow: hidden;
+  padding: 5px 10px 5px 10px;
+}
+
+.expand-button {
+  cursor: pointer;
+}
+
+.exerciseContent > * {
+  position: relative;
+  flex: 1;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+.notes {
+  width: 80%;
 }

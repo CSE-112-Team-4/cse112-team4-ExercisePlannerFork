@@ -1,0 +1,63 @@
+<!-- card-template.html -->
+<template id="cardTemplate">
+  <div class="mainContainer">
+    <div class="headerContainer">
+      <div>
+        <input type="checkbox" id="completed" name="completed" />
+        <label for="completed">Completed</label>
+      </div>
+      <div class="exerciseHeader">Exercise Card</div>
+      <input
+        style="display: inline-block"
+        class="schedule-edit date-input"
+        type="date"
+        value="2024-05-15"
+      />
+      <button>Delete</button>
+    </div>
+    <div class="contentContainer">
+      <div class="statsContainer">
+        <label class="input-label" for="calories">Calories Burned:</label>
+        <input
+          type="number"
+          id="calories"
+          name="calories"
+          min="0"
+          class="input-field"
+          placeholder="Enter calories burned"
+        />
+
+        <label class="input-label" for="sets">Sets Completed:</label>
+        <input
+          type="number"
+          id="sets"
+          name="sets"
+          min="0"
+          class="input-field"
+          placeholder="Enter sets completed"
+        />
+
+        <label class="input-label" for="duration">Duration:</label>
+        <input
+          type="number"
+          id="duration"
+          name="duration"
+          min="0"
+          class="input-field"
+          placeholder="Enter duration"
+        />
+      </div>
+      <textarea
+        id="notes"
+        name="notes"
+        class="notes"
+        rows="4"
+        placeholder="Enter any additional notes"
+      ></textarea>
+    </div>
+    <div class="footerContainer">
+      <button>Discard</button>
+      <button>Save</button>
+    </div>
+  </div>
+</template>
