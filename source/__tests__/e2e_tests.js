@@ -3,7 +3,7 @@ describe("Basic user flow for Website", () => {
   // First, visit the team website
   beforeAll(async () => {
     await page.goto(
-      "https://cse110-fa22-group30.github.io/cse110-fa22-group30/"
+      "https://cse110-fa22-group30.github.io/cse110-fa22-group30/",
     );
   });
 
@@ -206,18 +206,18 @@ describe("Basic user flow for Website", () => {
   // Data should remain intact.
   it("Checking complete button", async () => {
     console.log(
-      "Checking for exercise card to move to completed section when marked as done"
+      "Checking for exercise card to move to completed section when marked as done",
     );
     const scheduledContainer = await page.$("#scheduled-container");
     const numScheduledBefore = await scheduledContainer.$$eval(
       "exercise-card",
-      (cards) => cards.length
+      (cards) => cards.length,
     );
     expect(numScheduledBefore).toBe(1);
     const completedContainer = await page.$("completed-container");
     const numCompletedBefore = await completedContainer.$$eval(
       "exercise-card",
-      (cards) => cards.length
+      (cards) => cards.length,
     );
     expect(numCompletedBefore).toBe(0);
 
@@ -228,12 +228,12 @@ describe("Basic user flow for Website", () => {
 
     const numScheduledAfter = await scheduledContainer.$$eval(
       "exercise-card",
-      (cards) => cards.length
+      (cards) => cards.length,
     );
     expect(numScheduledAfter).toBe(0);
     const numCompletedAfter = await completedContainer.$$eval(
       "exercise-card",
-      (cards) => cards.length
+      (cards) => cards.length,
     );
     expect(numCompletedAfter).toBe(1);
   });
@@ -251,13 +251,13 @@ describe("Basic user flow for Website", () => {
     const scheduledContainer = await page.$("#scheduled-container");
     const numScheduledBefore = await scheduledContainer.$$eval(
       "exercise-card",
-      (cards) => cards.length
+      (cards) => cards.length,
     );
     expect(numScheduledBefore).toBe(0);
     const completedContainer = await page.$("completed-container");
     const numCompletedBefore = await completedContainer.$$eval(
       "exercise-card",
-      (cards) => cards.length
+      (cards) => cards.length,
     );
     expect(numCompletedBefore).toBe(0);
   });
@@ -269,13 +269,13 @@ describe("Basic user flow for Website", () => {
     const scheduledContainer = await page.$("#scheduled-container");
     const numScheduledBefore = await scheduledContainer.$$eval(
       "exercise-card",
-      (cards) => cards.length
+      (cards) => cards.length,
     );
     expect(numScheduledBefore).toBe(0);
     const completedContainer = await page.$("completed-container");
     const numCompletedBefore = await completedContainer.$$eval(
       "exercise-card",
-      (cards) => cards.length
+      (cards) => cards.length,
     );
     expect(numCompletedBefore).toBe(0);
   });
