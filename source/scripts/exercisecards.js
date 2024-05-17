@@ -17,7 +17,6 @@ class ExerciseCards extends HTMLElement {
       .catch((error) =>
         console.error("Error loading the card template:", error)
       );
-    initializeDefaultValues();
   }
 
   get calories() {
