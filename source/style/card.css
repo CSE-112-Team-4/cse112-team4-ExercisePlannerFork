@@ -6,7 +6,7 @@
     #c3f4fc 100%
   );
   border-radius: 1%;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
   overflow: hidden;
   box-shadow: 3px 3px 5px gray;
   padding: 10px;
@@ -14,22 +14,23 @@
 
 .headerContainer {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1%;
 }
 
-.checkbox {
-  margin-right: 10px; /* Adjust as needed */
+.exerciseType {
+  margin: 0 10px;
+  padding: 5px;
+  font-size: 1rem;
+  font-family: "Times New Roman", Times, serif;; 
+  font-weight: normal;
 }
 
 .exerciseHeader {
-  flex: 1;
   font-size: 20px;
-}
-
-.date {
-  margin-right: 10px; /* Adjust as needed */
+  margin: 0 auto;
 }
 
 .expand-button {
