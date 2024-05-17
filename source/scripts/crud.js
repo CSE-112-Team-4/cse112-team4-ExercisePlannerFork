@@ -11,24 +11,16 @@ function deleteExerciseCard(event) {
   }
 }
 
-function saveExerciseCard() {
-  // Retrieve existing data from local storage
-  let existingData = localStorage.getItem("exerciseCardData");
+function saveExerciseCard(event) {
+  const exerciseCard = event.target.closest("exercise-card");
 
-  // If no existing data found, initialize it as an empty array
-  if (!existingData) {
-    existingData = [];
-  } else {
-    // Parse the existing data from JSON
-    existingData = JSON.parse(existingData);
-  }
+  // Retrieve existing data from local storage
+  let existingData = loadCardData();
 
   // Append the new item to the existing data
-  existingData.push(cardData);
+  existingData.push(exerciseCard.cardData);
 
   // Save the updated data back to local storage
   localStorage.setItem("exerciseCardData", JSON.stringify(existingData));
   console.log("Card data saved to local storage:", existingData);
 }
-
-function loadExercise() {}

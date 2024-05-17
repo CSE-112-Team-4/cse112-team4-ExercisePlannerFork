@@ -3,9 +3,10 @@ window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   attachButtonListener();
-  savedData = loadCardData();
-  if (savedData != []){
-    repopulateCards()
+  let existingData = loadCardData();
+  console.log(existingData);
+  if (existingData != []) {
+    repopulateCards();
   }
 }
 
@@ -18,6 +19,9 @@ function attachButtonListener() {
   scheduleContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("delete-button")) {
       deleteExerciseCard(event);
+    }
+    if (event.target.classList.contains("save-button")) {
+      saveExerciseCard(event);
     }
   });
 }

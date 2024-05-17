@@ -50,6 +50,16 @@ class ExerciseCard extends HTMLElement {
   set notes(value) {
     this.querySelector("#notes").value = value;
   }
+
+  cardData() {
+    this.data = {
+      calories: this.calories,
+      duration: this.duration,
+      time: this.time,
+      notes: this.notes,
+    };
+    return this.data;
+  }
 }
 
 // Define the custom element and register it with the browser
