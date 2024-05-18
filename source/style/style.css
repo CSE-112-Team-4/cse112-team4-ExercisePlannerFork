@@ -22,8 +22,10 @@ header {
 }
 
 header h1 {
-  text-align: center;
+  position: absolute;
+  left : 570px;
   font-weight: bold;
+  
 }
 
 h3 {
@@ -35,6 +37,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0 ;
+  padding: 0;
 }
 
 #logo {
@@ -84,3 +93,61 @@ input[disabled] {
 }
 
 
+
+.container {
+  position:absolute;
+  top : 140px;
+  left: 430px;
+  max-width: 500px;
+  width: 70%;
+  
+  border-radius: 5px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.5); /* Add a semi-transparent white background */
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  align-items: center;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  display: block;
+  width: 20vh;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgb(124, 136, 224, 0.5);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+button:hover {
+  background-color: #0056b3;
+  align-items: center;
+  text-align: center;
+}
