@@ -15,10 +15,10 @@ function saveExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
   const exerciseCardData = exerciseCard.cardData();
   let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
-  let foundIndex = findCardIndexInExistingData(exerciseCard, existingData);
-  if (foundIndex != -1) {
-    let foundCard = existingData[foundIndex];
-    updateExerciseCard(exerciseCard, foundCard);
+  let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
+  if (cardIndex != -1) {
+    let foundCard = existingData[cardIndex];
+    updateExerciseCard(foundCard, exerciseCard);
   } else {
     existingData.push(exerciseCardData);
   }
@@ -26,15 +26,15 @@ function saveExerciseCard(event) {
 }
 
 /**
- * Update an existing exercise card with new data.
- * @param {HTMLElement} newCard - The new exercise card element.
- * @param {Object} oldCard - The existing card data to be updated.
+ * Modify an exercise card with new data based on another card's information.
+ * @param {HTMLElement} cardToUpdate - The exercise card element to be modified.
+ * @param {Object} referenceCard - The card providing the updated data.
  */
-function updateExerciseCard(newCard, oldCard) {
-  oldCard.calories = newCard.calories;
-  oldCard.duration = newCard.duration;
-  oldCard.time = newCard.time;
-  oldCard.notes = newCard.notes;
+function updateExerciseCard(cardToUpdate, referenceCard) {
+  cardToUpdate.calories = referenceCard.calories;
+  cardToUpdate.duration = referenceCard.duration;
+  cardToUpdate.time = referenceCard.time;
+  cardToUpdate.notes = referenceCard.notes;
 }
 
 /**
@@ -47,12 +47,24 @@ function deleteExerciseCard(event) {
     let existingData =
       JSON.parse(localStorage.getItem("exerciseCardData")) || [];
     let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
-    console.log(cardIndex);
     if (cardIndex !== -1) {
       existingData.splice(cardIndex, 1); // Remove the card from existingData
       localStorage.setItem("exerciseCardData", JSON.stringify(existingData)); // Save updated data to localStorage
     }
     exerciseCard.remove(); // Remove the card element from the DOM
+  }
+}
+
+function discardExerciseCard(event) {
+  const exerciseCard = event.target.closest("exercise-card");
+  if (exerciseCard) {
+    let existingData =
+      JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+    let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
+    if (cardIndex !== -1) {
+      let foundCard = existingData[cardIndex];
+      updateExerciseCard(exerciseCard, foundCard);
+    }
   }
 }
 

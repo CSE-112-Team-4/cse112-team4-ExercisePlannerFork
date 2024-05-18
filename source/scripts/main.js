@@ -24,16 +24,21 @@ function attachButtonListener() {
     .addEventListener("click", createNewExerciseCard);
 
   /**
-   * Attach event listeners to the schedule container for delete and save actions.
+   * Attach event listeners to the schedule container for save, delete, and discard actions.
    * @param {Event} event - The event triggered by a click action.
    */
   const scheduleContainer = document.getElementById("mainContainer");
   scheduleContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("save-button")) {
+      saveExerciseCard(event);
+    }
+
     if (event.target.classList.contains("delete-button")) {
       deleteExerciseCard(event);
     }
-    if (event.target.classList.contains("save-button")) {
-      saveExerciseCard(event);
+
+    if (event.target.classList.contains("discard-button")) {
+      discardExerciseCard(event);
     }
   });
 }
