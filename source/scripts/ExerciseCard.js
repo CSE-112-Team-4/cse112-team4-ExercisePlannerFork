@@ -2,6 +2,7 @@ class ExerciseCard extends HTMLElement {
   constructor() {
     super();
     this.data = {};
+    this.id = `exercise-card-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
   }
 
   connectedCallback() {
@@ -18,6 +19,14 @@ class ExerciseCard extends HTMLElement {
       .catch((error) =>
         console.error("Error loading the card template:", error)
       );
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  set id(value) {
+    this._id = value;
   }
 
   get calories() {
@@ -54,6 +63,7 @@ class ExerciseCard extends HTMLElement {
 
   cardData() {
     const data = {
+      id: this.id,
       calories: this.calories,
       duration: this.duration,
       time: this.time,

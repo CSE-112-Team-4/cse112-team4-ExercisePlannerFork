@@ -2,7 +2,6 @@
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  
   attachButtonListener();
   let existingData = loadCardData();
   console.log(existingData);
