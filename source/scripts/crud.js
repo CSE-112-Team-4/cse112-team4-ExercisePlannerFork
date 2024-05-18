@@ -13,14 +13,8 @@ function deleteExerciseCard(event) {
 
 function saveExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
-
-  // Retrieve existing data from local storage
-  let existingData = loadCardData();
-
-  // Append the new item to the existing data
-  existingData.push(exerciseCard.cardData);
-
-  // Save the updated data back to local storage
+  const exerciseCardData = exerciseCard.cardData();
+  let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+  existingData.push(exerciseCardData);
   localStorage.setItem("exerciseCardData", JSON.stringify(existingData));
-  console.log("Card data saved to local storage:", existingData);
 }

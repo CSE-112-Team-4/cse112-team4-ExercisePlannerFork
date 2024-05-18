@@ -13,6 +13,7 @@ class ExerciseCard extends HTMLElement {
       .then((response) => response.text())
       .then((data) => {
         this.innerHTML = data;
+        this.dispatchEvent(new CustomEvent("template-loaded"));
       })
       .catch((error) =>
         console.error("Error loading the card template:", error)
@@ -52,13 +53,13 @@ class ExerciseCard extends HTMLElement {
   }
 
   cardData() {
-    this.data = {
+    const data = {
       calories: this.calories,
       duration: this.duration,
       time: this.time,
       notes: this.notes,
     };
-    return this.data;
+    return data;
   }
 }
 
