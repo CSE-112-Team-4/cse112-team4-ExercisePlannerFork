@@ -7,10 +7,9 @@ window.addEventListener("DOMContentLoaded", init);
  * Initialize the application by setting up event listeners and repopulating cards if data exists.
  */
 function init() {
-  localStorage.clear();
+  // localStorage.clear();
   attachButtonListener();
   let existingData = loadCardData();
-  console.log(existingData);
   if (existingData != []) {
     repopulateCards(existingData);
   }

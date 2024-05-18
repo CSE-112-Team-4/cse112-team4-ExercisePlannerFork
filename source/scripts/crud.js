@@ -15,17 +15,14 @@ function saveExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
   const exerciseCardData = exerciseCard.cardData();
   let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
-  console.log(existingData);
-  let foundCard = checkIfCardExists(exerciseCard, existingData);
-  console.log(foundCard);
-  if (foundCard) {
+  let foundIndex = findCardIndexInExistingData(exerciseCard, existingData);
+  if (foundIndex != -1) {
+    let foundCard = existingData[foundIndex];
     updateExerciseCard(exerciseCard, foundCard);
-    console.log("Card updated");
   } else {
     existingData.push(exerciseCardData);
   }
   localStorage.setItem("exerciseCardData", JSON.stringify(existingData));
-  console.log(localStorage.getItem("exerciseCardData"));
 }
 
 /**
@@ -47,20 +44,26 @@ function updateExerciseCard(newCard, oldCard) {
 function deleteExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
   if (exerciseCard) {
-    exerciseCard.remove();
+    let existingData =
+      JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+    let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
+    console.log(cardIndex);
+    if (cardIndex !== -1) {
+      existingData.splice(cardIndex, 1); // Remove the card from existingData
+      localStorage.setItem("exerciseCardData", JSON.stringify(existingData)); // Save updated data to localStorage
+    }
+    exerciseCard.remove(); // Remove the card element from the DOM
   }
 }
 
 /**
- * Check if the given exercise card exists in the existing data.
- * @param {HTMLElement} exerciseCard - The exercise card element to check.
+ * Find the index of the given exercise card in the existing data.
+ * @param {HTMLElement} exerciseCard - The exercise card element to find.
  * @param {Array} existingData - The array of existing card data.
- * @returns {Object|null} - The found card data or null if not found.
+ * @returns {number} - The index of the found card data or -1 if not found.
  */
-function checkIfCardExists(exerciseCard, existingData) {
-  return (
-    existingData.find((cardData) => {
-      return cardData.id == exerciseCard.id;
-    }) || null
-  );
+function findCardIndexInExistingData(exerciseCard, existingData) {
+  return existingData.findIndex((cardData) => {
+    return cardData.id === exerciseCard.id;
+  });
 }
