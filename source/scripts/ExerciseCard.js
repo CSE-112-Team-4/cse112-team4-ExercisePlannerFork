@@ -1,3 +1,9 @@
+/**
+ * This script defines a custom HTML element called <exercise-card> that represents
+ * an exercise card with its properties.
+ * The card can be dynamically created, rendered from a template, and its data can be accessed or modified.
+ */
+
 class ExerciseCard extends HTMLElement {
   constructor() {
     super();
@@ -5,6 +11,10 @@ class ExerciseCard extends HTMLElement {
     this.id = `exercise-card-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
   }
 
+  /**
+   * Invoked each time the custom element is appended into a document-connected element.
+   * It fetches and renders the card template.
+   */
   connectedCallback() {
     this.render();
   }
@@ -61,6 +71,10 @@ class ExerciseCard extends HTMLElement {
     this.querySelector("#notes").value = value;
   }
 
+  /**
+   * Get the card data as an object.
+   * @returns {Object} - An object containing the card's data.
+   */
   cardData() {
     const data = {
       id: this.id,

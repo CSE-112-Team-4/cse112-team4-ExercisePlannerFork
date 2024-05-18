@@ -11,9 +11,9 @@ function loadCardData() {
   }
 }
 
-function repopulateCards(savedData) {
+function repopulateCards(existingData) {
   // Loop through the saved data and create/populate cards
-  savedData.forEach((cardData) => {
+  existingData.forEach((cardData) => {
     const newExerciseCard = document.createElement("exercise-card");
     newExerciseCard.addEventListener('template-loaded', function() {
       newExerciseCard.calories = cardData.calories;
