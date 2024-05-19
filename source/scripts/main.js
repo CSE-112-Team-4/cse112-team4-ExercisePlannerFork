@@ -9,9 +9,9 @@ window.addEventListener("DOMContentLoaded", init);
 function init() {
   // localStorage.clear();
   attachButtonListener();
-  let existingData = loadCardData();
+  let existingData = loadCardDataFromLocal();
   if (existingData != []) {
-    repopulateCards(existingData);
+    repopulateCardsFromLocal(existingData);
   }
 }
 
@@ -27,17 +27,17 @@ function attachButtonListener() {
    * Attach event listeners to the schedule container for save, delete, and discard actions.
    * @param {Event} event - The event triggered by a click action.
    */
-  const scheduleContainer = document.getElementById("mainContainer");
+  const scheduleContainer = document.getElementById("scheduledContainer");
   scheduleContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("save-button")) {
       saveExerciseCard(event);
     }
 
-    if (event.target.classList.contains("delete-button")) {
+    else if (event.target.classList.contains("delete-button")) {
       deleteExerciseCard(event);
     }
 
-    if (event.target.classList.contains("discard-button")) {
+    else if (event.target.classList.contains("discard-button")) {
       discardExerciseCard(event);
     }
   });
