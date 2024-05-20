@@ -15,4 +15,5 @@ function capitalizeFirstLetterInEachWord (string) {
   return string.split(' ').map(word => capitalizeFirstLetter(word)).join(' ')
 }
 
-export { capitalizeFirstLetter, capitalizeFirstLetterInEachWord }
+// this isnt actually used anywhere
+// export { capitalizeFirstLetter, capitalizeFirstLetterInEachWord }
