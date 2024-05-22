@@ -2,16 +2,9 @@
  * Load card data from local storage.
  * @returns {Array} - The array of existing card data.
  */
-function loadCardDataFromLocal() {
-  // Retrieve data from local storage
+function getLocalCardData() {
   const existingData = localStorage.getItem("exerciseCardData");
-  // If data exists, parse it from JSON and return
-  if (existingData) {
-    return JSON.parse(existingData);
-  } else {
-    // If no data exists, return an empty array or any default value
-    return [];
-  }
+  return existingData ? JSON.parse(existingData) : [];
 }
 
 /**
@@ -36,7 +29,7 @@ function saveExerciseCardToLocal(exerciseCard) {
  * @param {HTMLElement} exerciseCard - The exercise card element to delete.
  */
 function deleteExerciseCardFromLocal(exerciseCard) {
-  let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+  let existingData = getLocalCardData();
   let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
   if (cardIndex !== -1) {
     existingData.splice(cardIndex, 1); // Remove the card from existingData
@@ -61,7 +54,7 @@ function updateExerciseCardInLocal(cardToUpdate, referenceCard) {
  * @param {HTMLElement} exerciseCard - The exercise card element to discard changes for.
  */
 function discardExerciseCardInLocal(exerciseCard) {
-  let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+  let existingData = getLocalCardData();
   let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
   if (cardIndex !== -1) {
     let foundCard = existingData[cardIndex];
