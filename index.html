@@ -1,46 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A simple exercise planner to help you keep track of your daily exercises."
+    />
+    <meta
+      name="keywords"
+      content="exercise, planner, fitness, manager, daily, exercises"
+    />
+    <title>Fitness Manager</title>
+    <link rel="stylesheet" href="./source/style/style.css" type="text/css" />
+    <link rel="icon" href="./admin/branding/logo.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fitness Manager</title>
-  <link rel="stylesheet" href="./source/style/style.css" type="text/css" />
-  <link rel="icon" href="./admin/branding/logo.png" type="image/png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-</head>
+  <body>
+    <script src="./source/scripts/main.js"></script>
+    <script src="./source/scripts/ExerciseCard.js" type="module"></script>
+    <style>
+      input:disabled {
+        background: red !important;
+      }
 
-<body>
-
-  <script src="./source/scripts/main.js"></script>
-  <script src="./source/scripts/ExerciseCard.js" type="module"></script>
-  <style>
-    input:disabled {
-      background: red !important;
-    }
-
-    input[disabled] {
-      background: red !important;
-    }
-  </style>
-  <header>
-    <h1 id="title">Exercise Planner</h1>
-  </header>
-  <main>
-    <section id="mainContainer">
-      <div id="scheduledContainer">
-        <h3>Scheduled</h3>
-        <div id="insertPoint"></div>
-      </div>
-      <div id="completedContainer">
-        <h3>Completed</h3>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <span id="fixedAddButton" class="material-icons">add</span>
-  </footer>
-</body>
-
+      input[disabled] {
+        background: red !important;
+      }
+    </style>
+    <header>
+      <h1 id="title">Exercise Planner</h1>
+    </header>
+    <main>
+      <section id="main-app-container">
+        <div id="scheduled-container">
+          <h3>Scheduled</h3>
+          <div id="insert-point"></div>
+        </div>
+        <div id="completed-container">
+          <h3>Completed</h3>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span id="fixed-add-button" class="material-icons">add</span>
+    </footer>
+  </body>
 </html>
