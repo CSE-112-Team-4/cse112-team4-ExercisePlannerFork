@@ -1,4 +1,4 @@
-Team members:
+### Team members:
 
 - John Liu (lead)
 - Luffy Saito (lead)
