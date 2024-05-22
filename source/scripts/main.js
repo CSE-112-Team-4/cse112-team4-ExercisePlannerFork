@@ -9,10 +9,7 @@ window.addEventListener("DOMContentLoaded", init);
 function init() {
   // localStorage.clear();
   attachButtonListener();
-  let existingData = getLocalCardData();
-  if (existingData != []) {
-    repopulateCardsFromLocal(existingData);
-  }
+  loadInitialCards();
 }
 
 /**
@@ -37,4 +34,21 @@ function attachButtonListener() {
       discardExerciseCard(event);
     }
   });
+}
+
+function loadInitialCards() {
+  let existingData = getLocalCardData();
+  if (existingData != []) {
+    populateCardsFromLocal(existingData);
+  }
+}
+
+function addCardToCompletedContainer(exerciseCard) {
+  const completedContainer = document.getElementById("completedContainer");
+  completedContainer.appendChild(exerciseCard);
+}
+
+function addCardToScheduledContainer(exerciseCard) {
+  const scheduledContainer = document.getElementById("scheduledContainer");
+  scheduledContainer.appendChild(exerciseCard);
 }
