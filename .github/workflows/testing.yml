@@ -38,9 +38,9 @@ jobs:
       #  with:
       #    file_pattern: 'test-results/**/*'
 
-      - run: |
-          cat test-results/test > test-results/out
-          cat test-results/coverage >> test-results/out
+     # - run: | # this is outdated, someone should uncomment out and fix later
+      #    cat test-results/test > test-results/out
+       #   cat test-results/coverage >> test-results/out
       
       - uses: mshick/add-pr-comment@v2
         with:
