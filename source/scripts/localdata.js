@@ -44,9 +44,11 @@ function deleteExerciseCardFromLocal(exerciseCard) {
  */
 function updateExerciseCardInLocal(cardToUpdate, referenceCard) {
   cardToUpdate.calories = referenceCard.calories;
+  cardToUpdate.sets = referenceCard.sets;
   cardToUpdate.duration = referenceCard.duration;
   cardToUpdate.time = referenceCard.time;
   cardToUpdate.notes = referenceCard.notes;
+  cardToUpdate.completed = referenceCard.completed;
 }
 
 /**
@@ -78,7 +80,7 @@ function findCardIndexInExistingData(exerciseCard, existingData) {
  * Repopulate the exercise cards from local storage data.
  * @param {Array} existingData - The array of existing card data.
  */
-function repopulateCardsFromLocal(existingData) {
+function populateCardsFromLocal(existingData) {
   // Loop through the saved data and create/populate cards
   existingData.forEach((cardData) => {
     const newExerciseCard = document.createElement("exercise-card");
@@ -88,13 +90,18 @@ function repopulateCardsFromLocal(existingData) {
 
     newExerciseCard.addEventListener("template-loaded", function () {
       newExerciseCard.calories = cardData.calories;
+      newExerciseCard.sets = cardData.sets;
       newExerciseCard.duration = cardData.duration;
       newExerciseCard.time = cardData.time;
       newExerciseCard.notes = cardData.notes;
+      newExerciseCard.completed = cardData.completed;
     });
 
     // Append the populated card to the container
-    const scheduleContainer = document.getElementById("scheduledContainer");
-    scheduleContainer.appendChild(newExerciseCard);
+    if (cardData.completed) {
+      addCardToCompletedContainer(newExerciseCard);
+    } else {
+      addCardToScheduledContainer(newExerciseCard);
+    }
   });
 }
