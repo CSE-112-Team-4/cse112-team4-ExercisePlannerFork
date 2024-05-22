@@ -5,6 +5,7 @@
     "@babel/preset-env": "^7.20.2",
     "babel-jest": "^29.3.1",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "jest-puppeteer": "^6.1.1",
     "puppeteer": "^19.3.0",
     "standard": "^17.0.0"
@@ -12,11 +13,12 @@
   "scripts": {
     "test": "jest --verbose",
     "coverage": "jest --collectCoverage --",
-    "ci-test": "jest --ci --verbose > test-results/test 2>&1",
-    "ci-coverage": "jest --ci --collectCoverage -- > test-results/coverage 2>&1"
+    "ci-test": "jest --ci --verbose", 
+    "ci-coverage": "jest --ci --collectCoverage"
   },
   "jest": {
     "preset": "jest-puppeteer",
+    "testEnvironment": "jsdom",
     "verbose": true
   },
   "standard": {
