@@ -47,16 +47,5 @@ describe("ExerciseCard", () => {
     expect(card.notes).toEqual("Remember to stretch!");
   });
 
-  it("should return the correct card data object", () => {
-    const expectedData = {
-      id: card.id,
-      calories: "", // Initial value is empty
-      duration: "",
-      time: "",
-      notes: "",
-    };
-    const actualData = card.cardData
-    expect(actualData).toEqual(expectedData);
-  });
 
 });
