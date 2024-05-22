@@ -13,7 +13,7 @@ function getLocalCardData() {
  */
 function saveExerciseCardToLocal(exerciseCard) {
   const exerciseCardData = exerciseCard.cardData();
-  let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+  let existingData = getLocalCardData();
   let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
   if (cardIndex != -1) {
     let foundCard = existingData[cardIndex];
