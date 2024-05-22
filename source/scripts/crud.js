@@ -2,9 +2,9 @@
  * Create a new exercise card and append it to the schedule container.
  */
 function createNewExerciseCard() {
-  const scheduleContainer = document.getElementById("scheduledContainer");
+  const scheduledContainer = document.getElementById("scheduledContainer");
   const newExerciseCard = document.createElement("exercise-card");
-  scheduleContainer.appendChild(newExerciseCard);
+  scheduledContainer.appendChild(newExerciseCard);
 }
   
 /**
@@ -15,6 +15,11 @@ function saveExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
   // Save to local storage
   saveExerciseCardToLocal(exerciseCard);
+  console.log(exerciseCard);
+  if (exerciseCard.completed) {
+    addCardToCompletedContainer(exerciseCard);
+    location.reload();
+  }
 }
 
 /**

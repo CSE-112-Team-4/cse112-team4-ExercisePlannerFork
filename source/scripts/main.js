@@ -9,10 +9,7 @@ window.addEventListener("DOMContentLoaded", init);
 function init() {
   // localStorage.clear();
   attachButtonListener();
-  let existingData = loadCardDataFromLocal();
-  if (existingData != []) {
-    repopulateCardsFromLocal(existingData);
-  }
+  loadInitialCards();
 }
 
 /**
@@ -31,14 +28,27 @@ function attachButtonListener() {
   scheduleContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("save-button")) {
       saveExerciseCard(event);
-    }
-
-    else if (event.target.classList.contains("delete-button")) {
+    } else if (event.target.classList.contains("delete-button")) {
       deleteExerciseCard(event);
-    }
-
-    else if (event.target.classList.contains("discard-button")) {
+    } else if (event.target.classList.contains("discard-button")) {
       discardExerciseCard(event);
     }
   });
+}
+
+function loadInitialCards() {
+  let existingData = getLocalCardData();
+  if (existingData != []) {
+    populateCardsFromLocal(existingData);
+  }
+}
+
+function addCardToCompletedContainer(exerciseCard) {
+  const completedContainer = document.getElementById("completedContainer");
+  completedContainer.appendChild(exerciseCard);
+}
+
+function addCardToScheduledContainer(exerciseCard) {
+  const scheduledContainer = document.getElementById("scheduledContainer");
+  scheduledContainer.appendChild(exerciseCard);
 }
