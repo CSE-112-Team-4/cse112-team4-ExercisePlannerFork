@@ -13,7 +13,7 @@ This is team 4's code of conduct. Please follow it when working on the project.
 
  - Either write commit descriptions, or write the issue numbers is description, same for pull requests.
  - 2 people need to approve a pull request to merge to main
- - Read the pull requests before approving them. If the code is unclear or uncommented, reject it and explain why. If the code takes you more than 15 minutes to unerstand after you've read it, it's probably either too messy or uncommented
+ - Read the pull requests before approving them. If the code is unclear or uncommented, reject it and explain why. If the code takes you more than 15 minutes to understand after you've read it, it's probably either too messy or uncommented
  - Branches should be named as the stories/tasks they're dedicated to, incluing the story/task numbers
  - When doing a task, mark the corresponding issue as "In Progress" on the board. 
  - Tasks need to be related to stories: "US/DS[story number] - [task number] [Task name]"
