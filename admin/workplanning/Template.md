@@ -1,4 +1,4 @@
-# (Date) WorkPlan
+# (Date) WorkPlanning
 
 ## Participants
 
