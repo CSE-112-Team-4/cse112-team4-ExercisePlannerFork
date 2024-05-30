@@ -2,9 +2,31 @@
  * Create a new exercise card and append it to the schedule container.
  */
 function createNewExerciseCard() {
+  this.disabled = true;
+
+  // Toggle visibility of the exercise type buttons
+  const cardioButton = document.getElementById("cardioButton");
+  const strengthButton = document.getElementById("strengthButton");
+  cardioButton.style.animation = "scaleIn 0.3s forwards";
+  strengthButton.style.animation = "scaleIn 0.3s forwards";
+
   const scheduleContainer = document.getElementById("scheduledContainer");
   const newExerciseCard = document.createElement("exercise-card");
-  scheduleContainer.appendChild(newExerciseCard);
+
+  // Create buttons for Cardio and Strength
+  cardioButton.addEventListener("click", function () {
+    scheduleContainer.appendChild(newExerciseCard);
+    cardioButton.style.animation = "scaleOut 0.3s forwards";
+    strengthButton.style.animation = "scaleOut 0.3s forwards";
+    document.getElementById("fixedAddButton").disabled = false;
+  });
+
+  strengthButton.addEventListener("click", function () {
+    scheduleContainer.appendChild(newExerciseCard);
+    cardioButton.style.animation = "scaleOut 0.3s forwards";
+    strengthButton.style.animation = "scaleOut 0.3s forwards";
+    document.getElementById("fixedAddButton").disabled = false;
+  });
 }
 
 /**

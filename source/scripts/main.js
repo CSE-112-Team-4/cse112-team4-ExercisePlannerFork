@@ -31,13 +31,9 @@ function attachButtonListener() {
   scheduleContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("save-button")) {
       saveExerciseCard(event);
-    }
-
-    else if (event.target.classList.contains("delete-button")) {
+    } else if (event.target.classList.contains("delete-button")) {
       deleteExerciseCard(event);
-    }
-
-    else if (event.target.classList.contains("discard-button")) {
+    } else if (event.target.classList.contains("discard-button")) {
       discardExerciseCard(event);
     }
   });

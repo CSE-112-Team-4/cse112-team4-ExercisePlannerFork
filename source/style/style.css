@@ -79,22 +79,63 @@ input[disabled] {
 }
 
 #fixedAddButton {
-  text-align: center;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  background-color: #53cbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 53px;
+  height: 53px;
+  background-color: #4c7faf;
   border-radius: 50%;
   position: fixed;
-  z-index: 1;
   right: 10px;
   bottom: 10px;
-  box-shadow: 3px 3px 5px gray;
 }
 
-#fixedAddButton:hover {
-  background-color: #02aef2;
+#fixedAddButton:hover,
+#cardioButton:hover,
+#strengthButton:hover {
+  background-color: #4370aa;
   cursor: pointer;
+}
+
+#cardioButton, #strengthButton {
+  display: block;
+  width: 125px;
+  height: 50px;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 10px;
+  background-color: #4c7faf;
+  color: white;
+  transform: scale(0);
+}
+
+@keyframes scaleIn {
+  from {
+      transform: scale(0);
+  }
+  to {
+      transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+      transform: scale(1);
+  }
+  to {
+      transform: scale(0);
+  }
+}
+
+#cardioButton {
+  right: 10px;
+  bottom: 70px;
+}
+
+#strengthButton {
+  right: 100px;
+  bottom: 10px;
 }
 
 
