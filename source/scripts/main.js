@@ -17,7 +17,7 @@ function init() {
  */
 function attachButtonListener() {
   document
-    .getElementById("fixedAddButton")
+    .getElementById("fixed-add-button")
     .addEventListener("click", createNewExerciseCard);
 
   /**
@@ -44,11 +44,11 @@ function loadInitialCards() {
 }
 
 function addCardToCompletedContainer(exerciseCard) {
-  const completedContainer = document.getElementById("completedContainer");
+  const completedContainer = document.getElementById("completed-container");
   completedContainer.appendChild(exerciseCard);
 }
 
 function addCardToScheduledContainer(exerciseCard) {
-  const scheduledContainer = document.getElementById("scheduledContainer");
+  const scheduledContainer = document.getElementById("scheduled-container");
   scheduledContainer.appendChild(exerciseCard);
 }
