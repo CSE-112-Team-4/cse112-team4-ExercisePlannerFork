@@ -27,7 +27,7 @@ class ExerciseCard extends HTMLElement {
         this.dispatchEvent(new CustomEvent("template-loaded"));
       })
       .catch((error) =>
-        console.error("Error loading the card template:", error)
+        console.error("Error loading the card template:", error),
       );
   }
 
