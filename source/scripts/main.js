@@ -1,188 +1,54 @@
-/* global localStorage */
-
-// Wait for window to load
+/**
+ * Wait for the DOM to fully load before executing the init function.
+ */
 window.addEventListener("DOMContentLoaded", init);
 
 /**
- * Local storage initialization to set and return in 'cards'
- * @returns json representation of what is stored in 'cards'
+ * Initialize the application by setting up event listeners and repopulating cards if data exists.
  */
-function initializeStorage() {
-  // Check if storage is available
-  const options = {
-    // cardio or strength for exercise
-    cardioOptions: [
-      "running",
-      "cycling",
-      "swimming",
-      "walking",
-      "hiking",
-      "skating",
-      "skiing",
-      "rowing",
-      "elliptical",
-      "stairmaster",
-    ],
-    cardioStats: {
-      stats1: "Distance",
-      stats2: "Time",
-    },
-    strengthOptions: [
-      "squats",
-      "bench press",
-      "pull ups",
-      "push ups",
-      "sit ups",
-      "lunges",
-      "jumping jacks",
-      "crunches",
-      "leg raises",
-      "bicep curls",
-      "tricep dips",
-      "shoulder press",
-      "deadlifts",
-    ],
-    strengthStats: {
-      stats1: "Sets",
-      stats2: "Reps",
-    },
-  };
-
-  const data = [];
-
-  if (localStorage.getItem("cards") == null) {
-    localStorage.setItem("cards", JSON.stringify(data));
-  }
-  localStorage.setItem("options", JSON.stringify(options));
-
-  return JSON.parse(localStorage.getItem("cards"));
+function init() {
+  // localStorage.clear();
+  attachButtonListener();
+  loadInitialCards();
 }
 
 /**
- * function that detects add button in scheduledContainer
- * @param {Object} scheduledContainer - contains exercise elements to be completed
+ * Attach event listeners for the add button and card action buttons.
  */
-function addExerciseListener(scheduledContainer) {
+function attachButtonListener() {
   document
     .getElementById("fixed-add-button")
-    .addEventListener("click", function () {
-      const exercise = document.createElement("exercise-card");
-      const yourDate = new Date();
+    .addEventListener("click", createNewExerciseCard);
 
-      exercise.data = {
-        completed: "false",
-        type: "", // must be lower case, match case, or implement .tolowercase()
-        date: yourDate.toISOString().split("T")[0], // must be in this format to make coding the input of date easier
-        calories: "",
-        stat1: "",
-        stat2: "",
-        notes: "",
-      };
-      exercise.shadowRoot
-        .getElementById("checkBox")
-        .addEventListener("change", document.updateData);
-      exercise.shadowRoot.getElementById("expandButton").click();
-      exercise.shadowRoot.getElementById("editButton").click();
-      scheduledContainer.insertBefore(
-        exercise,
-        document.getElementById("insert-point"),
-      );
-    });
-}
-
-function init() {
-  // Populate page
-  const scheduledContainer = document.getElementById("scheduled-container");
-
-  const data = initializeStorage();
-
-  // set exercise data
-  data.forEach((element, index) => {
-    const exercise = document.createElement("exercise-card");
-    exercise.data = element;
-    if (element.completed === "true") {
-      document.addToCompleted(exercise);
-    } else {
-      document.addToScheduled(exercise);
+  /**
+   * Attach event listeners to the schedule container for save, delete, and discard actions.
+   * @param {Event} event - The event triggered by a click action.
+   */
+  const mainContainer = document.getElementById("main-container");
+  mainContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("save-button")) {
+      saveExerciseCard(event);
+    } else if (event.target.classList.contains("delete-button")) {
+      deleteExerciseCard(event);
+    } else if (event.target.classList.contains("discard-button")) {
+      discardExerciseCard(event);
     }
-    exercise.shadowRoot
-      .getElementById("checkBox")
-      .addEventListener("change", document.updateData);
   });
-
-  addExerciseListener(scheduledContainer);
 }
 
-/**
- * Add exercise card to schedule
- * @param {Object} exercise - Exercise card
- */
-document.addToScheduled = function (exercise) {
-  const scheduledContainer = document.getElementById("scheduled-container");
-  const scheduledList =
-    scheduledContainer.getElementsByTagName("exercise-card");
-
-  // add element to scheduled list based on date
-  if (scheduledList.length === 0) {
-    scheduledContainer.appendChild(exercise);
-  } else {
-    for (let i = 0; i < scheduledList.length; i++) {
-      if (exercise.data.date < scheduledList[i].data.date) {
-        scheduledContainer.insertBefore(exercise, scheduledList[i]);
-        break;
-      } else if (i === scheduledList.length - 1) {
-        scheduledContainer.appendChild(exercise);
-        break;
-      }
-    }
+function loadInitialCards() {
+  let existingData = getLocalCardData();
+  if (existingData != []) {
+    populateCardsFromLocal(existingData);
   }
-};
+}
 
-/**
- * Add to completed exercises in a order sorted by date
- * @param {Object} exercise - exercise card
- */
-document.addToCompleted = function (exercise) {
+function addCardToCompletedContainer(exerciseCard) {
   const completedContainer = document.getElementById("completed-container");
-  const completedList =
-    completedContainer.getElementsByTagName("exercise-card");
+  completedContainer.appendChild(exerciseCard);
+}
 
-  // add element to completed list based on date
-  if (completedList.length === 0) {
-    completedContainer.appendChild(exercise);
-  } else {
-    for (let i = 0; i < completedList.length; i++) {
-      if (exercise.data.date < completedList[i].data.date) {
-        completedContainer.insertBefore(exercise, completedList[i]);
-        break;
-      } else if (i === completedList.length - 1) {
-        completedContainer.appendChild(exercise);
-        break;
-      }
-    }
-  }
-};
-
-/**
- * Saves current state of page & put it in local storage
- */
-document.updateData = function () {
+function addCardToScheduledContainer(exerciseCard) {
   const scheduledContainer = document.getElementById("scheduled-container");
-  const completedContainer = document.getElementById("completed-container");
-
-  const scheduledList =
-    scheduledContainer.getElementsByTagName("exercise-card");
-  const completedList =
-    completedContainer.getElementsByTagName("exercise-card");
-
-  const newData = [];
-
-  for (let i = 0; i < scheduledList.length; i++) {
-    newData.push(scheduledList[i].getData());
-  }
-  for (let x = 0; x < completedList.length; x++) {
-    newData.push(completedList[x].getData());
-  }
-
-  localStorage.setItem("cards", JSON.stringify(newData));
-};
+  scheduledContainer.appendChild(exerciseCard);
+}

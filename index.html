@@ -1,17 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="description" content="Exercise Planner" />
+    <meta name="author" content="Fitness Manager" />
+    <meta name="keywords" content="exercise, fitness, health" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="A simple exercise planner to help you keep track of your daily exercises."
-    />
-    <meta
-      name="keywords"
-      content="exercise, planner, fitness, manager, daily, exercises"
-    />
     <title>Fitness Manager</title>
     <link rel="stylesheet" href="./source/style/style.css" type="text/css" />
     <link rel="icon" href="./admin/branding/logo.png" type="image/png" />
@@ -22,25 +17,20 @@
   </head>
 
   <body>
+    <!-- import necessary scripts -->
     <script src="./source/scripts/main.js"></script>
-    <script src="./source/scripts/ExerciseCard.js" type="module"></script>
-    <style>
-      input:disabled {
-        background: red !important;
-      }
+    <script src="./source/scripts/crud.js"></script>
+    <script src="./source/scripts/localdata.js"></script>
+    <script src="./source/scripts/ExerciseCard.js"></script>
 
-      input[disabled] {
-        background: red !important;
-      }
-    </style>
     <header>
       <h1 id="title">Exercise Planner</h1>
     </header>
+
     <main>
-      <section id="main-app-container">
+      <section id="main-container">
         <div id="scheduled-container">
           <h3>Scheduled</h3>
-          <div id="insert-point"></div>
         </div>
         <div id="completed-container">
           <h3>Completed</h3>
