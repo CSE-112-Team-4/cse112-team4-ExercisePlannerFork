@@ -51,14 +51,14 @@ jobs:
           message-path: "test-results/out"
           allow-repeats: true
 
-# cypress e2e
-cypress-run:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v3
-    - name: Install dependencies
-      run: npm ci
-    - name: Cypress run
-      uses: cypress-io/github-action@v6
-      with:
-        browser: chrome
+  # cypress e2e
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
