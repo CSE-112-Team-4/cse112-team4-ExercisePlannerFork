@@ -1,8 +1,8 @@
-.mainContainer {
-  background-color: rgb(124, 136, 224, 0.5);
+.main-container {
+  background-color: rgb(124 136 224 / 50%);
   background-image: linear-gradient(
     240deg,
-    rgb(124, 136, 224) 0%,
+    rgb(124 136 224) 0%,
     #c3f4fc 100%
   );
   border-radius: 1%;
@@ -12,7 +12,7 @@
   padding: 10px;
 }
 
-.headerContainer {
+.header-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -20,15 +20,15 @@
   margin-bottom: 1%;
 }
 
-.exerciseType {
+.exercise-type {
   margin: 0 10px;
   padding: 5px;
   font-size: 1rem;
-  font-family: "Times New Roman", Times, serif;; 
+  font-family: "Times New Roman", Times, serif;
   font-weight: normal;
 }
 
-.exerciseHeader {
+.exercise-header {
   font-size: 20px;
   margin: 0 auto;
 }
@@ -37,14 +37,14 @@
   cursor: pointer;
 }
 
-.contentContainer {
+.content-container {
   display: flex;
   flex-direction: row;
   flex: 1;
   margin-bottom: 1%;
 }
 
-.statsContainer {
+.stats-container {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -75,7 +75,7 @@
   flex: 1;
 }
 
-.footerContainer {
+.footer-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;

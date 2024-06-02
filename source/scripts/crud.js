@@ -2,7 +2,7 @@
  * Create a new exercise card and append it to the schedule container.
  */
 function createNewExerciseCard() {
-  const scheduledContainer = document.getElementById("scheduledContainer");
+  const scheduledContainer = document.getElementById("scheduled-container");
   const newExerciseCard = document.createElement("exercise-card");
   scheduledContainer.appendChild(newExerciseCard);
 }

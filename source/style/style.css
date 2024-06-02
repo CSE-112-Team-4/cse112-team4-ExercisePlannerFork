@@ -31,7 +31,7 @@ h3 {
 }
 
 body {
-  background-image: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/5baf8325-ed69-40b0-b9d2-d8c5d2bde3b0);
+  background-image: url("https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/5baf8325-ed69-40b0-b9d2-d8c5d2bde3b0");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -42,17 +42,17 @@ body {
   position: absolute;
 }
 
-#mainContainer {
+#main-app-container {
   width: 90vw;
   margin: auto;
 }
 
-#scheduledContainer {
+#scheduled-container {
   display: flex;
   flex-direction: column;
 }
 
-#completedContainer {
+#completed-container {
   display: flex;
   flex-direction: column;
 }
@@ -64,7 +64,7 @@ input[disabled] {
   color: black;
 }
 
-#fixedAddButton {
+#fixed-add-button {
   text-align: center;
   width: 50px;
   height: 50px;
@@ -78,7 +78,7 @@ input[disabled] {
   box-shadow: 3px 3px 5px gray;
 }
 
-#fixedAddButton:hover {
+#fixed-add-button:hover {
   background-color: #02aef2;
   cursor: pointer;
 }
