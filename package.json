@@ -10,7 +10,8 @@
     "jest-puppeteer": "^6.1.1",
     "prettier": "3.2.5",
     "puppeteer": "^19.3.0",
-    "standard": "^17.0.0"
+    "standard": "^17.0.0",
+    "http-server": "^14.0.0"
   },
   "scripts": {
     "test": "jest --verbose",
