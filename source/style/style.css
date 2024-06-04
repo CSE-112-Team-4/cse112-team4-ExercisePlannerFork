@@ -19,6 +19,11 @@
 
 header {
   width: 90vw;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  font-family: Inter;
+  font-size: 2.0rem;
 }
 
 header h1 {
@@ -42,9 +47,10 @@ body {
   position: absolute;
 }
 
-#main-app-container {
+#main-container {
   width: 90vw;
   margin: auto;
+  display:none
 }
 
 #scheduled-container {
@@ -76,6 +82,7 @@ input[disabled] {
   right: 10px;
   bottom: 10px;
   box-shadow: 3px 3px 5px gray;
+  display:none
 }
 
 #fixed-add-button:hover {
@@ -83,13 +90,7 @@ input[disabled] {
   cursor: pointer;
 }
 
-header {
-  margin: 0 auto;
-  text-align: center;
-  font-weight: bold;
-  font-family: Inter;
-  font-size: 2.6rem;
-}
+
 
 
 
@@ -166,3 +167,6 @@ p{
   text-align: center;
 }
 
+#create-account-form{
+  display:none;
+}
