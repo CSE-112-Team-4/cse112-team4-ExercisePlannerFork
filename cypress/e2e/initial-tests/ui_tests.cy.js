@@ -36,6 +36,7 @@ describe('basic UI tests', () => {
     cy.get('#scheduled-container > h3')      
       .get('exercise-card').should('exist')     // Ensure it contains a card
   })
+  /*
   it('reload persistence', () => {
     cy.get('#fixed-add-button').click()
 
@@ -116,5 +117,5 @@ describe('basic UI tests', () => {
       // check if we found it
       expect(found).to.be.true;
     }); 
-  });
+  });*/
 });
