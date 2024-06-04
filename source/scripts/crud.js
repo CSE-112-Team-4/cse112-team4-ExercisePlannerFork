@@ -15,6 +15,10 @@ function createNewExerciseCard() {
 
   // Create buttons for Cardio and Strength
   cardioButton.addEventListener("click", function () {
+    newExerciseCard.exerciseType = ExerciseType.Cardio;
+    newExerciseCard.addEventListener("template-loaded", function () {
+      newExerciseCard.populateExerciseTypes(CardioExercise);
+    });
     scheduleContainer.appendChild(newExerciseCard);
     cardioButton.style.animation = "scaleOut 0.3s forwards";
     strengthButton.style.animation = "scaleOut 0.3s forwards";
@@ -22,6 +26,10 @@ function createNewExerciseCard() {
   });
 
   strengthButton.addEventListener("click", function () {
+    newExerciseCard.exerciseType = ExerciseType.Strength;
+    newExerciseCard.addEventListener("template-loaded", function () {
+      newExerciseCard.populateExerciseTypes(StrengthExercise);
+    });
     scheduleContainer.appendChild(newExerciseCard);
     cardioButton.style.animation = "scaleOut 0.3s forwards";
     strengthButton.style.animation = "scaleOut 0.3s forwards";
