@@ -84,6 +84,24 @@ class ExerciseCard extends HTMLElement {
   }
 
   /**
+   * Populate the exercise type dropdown with options.
+   * @param {Object} exerciseTypes - An object containing exercise types.
+   */
+  populateExerciseTypes(exerciseTypes) {
+    const dropdown = this.querySelector(".exerciseType");
+    dropdown.innerHTML = ""; // Clear existing options
+    for (const type in exerciseTypes) {
+      const option = document.createElement("option");
+      option.value = exerciseTypes[type];
+      option.textContent = exerciseTypes[type];
+      dropdown.appendChild(option);
+    }
+    if (this._exerciseType) {
+      dropdown.value = this._exerciseType;
+    }
+  }
+
+  /**
    * Get the card data as an object.
    * @returns {Object} - An object containing the card's data.
    */
