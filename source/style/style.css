@@ -81,7 +81,7 @@ input[disabled] {
   right: 10px;
   bottom: 10px;
   box-shadow: 3px 3px 5px gray;
-  display:none
+  
 }
 
 #fixed-add-button:hover {
