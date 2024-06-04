@@ -15,7 +15,7 @@ describe('basic UI tests', () => {
     cy.visit('http://127.0.0.1:5500/index.html')
   })
 
-  it('starts with no scheduled', () => {
+  it('starts with no cards scheduled', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     cy.get('#scheduled-container > h3')      
       .should('contain', 'Scheduled')     // Ensure it contains "Scheduled"
@@ -23,20 +23,20 @@ describe('basic UI tests', () => {
 
   })
 
-  it('starts with no completed', () => {
+  it('starts with no cards completed', () => {
     cy.get('#completed-container >h3')
       .should('contain', 'Completed')
       .should('have.length', 1)
   })
 
   
-  it('+ button adds exercise card', () => {
+  it('+ button successfully adds card', () => {
     cy.get('#fixed-add-button').click()
 
     cy.get('#scheduled-container > h3')      
       .get('exercise-card').should('exist')     // Ensure it contains a card
   })
-  it('saves information given', () => {
+  it('reload persistence', () => {
     cy.get('#fixed-add-button').click()
 
     const textToType = 'This is a test note';
