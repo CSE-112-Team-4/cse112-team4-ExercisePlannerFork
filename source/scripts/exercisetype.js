@@ -19,21 +19,17 @@ const CardioExercise = {
 
 // Define strength exercise types as const objects
 const StrengthExercise = {
-  Squats: "Squats",
-  BenchPress: "Bench Press",
-  PullUps: "Pull Ups",
-  PushUps: "Push Ups",
-  SitUps: "Sit Ups",
-  Lunges: "Lunges",
-  JumpingJacks: "Jumping Jacks",
-  Crunches: "Crunches",
-  LegRaises: "Leg Raises",
-  BicepCurls: "Bicep Curls",
-  TricepDips: "Tricep Dips",
-  ShoulderPress: "Shoulder Press",
-  Deadlifts: "Deadlifts",
+  Squats: "squats",
+  BenchPress: "bench press",
+  PullUps: "pull ups",
+  PushUps: "push ups",
+  SitUps: "sit ups",
+  Lunges: "lunges",
+  JumpingJacks: "jumping jacks",
+  Crunches: "crunches",
+  LegRaises: "leg raises",
+  BicepCurls: "bicep curls",
+  TricepDips: "tricep dips",
+  ShoulderPress: "shoulder press",
+  Deadlifts: "deadlifts",
 };
-
-function chooseExerciseType() {
-  return ExerciseType.Cardio;
-}
