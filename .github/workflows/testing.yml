@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: Jest Test and Code Coverage
+    name: Jest Test 
     runs-on: ubuntu-latest
 
     steps:
@@ -29,20 +29,20 @@ jobs:
       - name: Unit test
         run: npm run ci-test
 
-      # Run coverage
-      - name: Code coverage
-        run: npm run ci-coverage
+  # cypress e2e
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Start HTTP server
+        run: npx http-server ./ -p 5500 &
+        
+      - name: Wait for server to be ready
+        run: npx wait-on http://127.0.0.1:5500/index.html
 
-      # Push results back into repo
-      #- uses: stefanzweifel/git-auto-commit-action@v4
-      #  with:
-      #    file_pattern: 'test-results/**/*'
-
-      - run: |
-          cat test-results/test > test-results/out
-          cat test-results/coverage >> test-results/out
-
-      - uses: mshick/add-pr-comment@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
-          message-path: "test-results/out"
-          allow-repeats: true
+          browser: chrome
