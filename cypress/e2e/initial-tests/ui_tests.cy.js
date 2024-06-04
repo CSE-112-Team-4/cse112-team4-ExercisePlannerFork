@@ -1,4 +1,4 @@
-// <reference types="cypress" />
+/// <reference types="cypress" />
 
 // To learn more about how Cypress works and
 // what makes it such an awesome testing tool,
