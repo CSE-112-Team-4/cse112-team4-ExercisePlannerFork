@@ -17,7 +17,7 @@ function createNewExerciseCard() {
   cardioButton.addEventListener("click", function () {
     newExerciseCard.exerciseType = ExerciseType.Cardio;
     newExerciseCard.addEventListener("template-loaded", function () {
-      newExerciseCard.populateExerciseTypes(CardioExercise);
+      newExerciseCard.populateExercises(CardioExercise);
     });
     scheduleContainer.appendChild(newExerciseCard);
     cardioButton.style.animation = "scaleOut 0.3s forwards";
@@ -28,7 +28,7 @@ function createNewExerciseCard() {
   strengthButton.addEventListener("click", function () {
     newExerciseCard.exerciseType = ExerciseType.Strength;
     newExerciseCard.addEventListener("template-loaded", function () {
-      newExerciseCard.populateExerciseTypes(StrengthExercise);
+      newExerciseCard.populateExercises(StrengthExercise);
     });
     scheduleContainer.appendChild(newExerciseCard);
     cardioButton.style.animation = "scaleOut 0.3s forwards";
@@ -52,7 +52,6 @@ function saveExerciseCard(event) {
  * @param {HTMLElement} cardToUpdate - The exercise card element to be modified.
  * @param {Object} referenceCard - The card providing the updated data.
  */
-function updateExerciseCard() {}
 
 /**
  * Delete the exercise card associated with the clicked delete button.
