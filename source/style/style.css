@@ -170,3 +170,11 @@ p{
 #create-account-form{
   display:none;
 }
+
+a{
+  text-align: center;
+}
+
+#login-form{
+  display: block;
+}

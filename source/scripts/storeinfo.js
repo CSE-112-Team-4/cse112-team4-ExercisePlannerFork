@@ -28,7 +28,7 @@ function register() {
   showLoginForm();
 }
 function login(event) {
-  event.preventDefault();
+    event.preventDefault();
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
     const username = document.getElementById('login-username').value;
@@ -39,7 +39,10 @@ function login(event) {
         if (userData.password === password) {
             alert('Login successful!');
             // Redirect or perform actions for logged in user
+            
+            
             showMainPage();
+              
         } else {
             alert('Incorrect password.');
         }
