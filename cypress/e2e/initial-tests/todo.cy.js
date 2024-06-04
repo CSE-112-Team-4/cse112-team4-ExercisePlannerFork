@@ -44,4 +44,85 @@ describe('basic UI tests', () => {
     cy.get('#scheduled-container > h3')      
       .get('exercise-card').should('exist')     // Ensure it contains a card
   })
-})
+  it('saves information given', () => {
+    cy.get('#fixed-add-button').click()
+
+    const textToType = 'This is a test note';
+    const caloriesBurned = '100'
+    const setsCompleted = '5'
+    const duration = '10'
+  
+    // locate textarea of new exercise card and type into it
+    cy.get('textarea[name="notes"]').type(textToType);
+    // Verify that the text was typed into the textarea
+    cy.get('textarea[name="notes"]').should('have.value', textToType);
+    
+    // locate calories burned and type into it
+    cy.get('input[name="calories"]').type(caloriesBurned);
+    // verify it got typed
+    cy.get('input[name="calories"]').should('have.value', caloriesBurned);  
+
+    // locate sets completed and type into it 
+    cy.get('input[name="sets"]').type(setsCompleted);
+    // verify it got typed 
+    cy.get('input[name="sets"]').should('have.value', setsCompleted);
+
+    // locate duration and type into it
+    cy.get('input[name="duration"]').type(duration);
+    // verify it got typed 
+    cy.get('input[name="duration"]').should('have.value', duration);
+
+    // hit save
+    cy.get('button.save-button').click();
+
+    
+    
+    // Check localStorage for the expected value
+    cy.window().then((window) => {
+      // Expected properties to be stored in localStorage
+      const expectedData = {
+        sets: setsCompleted,
+        duration: duration,
+        notes: textToType
+      };
+      let found=false;
+      const value = window.localStorage.getItem('exerciseCardData'); // first card always 0
+      const parsedJson = JSON.parse(value);
+      const parsedCard = parsedJson[0];
+      if (parsedCard.sets === expectedData.sets &&
+        parsedCard.duration === expectedData.duration &&
+        parsedCard.notes === expectedData.notes) 
+        {
+        found = true;
+      }
+      // check if we found it
+      expect(found).to.be.true;
+    });
+    cy.reload();
+    // after reload, check everything still there
+    cy.get('input[name="calories"]').should('have.value', caloriesBurned);  
+    cy.get('input[name="sets"]').should('have.value', setsCompleted);
+    cy.get('input[name="duration"]').should('have.value', duration);
+    // and check if its still in local storage   
+    cy.window().then((window) => {
+      // Expected properties to be stored in localStorage
+      const expectedData = {
+        sets: setsCompleted,
+        duration: duration,
+        notes: textToType
+      };
+      let found=false;
+      const value = window.localStorage.getItem('exerciseCardData'); // first card always 0
+      const parsedJson = JSON.parse(value);
+      const parsedCard = parsedJson[0];
+      if (parsedCard.sets === expectedData.sets &&
+        parsedCard.duration === expectedData.duration &&
+        parsedCard.notes === expectedData.notes) 
+        {
+        found = true;
+      }
+      // check if we found it
+      expect(found).to.be.true;
+    }); 
+  });
+});
