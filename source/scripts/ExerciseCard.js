@@ -9,6 +9,7 @@ class ExerciseCard extends HTMLElement {
     super();
     this.data = {};
     this.id = `exercise-card-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    this._exerciseType = null;
   }
 
   /**
@@ -37,6 +38,17 @@ class ExerciseCard extends HTMLElement {
 
   set id(value) {
     this._id = value;
+  }
+
+  get exerciseType() {
+    return this._exerciseType;
+  }
+
+  set exerciseType(value) {
+    this._exerciseType = value;
+    if (this.isConnected) {
+      this.querySelector(".exerciseType").value = value;
+    }
   }
 
   get calories() {
@@ -78,6 +90,7 @@ class ExerciseCard extends HTMLElement {
   cardData() {
     const data = {
       id: this.id,
+      exerciseType: this.exerciseType,
       calories: this.calories,
       duration: this.duration,
       time: this.time,
