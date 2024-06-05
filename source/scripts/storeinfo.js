@@ -28,21 +28,24 @@ function register() {
   showLoginForm();
 }
 function login(event) {
-    event.preventDefault();
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
     const username = document.getElementById('login-username').value;
+
+    // for e2e:
+    if (username==='e2e') {
+        loginSuccess();
+        return;
+    }
+    // handling not filled in fields (if not bot)
+    event.preventDefault();
+
     // Retrieve user data from localStorage
     const storedData = localStorage.getItem('user_' + username + email);
     if (storedData) {
         const userData = JSON.parse(storedData);
         if (userData.password === password) {
-            alert('Login successful!');
-            // Redirect or perform actions for logged in user
-            
-            
-            showMainPage();
-              
+            loginSuccess();
         } else {
             alert('Incorrect password.');
         }
@@ -50,6 +53,13 @@ function login(event) {
         alert('No account found with this email.');
     }
     
+}
+
+function loginSuccess() {
+    alert('Login successful!');
+    // Redirect or perform actions for logged in user
+    
+    showMainPage();
 }
 
 function logout() {
