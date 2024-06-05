@@ -34,6 +34,9 @@ const StrengthExercise = {
   Deadlifts: "Deadlifts",
 };
 
+/**
+* @returns {ExerciseType} - Chosen exercise type
+*/
 function chooseExerciseType() {
   return ExerciseType.Cardio;
 }
