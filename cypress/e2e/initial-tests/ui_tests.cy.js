@@ -7,7 +7,7 @@
 
 function login() {
   cy.get('input[name="login-username"]').type('e2e');
-  cy.get('button').click();
+  cy.get('button#login-button').click();
   // alert gets handled
 }
 describe('basic UI tests', () => {
