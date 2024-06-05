@@ -38,3 +38,32 @@ function attachButtonListener() {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleScheduled = document.getElementById("toggleScheduled");
+  const scheduledContainer = document.getElementById("scheduledContainer");
+  const toggleCompleted = document.getElementById("toggleCompleted");
+  const completedContainer = document.getElementById("completedContainer");
+
+  toggleScheduled.addEventListener("click", function () {
+    scheduledContainer.style.display = "grid";
+    completedContainer.style.display = "none";
+
+    toggleScheduled.style.fontWeight = "bold";
+    toggleCompleted.style.fontWeight = "normal";
+
+    toggleScheduled.style.fontSize = "1.5em";
+    toggleCompleted.style.fontSize = "1em";
+  });
+
+  toggleCompleted.addEventListener("click", function () {
+    completedContainer.style.display = "grid";
+    scheduledContainer.style.display = "none";
+
+    toggleCompleted.style.fontWeight = "bold";
+    toggleScheduled.style.fontWeight = "normal";
+
+    toggleCompleted.style.fontSize = "1.5em";
+    toggleScheduled.style.fontSize = "1em";
+  });
+});

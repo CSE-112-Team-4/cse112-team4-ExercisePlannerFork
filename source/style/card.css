@@ -1,14 +1,21 @@
 .mainContainer {
   background-color: rgb(124, 136, 224, 0.5);
-  background-image: linear-gradient(
-    240deg,
-    rgba(68, 130, 172, 0.5) 0%,
-    #c3f4fc 100%
-  );
+  background-image: 
+    linear-gradient(240deg, rgba(68, 130, 172, 0.5) 15%, rgb(10, 53, 53) 100%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.1) 0,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px,
+      transparent 50px
+    );
   border-radius: 1%;
+  border: 1px solid rgb(2, 36, 36);
   margin-bottom: 2%;
   overflow: hidden;
-  box-shadow: 3px 3px 5px gray;
+  box-shadow: 
+    5px 5px 10px rgba(0, 0, 0, 0.3),    /* Darker shadow for depth */
+    10px 10px 20px rgba(0, 0, 0, 0.2);  /* Lighter, larger shadow for further depth */
   padding: 10px;
   width: 100%;
   margin: 0 auto;
@@ -67,6 +74,21 @@
   font-weight: 500;
 }
 
+.exerciseSelection {
+  padding: 8px;
+  border: 0px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: Inter;
+  /* background-color:rgba(0, 0, 0, 0); */
+  font-size: medium;
+  cursor: pointer;
+  width: 35%;
+  color: rgb(2, 36, 36);
+  /* text-shadow: 2px 2px 4px rgb(2, 36, 36); */
+  font-weight: 500;
+}
+
 .expand-button {
   cursor: pointer;
 }
@@ -98,13 +120,13 @@
   padding: 8px;
   margin-bottom: 10px;
   border: 3px solid white;
-  color: white;
+  color: rgb(2, 36, 36);
   border-radius: 5px;
   box-sizing: border-box;
   width: 200px;
   font-family: Inter;
   font-size: 16px;
-  background-color:rgba(0, 0, 0, 0);
+  /* background-color:rgba(0, 0, 0, 0); */
 }
 
 .notes {
@@ -116,10 +138,10 @@
   box-sizing: border-box;
   width: 100%;
   flex: 1;
-  background-color:rgba(0, 0, 0, 0);
+  /* background-color:rgba(0, 0, 0, 0); */
   font-size: 16px;
   font-family: Inter;
-  color: white;
+  color: rgb(2, 36, 36);
 }
 
 .footerContainer {

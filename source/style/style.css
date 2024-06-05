@@ -53,6 +53,30 @@ body {
   margin: auto;
 }
 
+.content {
+  padding: 5px;
+  margin-top: 5px;
+  display: none;
+}
+
+button.toggle {
+  cursor: pointer;
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+button.toggle:focus {
+  outline: none;
+}
+
+#toggleScheduled {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
 #scheduledContainer {
   display: grid;
   grid-template-columns: 33% 33% 33%;
@@ -63,7 +87,7 @@ body {
 }
 
 #completedContainer {
-  display: grid;
+  display: none;
   grid-template-columns: 33% 33% 33%;
   gap: 50px;
   margin-bottom: 2%;
