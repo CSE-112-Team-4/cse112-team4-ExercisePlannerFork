@@ -29,13 +29,13 @@ describe('basic UI tests', () => {
       .should('have.length', 1)
   })
 
-  
   it('+ button successfully adds card', () => {
     cy.get('#fixed-add-button').click()
 
     cy.get('#scheduled-container > h3')      
       .get('exercise-card').should('exist')     // Ensure it contains a card
   })
+
   it('reload persistence', () => {
     cy.get('#fixed-add-button').click()
 
@@ -117,4 +117,121 @@ describe('basic UI tests', () => {
       expect(found).to.be.true;
     }); 
   });
+
+  it('loads 100 cards', () => {
+    let size = 100; // 100
+
+    let button = cy.get('#fixed-add-button')
+    for(let i = 0; i < size; i++){
+      button.click()
+    }; 
+    // Get the scheduled container (# mimics CSS selectors)
+    // grab all exercise-card elements within scheduled container
+    // check if there are  of them
+    cy.get('#scheduled-container').children('exercise-card').should('have.length', size);
+  });
+
+  it('loads 10 cards, then deletes all of them', () => {
+    let size = 10;// 10
+    
+    let button = cy.get('#fixed-add-button')
+    for(let i = 0; i < size; i++){
+      button.click()
+    }; 
+    cy.get('#scheduled-container').children('exercise-card').should('have.length', size);
+  
+    for(let i = 0; i < size; i++){
+        cy.get('exercise-card').find('button.delete-button').eq(0).click();
+      };
+    cy.get('#scheduled-container').children('exercise-card').should('have.length', 0);
 });
+
+  it('populate 2, edit and save 1st, edit and discard 2nd. verify, reload and verify again', () => {
+    let button = cy.get('#fixed-add-button')
+    button.click()
+    button.click()
+    
+    const info1 = {
+        note: 'This is a test note',
+        calorie: '100',
+        sets: '5',
+        duration: '10'
+    }
+
+    const info2 = {
+        note: 'This is a test note 2',
+        calorie: '69',
+        sets: '420',
+        duration: '5318008'
+    }
+  
+    const info3 = {
+        note: 'This is a test note 3',
+        calorie: '13',
+        sets: '33',
+        duration: '300'
+    }
+
+    const info4 = {
+        note: 'This is a test note 4',
+        calorie: '4',
+        sets: '14',
+        duration: '400'
+    }
+    
+    // populate and save
+    cy.get('exercise-card').eq(0).find('textarea[name="notes"]').type(info1.note);
+    cy.get('exercise-card').eq(0).find('input[name="calories"]').type(info1.calorie);
+    cy.get('exercise-card').eq(0).find('input[name="sets"]').type(info1.sets);
+    cy.get('exercise-card').eq(0).find('input[name="duration"]').type(info1.duration);
+    cy.get('exercise-card').eq(0).find('button.save-button').click();
+
+    cy.get('exercise-card').eq(1).find('textarea[name="notes"]').type(info2.note);
+    cy.get('exercise-card').eq(1).find('input[name="calories"]').type(info2.calorie);
+    cy.get('exercise-card').eq(1).find('input[name="sets"]').type(info2.sets);
+    cy.get('exercise-card').eq(1).find('input[name="duration"]').type(info2.duration);
+    cy.get('exercise-card').eq(1).find('button.save-button').click();
+
+    //edit 1st and save
+    cy.get('exercise-card').eq(0).find('textarea[name="notes"]').clear().type(info3.note);
+    cy.get('exercise-card').eq(0).find('input[name="calories"]').clear().type(info3.calorie);
+    cy.get('exercise-card').eq(0).find('input[name="sets"]').clear().type(info3.sets);
+    cy.get('exercise-card').eq(0).find('input[name="duration"]').clear().type(info3.duration);
+    cy.get('exercise-card').eq(0).find('button.save-button').click();
+
+    //edit 2nd and discard
+    cy.get('exercise-card').eq(1).find('textarea[name="notes"]').clear().type(info4.note);
+    cy.get('exercise-card').eq(1).find('input[name="calories"]').clear().type(info4.calorie);
+    cy.get('exercise-card').eq(1).find('input[name="sets"]').clear().type(info4.sets);
+    cy.get('exercise-card').eq(1).find('input[name="duration"]').clear().type(info4.duration);
+    cy.get('exercise-card').eq(1).find('button.discard-button').click();
+
+    // verify, first card should have info3 and second should have info2
+    cy.get('exercise-card').eq(0).find('textarea[name="notes"]').should('have.value', info3.note);
+    cy.get('exercise-card').eq(0).find('input[name="calories"]').should('have.value', info3.calorie);
+    cy.get('exercise-card').eq(0).find('input[name="sets"]').should('have.value', info3.sets);
+    cy.get('exercise-card').eq(0).find('input[name="duration"]').should('have.value', info3.duration);
+
+    cy.get('exercise-card').eq(1).find('textarea[name="notes"]').should('have.value', info2.note);
+    cy.get('exercise-card').eq(1).find('input[name="calories"]').should('have.value', info2.calorie);
+    cy.get('exercise-card').eq(1).find('input[name="sets"]').should('have.value', info2.sets);
+    cy.get('exercise-card').eq(1).find('input[name="duration"]').should('have.value', info2.duration);
+
+    // reload and re-verify
+    cy.reload();
+
+    cy.get('exercise-card').eq(0).find('textarea[name="notes"]').should('have.value', info3.note);
+    cy.get('exercise-card').eq(0).find('input[name="calories"]').should('have.value', info3.calorie);
+    cy.get('exercise-card').eq(0).find('input[name="sets"]').should('have.value', info3.sets);
+    cy.get('exercise-card').eq(0).find('input[name="duration"]').should('have.value', info3.duration);
+
+    cy.get('exercise-card').eq(1).find('textarea[name="notes"]').should('have.value', info2.note);
+    cy.get('exercise-card').eq(1).find('input[name="calories"]').should('have.value', info2.calorie);
+    cy.get('exercise-card').eq(1).find('input[name="sets"]').should('have.value', info2.sets);
+    cy.get('exercise-card').eq(1).find('input[name="duration"]').should('have.value', info2.duration);
+  });
+
+
+
+});
+
