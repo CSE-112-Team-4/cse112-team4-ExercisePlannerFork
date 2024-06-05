@@ -6,7 +6,7 @@
 // https://on.cypress.io/introduction-to-cypress
 
 function login() {
-  cy.get('input[name="login-username"]').type('e2e');
+  cy.get('input[name="login-username"]').type('e2e_usJDJWAuTPEyOOutbZbs');
   cy.get('button#login-button').click();
   // alert gets handled
 }

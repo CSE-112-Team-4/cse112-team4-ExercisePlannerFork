@@ -33,7 +33,7 @@ function login(event) {
     const username = document.getElementById('login-username').value;
 
     // for e2e:
-    if (username==='e2e') {
+    if (username==='e2e_usJDJWAuTPEyOOutbZbs') {
         loginSuccess();
         return;
     }
