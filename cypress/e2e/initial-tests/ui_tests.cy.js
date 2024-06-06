@@ -5,6 +5,11 @@
 // please read our getting started guide:
 // https://on.cypress.io/introduction-to-cypress
 
+function login() {
+  cy.get('input[name="login-username"]').type('e2e_usJDJWAuTPEyOOutbZbs');
+  cy.get('button#login-button').click();
+  // alert gets handled
+}
 describe('basic UI tests', () => {
   beforeEach(() => {
     // Cypress starts out with a blank slate for each test
@@ -36,7 +41,9 @@ describe('basic UI tests', () => {
     cy.get('#scheduled-container > h3')      
       .get('exercise-card').should('exist')     // Ensure it contains a card
   })
+  
   it('reload persistence', () => {
+    login();
     cy.get('#fixed-add-button').click()
 
     const textToType = 'This is a test note';
