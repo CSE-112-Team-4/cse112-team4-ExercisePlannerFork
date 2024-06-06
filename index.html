@@ -51,7 +51,7 @@
                 <button type="submit" id="login-button" onclick="login()" >Login</button>
                
             </form>
-            <p>Don't have an account? <a href="#" onclick="showCreateAccount()">Create one</a></p>
+            <p>Don't have an account? <a href="#" id="create-account" onclick="showCreateAccount()">Create one</a></p>
         </div>
         <div id="create-account-form">
             <h2 >Create an Account</h2>
@@ -68,7 +68,7 @@
                     <label for="register-password">Password:</label>
                     <input type="password" id="register-password" name="register-password" required>
                 </div>
-                <button type="submit" onclick="register()">Create Account</button>
+                <button type="button" id="create-account-button" onclick="register()">Create Account</button>
             </form>
             <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
         </div>

@@ -19,6 +19,56 @@ describe('basic UI tests', () => {
     // cy.visit('https://example.cypress.io/todo')
     cy.visit('http://127.0.0.1:5500/index.html')
   })
+  it('can register successfully', (done) => {
+    // exception handling
+    cy.on('uncaught:exception', (err, runnable) => {
+      done()
+      return false
+    })
+
+    // making sure that the required alert gets thrown 
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Login successful!');
+   })
+
+    
+    const usernameToType = 'username';
+    const emailToType = 'user@email.com';
+    const passwordToType = 'password';
+    cy.get('a#create-account').click();
+    cy.get('input[name="register-username"]').type(usernameToType)
+    cy.get('input[name="register-email"]').type(emailToType)
+    cy.get('input[name="register-password"]').type(passwordToType)
+
+    cy.get('button#create-account-button').click();
+    cy.get('input[name="login-username"]').type(usernameToType)
+    cy.get('input[name="login-email"]').type(emailToType)
+    cy.get('input[name="login-password"]').type(passwordToType)
+
+    cy.get('button#login-button').click();
+  })
+  
+  it("user that DNE can't login", (done) => {
+    // exception handling
+    cy.on('uncaught:exception', (err, runnable) => {
+      done()
+      return false
+    })
+
+    // making sure that the required alert gets thrown 
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('No account found with this email.');
+    })
+    const usernameToType = 'username';
+    const emailToType = 'user@email.com';
+    const passwordToType = 'password';
+    cy.get('input[name="login-username"]').type(usernameToType)
+    cy.get('input[name="login-email"]').type(emailToType)
+    cy.get('input[name="login-password"]').type(passwordToType)
+    cy.get('button#login-button').click();
+  })
 
   it('starts with no cards scheduled', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
@@ -36,6 +86,7 @@ describe('basic UI tests', () => {
 
   
   it('+ button successfully adds card', () => {
+    login();
     cy.get('#fixed-add-button').click()
 
     cy.get('#scheduled-container > h3')      
