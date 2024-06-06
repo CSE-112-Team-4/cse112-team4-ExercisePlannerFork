@@ -14,13 +14,12 @@ The user can access the information only from one device, and can accidentally c
 
 ## Decision outcome
 
-Remote storage
+Keep local storage
 
 ## Pros and cons
 Pros:
- - Adds work for us to do
- - Makes the project much more market viable
+ - Actually feasible with the time limits and our experience level
+ - Lets us focus on polishing the product, while remote functionality can be added later should someone pick up the project
 
 Cons:
- - No team member has experience with using databases through JS
- - The hardest feature to implement out of the ones we thought of
+ - Project would have been more market viable otherwise
