@@ -29,10 +29,11 @@
       <h1 id="title">Exercise Planner</h1>
       <div class="sort-container">
         <label for="sort-dropdown">Sort By:</label>
-        <select id="sort-dropdown">
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-        </select>
+        
+        
+          <button type = "button" onclick="return sortExerciseCards(event, 'newest')">Newest</button>
+          <button type = "button" onclick="return sortExerciseCards(event, 'oldest')">Oldest</button>
+        
       </div>
     </header>
 

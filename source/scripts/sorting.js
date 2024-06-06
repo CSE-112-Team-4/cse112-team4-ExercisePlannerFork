@@ -1,13 +1,14 @@
-
-function sortExerciseCards(order) {
+/*
+function sortExerciseCards(order,event) {
   const scheduledContainer = document.getElementById("scheduled-container");
   const completedContainer = document.getElementById("completed-container");
 
-  sortChildrenInContainer(scheduledContainer, order);
-  sortChildrenInContainer(completedContainer, order);
+  sortChildrenInContainer(scheduledContainer, order,event);
+  //sortChildrenInContainer(completedContainer, order);
 }
 
-function sortChildrenInContainer(container, order) {
+function sortChildrenInContainer(container, order,event) {
+  event.preventdefault();
   const childrenArray = Array.from(container.children).slice(1);
 
   // Sort the array based on id (creation time)
@@ -38,3 +39,4 @@ function sortChildrenInContainer(container, order) {
     // child.render();
   });
 }
+*/

@@ -7,7 +7,6 @@ window.addEventListener("DOMContentLoaded", init);
  * Initialize the application by setting up event listeners and repopulating cards if data exists.
  */
 function init() {
-  localStorage.clear();
   attachButtonListener();
   loadInitialCards();
 }
@@ -34,17 +33,18 @@ function attachButtonListener() {
       discardExerciseCard(event);
     }
   });
-
+  /*
   const sortDropdown = document.getElementById("sort-dropdown");
   sortDropdown.addEventListener("change", (event) => {
     const sortOrder = event.target.value;
-    sortExerciseCards(sortOrder)
+    sortExerciseCards(sortOrder);
   });
+  */
 }
 
 function loadInitialCards() {
   let existingData = getLocalCardData();
-  if (existingData != []) {
+  if (existingData.length > 0) {
     populateCardsFromLocal(existingData);
   }
 }
@@ -57,4 +57,35 @@ function addCardToCompletedContainer(exerciseCard) {
 function addCardToScheduledContainer(exerciseCard) {
   const scheduledContainer = document.getElementById("scheduled-container");
   scheduledContainer.appendChild(exerciseCard);
+}
+
+/**
+ * Sort exercise cards based on the provided sort order.
+ * @param {string} sortOrder - The order to sort the exercise cards ('newest' or 'oldest').
+ */
+function sortExerciseCards(event,sortOrder) {
+  event.preventDefault();
+  const container = document.getElementById("scheduled-container");
+  let cardsArray = Array.from(container.querySelectorAll("exercise-card"));
+
+  if (sortOrder === "newest") {
+    cardsArray.sort((a, b) => b.id.localeCompare(a.id));
+  } else if (sortOrder === "oldest") {
+    cardsArray.sort((a, b) => a.id.localeCompare(b.id));
+  }
+
+  cardsArray.forEach((card) => container.appendChild(card));
+
+  // Save the sorted order to local storage
+  saveSortedCardsToLocal(cardsArray);
+  location.reload();
+}
+
+/**
+ * Save the sorted exercise cards to local storage.
+ * @param {Array} sortedCards - The sorted array of exercise cards.
+ */
+function saveSortedCardsToLocal(sortedCards) {
+  let sortedData = sortedCards.map(card => card.cardData());
+  localStorage.setItem("exerciseCardData", JSON.stringify(sortedData));
 }
