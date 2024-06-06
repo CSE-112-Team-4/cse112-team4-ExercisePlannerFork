@@ -1,7 +1,7 @@
 # [Decision Name]
 
- - Status:
- - Deciders:
+ - Status:[accepted/undecided]
+ - Deciders:[list of people]
 
 ## Context and Problem Statement
 
