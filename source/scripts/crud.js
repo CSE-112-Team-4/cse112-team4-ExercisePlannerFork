@@ -13,6 +13,25 @@ function createNewExerciseCard() {
   const scheduleContainer = document.getElementById("scheduledContainer");
   const newExerciseCard = document.createElement("exercise-card");
 
+  // Function to hide buttons and re-enable the add button
+  function hideButtons() {
+    cardioButton.style.animation = "scaleOut 0.3s forwards";
+    strengthButton.style.animation = "scaleOut 0.3s forwards";
+    document.getElementById("fixedAddButton").disabled = false;
+    document.removeEventListener("click", handleClickOutside, true);
+  }
+
+  // Handle click outside of buttons
+  function handleClickOutside(event) {
+    if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixedAddButton")) {
+      hideButtons();
+    }
+  }
+
+  // Listen for clicks outside
+  document.addEventListener("click", handleClickOutside, true);
+
+
   // Create buttons for Cardio and Strength
   cardioButton.addEventListener("click", function () {
     newExerciseCard.exerciseType = ExerciseType.Cardio;
@@ -35,6 +54,20 @@ function createNewExerciseCard() {
     strengthButton.style.animation = "scaleOut 0.3s forwards";
     document.getElementById("fixedAddButton").disabled = false;
   });
+
+  const toggleScheduled = document.getElementById("toggleScheduled");
+  const scheduledContainer = document.getElementById("scheduledContainer");
+  const toggleCompleted = document.getElementById("toggleCompleted");
+  const completedContainer = document.getElementById("completedContainer");
+
+  scheduledContainer.style.display = "grid";
+  completedContainer.style.display = "none";
+
+  toggleScheduled.style.fontWeight = "bold";
+  toggleCompleted.style.fontWeight = "normal";
+
+  toggleScheduled.style.fontSize = "1.5em";
+  toggleCompleted.style.fontSize = "1em";
 }
 
 /**
