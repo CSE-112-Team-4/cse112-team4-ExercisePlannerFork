@@ -2,10 +2,10 @@
 function showCreateAccount() {
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('create-account-form').style.display = 'block';
-            
 }
 
 function showLoginForm() {
+    console.log('i got here!');
     document.getElementById('create-account-form').style.display = 'none';
     document.getElementById('login-form').style.display = 'block';
 }
@@ -24,10 +24,11 @@ function register() {
   const userData = { username, email, password };
   localStorage.setItem('user_' + username + email, JSON.stringify(userData));
 
-  alert('Account created successfully!');
+//   alert('Account created successfully!');
   showLoginForm();
 }
 function login(event) {
+
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
     const username = document.getElementById('login-username').value;
