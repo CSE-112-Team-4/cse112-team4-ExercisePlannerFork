@@ -22,12 +22,14 @@ function saveExerciseCard(event) {
   }
 }
 
-/**
- * Modify an exercise card with new data based on another card's information.
- * @param {HTMLElement} cardToUpdate - The exercise card element to be modified.
- * @param {Object} referenceCard - The card providing the updated data.
- */
-function updateExerciseCard() {}
+function updateExerciseCardContent(cardElement, data) {
+  // Set the new values using setAttribute
+  cardElement.querySelector("#calories").setAttribute('value', data.calories);
+  cardElement.querySelector("#sets").setAttribute('value', data.sets);
+  cardElement.querySelector("#duration").setAttribute('value', data.duration);
+  cardElement.querySelector(".schedule-edit").setAttribute('value', data.time);
+  cardElement.querySelector("#notes").setAttribute('value', data.notes);
+}
 
 /**
  * Delete the exercise card associated with the clicked delete button.

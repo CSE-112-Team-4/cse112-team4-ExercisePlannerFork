@@ -24,6 +24,17 @@ function sortChildrenInContainer(container, order) {
     container.removeChild(container.lastChild);
   }
 
-  // Append the sorted elements back to the container
-  childrenArray.forEach(child => container.appendChild(child));
+  childrenArray.forEach(child => {
+    container.appendChild(child);
+    child.render();
+
+    // Listen for the "template-loaded" event before rendering
+    child.addEventListener("template-loaded", () => {
+      const data = child.cardData();
+      updateExerciseCardContent(child, data);
+    });
+
+    // Render the child
+    // child.render();
+  });
 }
