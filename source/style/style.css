@@ -11,13 +11,18 @@
   font-weight: bold;
 }
 
-* { /* requires a generic font family to fall back into e.g. sans-serif */
+* {
+  /* requires a generic font family to fall back into e.g. sans-serif */
   font-family: Inter, sans-serif;
   font-weight: normal;
 }
 
 header {
   width: 90vw;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.0rem;
 }
 
 header h1 {
@@ -29,22 +34,30 @@ h3 {
   font-weight: bold;
 }
 
+body {
+  background-image: url("https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/5baf8325-ed69-40b0-b9d2-d8c5d2bde3b0");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 #logo {
   width: 100px;
   position: absolute;
 }
 
-#mainContainer {
+#main-container {
   width: 90vw;
   margin: auto;
+  display:none
 }
 
-#scheduledContainer {
+#scheduled-container {
   display: flex;
   flex-direction: column;
 }
 
-#completedContainer {
+#completed-container {
   display: flex;
   flex-direction: column;
 }
@@ -56,7 +69,7 @@ input[disabled] {
   color: black;
 }
 
-#fixedAddButton {
+#fixed-add-button {
   text-align: center;
   width: 50px;
   height: 50px;
@@ -68,9 +81,12 @@ input[disabled] {
   right: 10px;
   bottom: 10px;
   box-shadow: 3px 3px 5px gray;
+  display:none;
 }
 
-#fixedAddButton:hover {
+#fixed-add-button:hover {
   background-color: #02aef2;
   cursor: pointer;
 }
+
+
