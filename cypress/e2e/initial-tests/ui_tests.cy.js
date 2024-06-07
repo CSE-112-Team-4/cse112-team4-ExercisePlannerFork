@@ -5,6 +5,11 @@
 // please read our getting started guide:
 // https://on.cypress.io/introduction-to-cypress
 
+function login() {
+  cy.get('input[name="login-username"]').type('e2e_usJDJWAuTPEyOOutbZbs');
+  cy.get('button#login-button').click();
+  // alert gets handled
+}
 describe('basic UI tests', () => {
   beforeEach(() => {
     // Cypress starts out with a blank slate for each test
@@ -13,6 +18,56 @@ describe('basic UI tests', () => {
     // we include it in our beforeEach function so that it runs before each test
     // cy.visit('https://example.cypress.io/todo')
     cy.visit('http://127.0.0.1:5500/index.html')
+  })
+  it('can register successfully', (done) => {
+    // exception handling
+    cy.on('uncaught:exception', (err, runnable) => {
+      done()
+      return false
+    })
+
+    // making sure that the required alert gets thrown 
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Login successful!');
+   })
+
+    
+    const usernameToType = 'username';
+    const emailToType = 'user@email.com';
+    const passwordToType = 'password';
+    cy.get('a#create-account').click();
+    cy.get('input[name="register-username"]').type(usernameToType)
+    cy.get('input[name="register-email"]').type(emailToType)
+    cy.get('input[name="register-password"]').type(passwordToType)
+
+    cy.get('button#create-account-button').click();
+    cy.get('input[name="login-username"]').type(usernameToType)
+    cy.get('input[name="login-email"]').type(emailToType)
+    cy.get('input[name="login-password"]').type(passwordToType)
+
+    cy.get('button#login-button').click();
+  })
+  
+  it("user that DNE can't login", (done) => {
+    // exception handling
+    cy.on('uncaught:exception', (err, runnable) => {
+      done()
+      return false
+    })
+
+    // making sure that the required alert gets thrown 
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('No account found with this email.');
+    })
+    const usernameToType = 'username';
+    const emailToType = 'user@email.com';
+    const passwordToType = 'password';
+    cy.get('input[name="login-username"]').type(usernameToType)
+    cy.get('input[name="login-email"]').type(emailToType)
+    cy.get('input[name="login-password"]').type(passwordToType)
+    cy.get('button#login-button').click();
   })
 
   it('starts with no cards scheduled', () => {
@@ -31,12 +86,15 @@ describe('basic UI tests', () => {
 
   
   it('+ button successfully adds card', () => {
+    login();
     cy.get('#fixed-add-button').click()
 
     cy.get('#scheduled-container > h3')      
       .get('exercise-card').should('exist')     // Ensure it contains a card
   })
+  
   it('reload persistence', () => {
+    login();
     cy.get('#fixed-add-button').click()
 
     const textToType = 'This is a test note';

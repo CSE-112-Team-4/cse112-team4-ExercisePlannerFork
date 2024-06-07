@@ -1,12 +1,12 @@
 ---
-name: Jest Test and Code Coverage
+name: Jest and Cypress Tests
 
 on:
   push:
 
 jobs:
   test:
-    name: Jest Test 
+    name: Jest Test (unit tests)
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +31,7 @@ jobs:
 
   # cypress e2e
   cypress-run:
+    name: Cypress Test (E2E tests)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
