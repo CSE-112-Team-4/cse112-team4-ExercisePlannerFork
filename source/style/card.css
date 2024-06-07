@@ -1,5 +1,5 @@
-.mainContainer {
-  background-color: rgb(124, 136, 224, 0.5);
+.main-container {
+  background-color: rgb(124 136 224 / 50%);
   background-image: linear-gradient(
     240deg,
     rgba(68, 130, 172, 0.5) 0%,
@@ -15,12 +15,23 @@
   margin-bottom: 2%;
 }
 
-.headerContainer {
+.header-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1%;
+}
+
+.completed {
+  background-color:rgba(0, 0, 0, 0);
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  font-family: Inter;
+  font-weight: 500;
 }
 
 .completed {
@@ -71,7 +82,7 @@
   cursor: pointer;
 }
 
-.contentContainer {
+.content-container {
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -79,7 +90,7 @@
   padding-top: 30px;
 }
 
-.statsContainer {
+.stats-container {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -122,7 +133,7 @@
   color: white;
 }
 
-.footerContainer {
+.footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;

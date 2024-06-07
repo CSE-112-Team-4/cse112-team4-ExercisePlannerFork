@@ -9,10 +9,7 @@ window.addEventListener("DOMContentLoaded", init);
 function init() {
   // localStorage.clear();
   attachButtonListener();
-  let existingData = loadCardDataFromLocal();
-  if (existingData != []) {
-    repopulateCardsFromLocal(existingData);
-  }
+  loadInitialCards();
 }
 
 /**
@@ -20,25 +17,38 @@ function init() {
  */
 function attachButtonListener() {
   document
-    .getElementById("fixedAddButton")
+    .getElementById("fixed-add-button")
     .addEventListener("click", createNewExerciseCard);
 
   /**
    * Attach event listeners to the schedule container for save, delete, and discard actions.
    * @param {Event} event - The event triggered by a click action.
    */
-  const scheduleContainer = document.getElementById("scheduledContainer");
-  scheduleContainer.addEventListener("click", function (event) {
+  const mainContainer = document.getElementById("main-container");
+  mainContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("save-button")) {
       saveExerciseCard(event);
-    }
-
-    else if (event.target.classList.contains("delete-button")) {
+    } else if (event.target.classList.contains("delete-button")) {
       deleteExerciseCard(event);
-    }
-
-    else if (event.target.classList.contains("discard-button")) {
+    } else if (event.target.classList.contains("discard-button")) {
       discardExerciseCard(event);
     }
   });
+}
+
+function loadInitialCards() {
+  let existingData = getLocalCardData();
+  if (existingData != []) {
+    populateCardsFromLocal(existingData);
+  }
+}
+
+function addCardToCompletedContainer(exerciseCard) {
+  const completedContainer = document.getElementById("completed-container");
+  completedContainer.appendChild(exerciseCard);
+}
+
+function addCardToScheduledContainer(exerciseCard) {
+  const scheduledContainer = document.getElementById("scheduled-container");
+  scheduledContainer.appendChild(exerciseCard);
 }

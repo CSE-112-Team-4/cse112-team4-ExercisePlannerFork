@@ -27,7 +27,7 @@ class ExerciseCard extends HTMLElement {
         this.dispatchEvent(new CustomEvent("template-loaded"));
       })
       .catch((error) =>
-        console.error("Error loading the card template:", error)
+        console.error("Error loading the card template:", error),
       );
   }
 
@@ -45,6 +45,14 @@ class ExerciseCard extends HTMLElement {
 
   set calories(value) {
     this.querySelector("#calories").value = value;
+  }
+
+  get sets() {
+    return this.querySelector("#sets").value;
+  }
+
+  set sets(value) {
+    this.querySelector("#sets").value = value;
   }
 
   get duration() {
@@ -71,6 +79,14 @@ class ExerciseCard extends HTMLElement {
     this.querySelector("#notes").value = value;
   }
 
+  get completed() {
+    return this.querySelector("#completed").checked;
+  }
+
+  set completed(value) {
+    this.querySelector("#completed").checked = value;
+  }
+
   /**
    * Get the card data as an object.
    * @returns {Object} - An object containing the card's data.
@@ -79,9 +95,11 @@ class ExerciseCard extends HTMLElement {
     const data = {
       id: this.id,
       calories: this.calories,
+      sets: this.sets,
       duration: this.duration,
       time: this.time,
       notes: this.notes,
+      completed: this.completed,
     };
     return data;
   }

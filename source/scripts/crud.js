@@ -2,11 +2,11 @@
  * Create a new exercise card and append it to the schedule container.
  */
 function createNewExerciseCard() {
-  const scheduleContainer = document.getElementById("scheduledContainer");
+  const scheduledContainer = document.getElementById("scheduled-container");
   const newExerciseCard = document.createElement("exercise-card");
-  scheduleContainer.appendChild(newExerciseCard);
+  scheduledContainer.appendChild(newExerciseCard);
 }
-
+  
 /**
  * Save the data from the exercise card associated with the clicked save button.
  * @param {Event} event - The event triggered by a click action.
@@ -15,6 +15,11 @@ function saveExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
   // Save to local storage
   saveExerciseCardToLocal(exerciseCard);
+  console.log(exerciseCard);
+  if (exerciseCard.completed) {
+    addCardToCompletedContainer(exerciseCard);
+    location.reload();
+  }
 }
 
 /**
