@@ -40,6 +40,12 @@ h3 {
   font-size: 1.75rem;
 }
 
+h4 {
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+}
+
 body {
   background-image: url('../assets/background.webp');
   background-repeat: no-repeat;
@@ -104,9 +110,8 @@ input[disabled] {
 }
 
 #fixed-new-button {
-  
   display:none;
-  margin-left: -40px;
+  margin-left: 0px;
 }
 
 #fixed-new-button:hover {
@@ -115,20 +120,16 @@ input[disabled] {
 }
 
 #fixed-old-button {
-  
   display:none;
-  margin-left: -40px;
-
+  margin-left: 0px;
 }
 
 #fixed-old-button:hover {
   background-color: #02aef2;
   cursor: pointer;
-  
 }
 
 #sort-title{
   display:none;
-  margin-left: -40px;
-  
+  margin-left: 0px;
 }
