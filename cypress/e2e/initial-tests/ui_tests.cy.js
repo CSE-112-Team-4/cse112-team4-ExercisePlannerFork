@@ -177,7 +177,7 @@ describe('basic UI tests', () => {
 
   it('loads 100 cards', () => {
     let size = 100; // 100
-
+    login();
     let button = cy.get('#fixed-add-button')
     for(let i = 0; i < size; i++){
       button.click()
@@ -190,7 +190,7 @@ describe('basic UI tests', () => {
 
   it('loads 10 cards, then deletes all of them', () => {
     let size = 10;// 10
-    
+    login();
     let button = cy.get('#fixed-add-button')
     for(let i = 0; i < size; i++){
       button.click()
@@ -205,6 +205,7 @@ describe('basic UI tests', () => {
 
   it('populate 2, edit and save 1st, edit and discard 2nd. verify, reload and verify again', () => {
     let button = cy.get('#fixed-add-button')
+    login();
     button.click()
     button.click()
     
