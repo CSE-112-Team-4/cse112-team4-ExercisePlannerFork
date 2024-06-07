@@ -19,9 +19,9 @@ function register() {
   const username = document.getElementById('register-username').value;
   const email = document.getElementById('register-email').value;
   const password = document.getElementById('register-password').value;
-
+  const isLoggedIn = 'true'
   // Store user data in localStorage
-  const userData = { username, email, password };
+  const userData = { username, email, password, isLoggedIn };
   localStorage.setItem('user_' + username + email, JSON.stringify(userData));
 
 //   alert('Account created successfully!');
@@ -35,37 +35,66 @@ function login(event) {
 
     // for e2e:
     if (username==='e2e_usJDJWAuTPEyOOutbZbs') {
-        loginSuccess();
+        loginSuccess(true);
         return;
     }
     // handling not filled in fields (if not bot)
     event.preventDefault();
-
-    // Retrieve user data from localStorage
-    const storedData = localStorage.getItem('user_' + username + email);
-    if (storedData) {
-        const userData = JSON.parse(storedData);
-        if (userData.password === password) {
-            loginSuccess();
-        } else {
-            alert('Incorrect password.');
-        }
-    } else {
-        alert('No account found with this email.');
-    }
-    
+    // check if success with retrieve data
+    retrieveDataLocalStorage(email, password, username);   
 }
-
-function loginSuccess() {
-    alert('Login successful!');
+function retrieveDataLocalStorage(email, password, username) {
+  // Retrieve user data from localStorage
+  key = 'user_' + username + email;
+  const storedData = localStorage.getItem(key);
+  if (storedData) {
+      const userData = JSON.parse(storedData);
+      if (userData.password === password) {
+        const autoLoggedIn = (userData.isLoggedIn==='true')
+        userData.isLoggedIn = 'true';
+        const updatedUserData = JSON.stringify(userData);
+        localStorage.setItem(key, updatedUserData);
+        // localStorage.getItem('user_' + username + email).isLoggedIn="true";          
+        loginSuccess(autoLoggedIn);
+      } else {
+          alert('Incorrect password.');
+      }
+  } else {
+      alert('No account found with this email.');
+}
+}
+function loginSuccess(autoLoggedIn) {
+    if (!autoLoggedIn) {
+      alert('Login successful!');
+    }
     // Redirect or perform actions for logged in user
-    localStorage.setItem('isLoggedIn', 'true');
     showMainPage();
 }
 
 function logout() {
     // Hide the main page and show the login form
-    localStorage.removeItem('isLoggedIn');
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const value = localStorage.getItem(key);
+    
+      try {
+        const parsedValue = JSON.parse(value);
+    
+        // Check if the parsed value is an object and has the desired property
+        if (parsedValue && parsedValue.isLoggedIn === "true") {
+          parsedValue.isLoggedIn = "false";
+          const updatedValue = JSON.stringify(parsedValue);
+          // Save the updated JSON string back to localStorage
+          localStorage.setItem(key, updatedValue);
+
+        }
+      } catch (e) {
+        // If JSON.parse fails, it's not a JSON value, so ignore it
+        console.warn(`Could not parse value for key "${key}".`, e);
+      }
+    }
+    
     document.getElementById('main-container').style.display = 'none';
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('fixed-add-button').style.display = 'none';
@@ -77,10 +106,27 @@ function logout() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-      showMainContainer();
-    } else {
-      showLoginForm();
+    // const isLoggedIn = localStorage.getItem('isLoggedIn');
+    // loop through localstorage, checking if any user has isLoggedIn
+    console.log('i recognized dom content loaded')
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const value = localStorage.getItem(key);
+    
+      try {
+        const parsedValue = JSON.parse(value);
+    
+        // Check if the parsed value is an object and has the desired property
+        if (parsedValue && parsedValue.isLoggedIn === "true") {
+          retrieveDataLocalStorage(parsedValue.email, parsedValue.password, parsedValue.username)
+          return;
+        }
+      } catch (e) {
+        // If JSON.parse fails, it's not a JSON value, so ignore it
+        console.warn(`Could not parse value for key "${key}".`, e);
+      }
     }
+    
+    showLoginForm();
+
   });
