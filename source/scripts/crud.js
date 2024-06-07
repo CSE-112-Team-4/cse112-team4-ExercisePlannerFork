@@ -23,14 +23,17 @@ function createNewExerciseCard() {
 
   // Handle click outside of buttons
   function handleClickOutside(event) {
-    if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixedAddButton")) {
+    if (
+      !cardioButton.contains(event.target) &&
+      !strengthButton.contains(event.target) &&
+      !event.target.closest("#fixedAddButton")
+    ) {
       hideButtons();
     }
   }
 
   // Listen for clicks outside
   document.addEventListener("click", handleClickOutside, true);
-
 
   // Create buttons for Cardio and Strength
   cardioButton.addEventListener("click", function () {
@@ -76,8 +79,11 @@ function createNewExerciseCard() {
  */
 function saveExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
-  // Save to local storage
-  saveExerciseCardToLocal(exerciseCard);
+
+  // save card info to local storage only if each field is valid value
+  if (validateExerciseCard(exerciseCard)) {
+    saveExerciseCardToLocal(exerciseCard);
+  }
 }
 
 /**
