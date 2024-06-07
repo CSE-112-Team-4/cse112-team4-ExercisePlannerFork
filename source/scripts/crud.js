@@ -6,7 +6,7 @@ function createNewExerciseCard() {
   const newExerciseCard = document.createElement("exercise-card");
   scheduledContainer.appendChild(newExerciseCard);
 }
-
+  
 /**
  * Save the data from the exercise card associated with the clicked save button.
  * @param {Event} event - The event triggered by a click action.
