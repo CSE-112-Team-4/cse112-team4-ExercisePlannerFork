@@ -30,14 +30,13 @@
     
     <header>
       <h1 id="title">Exercise Planner</h1>
-      <div class="sort-container">
-        <label for="sort-dropdown">Sort By:</label>
-        
-        
-          <button type="button" onclick="return sortExerciseCards(event, 'newest')">Newest</button>
-          <button type="button" onclick="return sortExerciseCards(event, 'oldest')">Oldest</button>
-        
+      <div id="sort-title">
+        <h3 >Sortby</h3>
       </div>
+      <button id="fixed-new-button" onclick="return sortExerciseCards(event, 'newest')">Newest</button>
+      <button id="fixed-old-button" onclick="return sortExerciseCards(event, 'oldest')">Oldest</button>
+        
+      
     </header>
 
     <main>
@@ -85,6 +84,7 @@
       </div>  
       <section id="main-container">
         <div id="scheduled-container">
+          
           <h3>Scheduled</h3>
         </div>
         <div id="completed-container">

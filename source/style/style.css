@@ -89,4 +89,32 @@ input[disabled] {
   cursor: pointer;
 }
 
+#fixed-new-button {
+  
+  display:none;
+  margin-left: -40px;
+}
 
+#fixed-new-button:hover {
+  background-color: #02aef2;
+  cursor: pointer;
+}
+
+#fixed-old-button {
+  
+  display:none;
+  margin-left: -40px;
+
+}
+
+#fixed-old-button:hover {
+  background-color: #02aef2;
+  cursor: pointer;
+  
+}
+
+#sort-title{
+  display:none;
+  margin-left: -40px;
+  
+}

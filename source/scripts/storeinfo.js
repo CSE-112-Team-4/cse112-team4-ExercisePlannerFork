@@ -14,6 +14,9 @@ function showMainPage(){
   document.getElementById('main-container').style.display = 'block';
   document.getElementById('login-form').style.display = 'none';
   document.getElementById('fixed-add-button').style.display = 'block';
+  document.getElementById('fixed-old-button').style.display = 'block';
+  document.getElementById('fixed-new-button').style.display = 'block';
+  document.getElementById('sort-title').style.display = 'block';
 }
 function register() {
   const username = document.getElementById('register-username').value;
@@ -101,7 +104,9 @@ function logout() {
     document.getElementById('login-email').value = '';
     document.getElementById('login-password').value = '';
     document.getElementById('login-username').value = '';
-            
+    document.getElementById('fixed-old-button').style.display = 'none';
+    document.getElementById('fixed-new-button').style.display = 'none';
+    document.getElementById('sort-title').style.display = 'none';
             
 }
 
