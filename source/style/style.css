@@ -29,7 +29,7 @@ header {
 header h1 {
   text-align: center;
   font-weight: bold;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 3.5rem;
   color: white;
 }
