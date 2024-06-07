@@ -15,6 +15,7 @@
   /* requires a generic font family to fall back into e.g. sans-serif */
   font-family: Inter, sans-serif;
   font-weight: normal;
+  box-sizing: border-box;
 }
 
 header {
@@ -28,14 +29,19 @@ header {
 header h1 {
   text-align: center;
   font-weight: bold;
+  font-family: Inter, sans-serif;
+  font-size: 3.5rem;
+  color: white;
 }
 
 h3 {
   font-weight: bold;
+  color: white;
+  font-size: 1.75rem;
 }
 
 body {
-  background-image: url("https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/5baf8325-ed69-40b0-b9d2-d8c5d2bde3b0");
+  background-image: url('../assets/background.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -53,13 +59,21 @@ body {
 }
 
 #scheduled-container {
-  display: flex;
-  flex-direction: column;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  gap: 50px;
+  margin-bottom: 2%;
+  padding-right: 5%;
 }
 
 #completed-container {
-  display: flex;
-  flex-direction: column;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  gap: 50px;
+  margin-bottom: 2%;
+  padding-right: 5%;
 }
 
 * :disabled,

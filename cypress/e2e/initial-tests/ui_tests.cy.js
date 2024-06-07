@@ -72,23 +72,21 @@ describe('basic UI tests', () => {
 
   it('starts with no cards scheduled', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
-    cy.get('#scheduled-container > h3')      
-      .should('contain', 'Scheduled')     // Ensure it contains "Scheduled"
-      .should('have.length', 1)          // Ensure there's only one <h3>
+    login();
+    cy.get('#scheduled-container').should('have.length', 1)          // Ensure there's only one <h3>
 
   })
 
   it('starts with no cards completed', () => {
-    cy.get('#completed-container >h3')
-      .should('contain', 'Completed')
-      .should('have.length', 1)
+    login();
+    cy.get('#completed-container >h3').should('have.length', 0)
   })
 
   it('+ button successfully adds card', () => {
     login();
     cy.get('#fixed-add-button').click()
 
-    cy.get('#scheduled-container > h3')      
+    cy.get('#scheduled-container')      
       .get('exercise-card').should('exist')     // Ensure it contains a card
   })
   
