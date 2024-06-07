@@ -13,10 +13,10 @@
     <div class="main-container">
       <div class="header-container">
         <input type="checkbox" id="completed" name="completed" />
-        <label for="completed">Completed</label>
+        <label class="completed" for="completed">Completed</label>
 
         <!-- Dropdown menu for exercise type -->
-        <select class="exercise-type" name="exercise-type"></select>
+        <!-- <select class="exercise-type" name="exercise-type"></select> -->
 
         <div class="exercise-header">Exercise Card</div>
         <input
@@ -25,7 +25,6 @@
           type="date"
           value="2024-05-15"
         />
-        <button class="delete-button">Delete</button>
       </div>
       <div class="content-container">
         <div class="stats-container">
@@ -68,8 +67,11 @@
         ></textarea>
       </div>
       <div class="footer-container">
-        <button class="discard-button">Discard</button>
-        <button class="save-button">Save</button>
+        <button class="delete-button">Delete</button>
+        <div class="right-buttons">
+          <button class="discard-button">Discard</button>
+          <button class="save-button">Save</button>
+        </div>
       </div>
     </div>
   </body>
