@@ -59,12 +59,13 @@ function login(event) {
 function loginSuccess() {
     alert('Login successful!');
     // Redirect or perform actions for logged in user
-    
+    localStorage.setItem('isLoggedIn', 'true');
     showMainPage();
 }
 
 function logout() {
     // Hide the main page and show the login form
+    localStorage.removeItem('isLoggedIn');
     document.getElementById('main-container').style.display = 'none';
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('fixed-add-button').style.display = 'none';
@@ -74,3 +75,12 @@ function logout() {
             
             
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+      showMainContainer();
+    } else {
+      showLoginForm();
+    }
+  });

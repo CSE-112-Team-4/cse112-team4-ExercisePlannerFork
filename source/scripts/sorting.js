@@ -17,7 +17,9 @@ function sortExerciseCards(event,sortOrder) {
 
   // Save the sorted order to local storage
   saveSortedCardsToLocal(cardsArray);
+
   location.reload();
+
 }
 
 /**
