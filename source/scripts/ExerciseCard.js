@@ -71,6 +71,14 @@ class ExerciseCard extends HTMLElement {
     this.querySelector("#calories").value = value;
   }
 
+  get sets() {
+    return this.querySelector("#sets").value;
+  }
+
+  set sets(value) {
+    this.querySelector("#sets").value = value;
+  }
+
   get duration() {
     return this.querySelector("#duration").value;
   }
@@ -133,6 +141,7 @@ class ExerciseCard extends HTMLElement {
       exerciseType: this.exerciseType,
       exercise: this.exercise,
       calories: this.calories,
+      sets: this.sets,
       duration: this.duration,
       time: this.time,
       notes: this.notes,
