@@ -58,22 +58,22 @@ body {
   display:none
 }
 
-#scheduledContainer {
+#scheduled-container {
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   gap: 50px;
   margin-bottom: 2%;
   padding-right: 5%;
-  margin: 0 auto;
 }
 
-#completedContainer {
+#completed-container {
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   gap: 50px;
   margin-bottom: 2%;
   padding-right: 5%;
-  margin: 0 auto;
 }
 
 * :disabled,

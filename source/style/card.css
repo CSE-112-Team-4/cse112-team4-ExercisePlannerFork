@@ -34,25 +34,14 @@
   font-weight: 500;
 }
 
-.completed {
-  background-color:rgba(0, 0, 0, 0);
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 1.25rem;
-  font-family: Inter;
-  font-weight: 500;
-}
-
-.exerciseType {
+.exercise-type {
   margin: 0 10px;
   padding: 5px;
   font-size: 1rem; 
   font-weight: normal;
 }
 
-.exerciseHeader {
+.exercise-header {
   font-size: 1.35rem;
   color: white;
   text-shadow: 2px 2px 4px #000000;
@@ -139,7 +128,7 @@
   align-items: center;
 }
 
-.rightButtons {
+.right-buttons {
   display: flex;
 }
 
