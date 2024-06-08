@@ -69,7 +69,7 @@ function createNewExerciseCard() {
   toggleScheduled.style.fontSize = "1.5em";
   toggleCompleted.style.fontSize = "1em";
 }
-
+  
 /**
  * Save the data from the exercise card associated with the clicked save button.
  * @param {Event} event - The event triggered by a click action.
@@ -78,6 +78,11 @@ function saveExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
   // Save to local storage
   saveExerciseCardToLocal(exerciseCard);
+  console.log(exerciseCard);
+  if (exerciseCard.completed) {
+    addCardToCompletedContainer(exerciseCard);
+    location.reload();
+  }
 }
 
 /**

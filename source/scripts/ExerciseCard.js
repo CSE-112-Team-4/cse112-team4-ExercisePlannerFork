@@ -32,7 +32,7 @@ class ExerciseCard extends HTMLElement {
         }
       })
       .catch((error) =>
-        console.error("Error loading the card template:", error)
+        console.error("Error loading the card template:", error),
       );
   }
 
@@ -71,6 +71,14 @@ class ExerciseCard extends HTMLElement {
     this.querySelector("#calories").value = value;
   }
 
+  get sets() {
+    return this.querySelector("#sets").value;
+  }
+
+  set sets(value) {
+    this.querySelector("#sets").value = value;
+  }
+
   get duration() {
     return this.querySelector("#duration").value;
   }
@@ -93,6 +101,14 @@ class ExerciseCard extends HTMLElement {
 
   set notes(value) {
     this.querySelector("#notes").value = value;
+  }
+
+  get completed() {
+    return this.querySelector("#completed").checked;
+  }
+
+  set completed(value) {
+    this.querySelector("#completed").checked = value;
   }
 
   /**
@@ -133,9 +149,11 @@ class ExerciseCard extends HTMLElement {
       exerciseType: this.exerciseType,
       exercise: this.exercise,
       calories: this.calories,
+      sets: this.sets,
       duration: this.duration,
       time: this.time,
       notes: this.notes,
+      completed: this.completed,
     };
     return data;
   }

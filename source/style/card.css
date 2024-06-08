@@ -22,7 +22,7 @@
   margin-bottom: 2%;
 }
 
-.headerContainer {
+.header-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -37,18 +37,18 @@
   padding: 5px;
   border-radius: 5px;
   font-size: 1.25rem;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-weight: 500;
 }
 
-.exerciseType {
+.exercise-type {
   margin: 0 10px;
   padding: 5px;
   font-size: 1rem; 
   font-weight: normal;
 }
 
-.exerciseHeader {
+.exercise-header {
   font-size: 1.35rem;
   color: white;
   text-shadow: 2px 2px 4px #000000;
@@ -91,7 +91,7 @@
   cursor: pointer;
 }
 
-.contentContainer {
+.content-container {
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -99,7 +99,7 @@
   padding-top: 30px;
 }
 
-.statsContainer {
+.stats-container {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -109,7 +109,7 @@
   color: white;
   text-shadow: 2px 2px 4px #000000;
   margin-bottom: 1%;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 18px;
   font-weight: 500;
 }
@@ -140,7 +140,7 @@
   color: rgb(2, 29, 36);
 }
 
-.footerContainer {
+.footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;

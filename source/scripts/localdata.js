@@ -2,16 +2,9 @@
  * Load card data from local storage.
  * @returns {Array} - The array of existing card data.
  */
-function loadCardDataFromLocal() {
-  // Retrieve data from local storage
+function getLocalCardData() {
   const existingData = localStorage.getItem("exerciseCardData");
-  // If data exists, parse it from JSON and return
-  if (existingData) {
-    return JSON.parse(existingData);
-  } else {
-    // If no data exists, return an empty array or any default value
-    return [];
-  }
+  return existingData ? JSON.parse(existingData) : [];
 }
 
 /**
@@ -20,7 +13,7 @@ function loadCardDataFromLocal() {
  */
 function saveExerciseCardToLocal(exerciseCard) {
   const exerciseCardData = exerciseCard.cardData();
-  let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+  let existingData = getLocalCardData();
   let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
   if (cardIndex != -1) {
     let foundCard = existingData[cardIndex];
@@ -36,7 +29,7 @@ function saveExerciseCardToLocal(exerciseCard) {
  * @param {HTMLElement} exerciseCard - The exercise card element to delete.
  */
 function deleteExerciseCardFromLocal(exerciseCard) {
-  let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+  let existingData = getLocalCardData();
   let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
   if (cardIndex !== -1) {
     existingData.splice(cardIndex, 1); // Remove the card from existingData
@@ -53,9 +46,11 @@ function updateExerciseCardInLocal(cardToUpdate, referenceCard) {
   cardToUpdate.exerciseType = referenceCard.exerciseType;
   cardToUpdate.exercise = referenceCard.exercise;
   cardToUpdate.calories = referenceCard.calories;
+  cardToUpdate.sets = referenceCard.sets;
   cardToUpdate.duration = referenceCard.duration;
   cardToUpdate.time = referenceCard.time;
   cardToUpdate.notes = referenceCard.notes;
+  cardToUpdate.completed = referenceCard.completed;
 }
 
 /**
@@ -63,7 +58,7 @@ function updateExerciseCardInLocal(cardToUpdate, referenceCard) {
  * @param {HTMLElement} exerciseCard - The exercise card element to discard changes for.
  */
 function discardExerciseCardInLocal(exerciseCard) {
-  let existingData = JSON.parse(localStorage.getItem("exerciseCardData")) || [];
+  let existingData = getLocalCardData();
   let cardIndex = findCardIndexInExistingData(exerciseCard, existingData);
   if (cardIndex !== -1) {
     let foundCard = existingData[cardIndex];
@@ -87,7 +82,7 @@ function findCardIndexInExistingData(exerciseCard, existingData) {
  * Repopulate the exercise cards from local storage data.
  * @param {Array} existingData - The array of existing card data.
  */
-function repopulateCardsFromLocal(existingData) {
+function populateCardsFromLocal(existingData) {
   // Loop through the saved data and create/populate cards
   existingData.forEach((cardData) => {
     const newExerciseCard = document.createElement("exercise-card");
@@ -99,9 +94,11 @@ function repopulateCardsFromLocal(existingData) {
       newExerciseCard.exerciseType = cardData.exerciseType;
       newExerciseCard.exercise = cardData.exercise;
       newExerciseCard.calories = cardData.calories;
+      newExerciseCard.sets = cardData.sets;
       newExerciseCard.duration = cardData.duration;
       newExerciseCard.time = cardData.time;
       newExerciseCard.notes = cardData.notes;
+      newExerciseCard.completed = cardData.completed;
       newExerciseCard.populateExercises(
         newExerciseCard.exerciseType === ExerciseType.Cardio
           ? CardioExercise
@@ -110,7 +107,10 @@ function repopulateCardsFromLocal(existingData) {
     });
 
     // Append the populated card to the container
-    const scheduleContainer = document.getElementById("scheduledContainer");
-    scheduleContainer.appendChild(newExerciseCard);
+    if (cardData.completed) {
+      addCardToCompletedContainer(newExerciseCard);
+    } else {
+      addCardToScheduledContainer(newExerciseCard);
+    }
   });
 }
