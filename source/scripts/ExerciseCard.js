@@ -28,7 +28,7 @@ class ExerciseCard extends HTMLElement {
         this.innerHTML = data;
         this.dispatchEvent(new CustomEvent("template-loaded"));
         if (this._exercise) {
-          this.querySelector(".exerciseSelection").value = this._exercise;
+          this.querySelector(".exercise-selection").value = this._exercise;
         }
       })
       .catch((error) =>
@@ -59,7 +59,7 @@ class ExerciseCard extends HTMLElement {
   set exercise(value) {
     this._exercise = value;
     if (this.isConnected) {
-      this.querySelector(".exerciseSelection").value = value;
+      this.querySelector(".exercise-selection").value = value;
     }
   }
 
@@ -116,7 +116,7 @@ class ExerciseCard extends HTMLElement {
    * @param {Object} exerciseChoices - An object containing exercise choices.
    */
   populateExercises(exerciseChoices) {
-    const dropdown = this.querySelector(".exerciseSelection");
+    const dropdown = this.querySelector(".exercise-selection");
 
     // Add a placeholder option
     const placeholderOption = document.createElement("option");

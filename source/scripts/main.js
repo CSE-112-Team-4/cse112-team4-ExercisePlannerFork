@@ -54,10 +54,10 @@ function addCardToScheduledContainer(exerciseCard) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleScheduled = document.getElementById("toggleScheduled");
-  const scheduledContainer = document.getElementById("scheduledContainer");
-  const toggleCompleted = document.getElementById("toggleCompleted");
-  const completedContainer = document.getElementById("completedContainer");
+  const toggleScheduled = document.getElementById("toggle-scheduled");
+  const scheduledContainer = document.getElementById("scheduled-container");
+  const toggleCompleted = document.getElementById("toggle-completed");
+  const completedContainer = document.getElementById("completed-container");
 
   toggleScheduled.addEventListener("click", function () {
     scheduledContainer.style.display = "grid";

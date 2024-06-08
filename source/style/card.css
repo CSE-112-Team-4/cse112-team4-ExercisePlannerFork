@@ -1,4 +1,4 @@
-.mainContainer {
+.main-container {
   background-color: rgb(124, 136, 224, 0.5);
   background-image: 
     linear-gradient(240deg, rgba(68, 130, 172, 0.5) 15%, rgb(2, 29, 36) 100%),
@@ -55,7 +55,7 @@
   margin: 0 auto;
   font-weight: bold;
   cursor: pointer;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   text-align: center;
 }
 
@@ -64,7 +64,7 @@
   border: 0px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   background-color:rgba(0, 0, 0, 0);
   font-size: medium;
   cursor: pointer;
@@ -74,12 +74,12 @@
   font-weight: 500;
 }
 
-.exerciseSelection {
+.exercise-selection {
   padding: 8px;
   border: 0px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: medium;
   cursor: pointer;
   width: 35%;
@@ -136,7 +136,7 @@
   width: 100%;
   flex: 1;
   font-size: 16px;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   color: rgb(2, 29, 36);
 }
 
@@ -146,6 +146,6 @@
   align-items: center;
 }
 
-.rightButtons {
+.right-buttons {
   display: flex;
 }
