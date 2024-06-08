@@ -286,8 +286,9 @@ describe('basic UI tests', () => {
     cy.get('exercise-card').eq(1).find('input[name="sets"]').should('have.value', info2.sets);
     cy.get('exercise-card').eq(1).find('input[name="duration"]').should('have.value', info2.duration);
   });
-
-
+  it('correctly sorts by newest', () => {
+    
+  });
 
 });
 
