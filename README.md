@@ -3,4 +3,6 @@
 
 [Team Page](https://github.com/CSE-112-Team-4/cse112-team4-ExercisePlannerFork/blob/main/admin/team.md)
 
-[Documentation](https://github.com/CSE-112-Team-4/cse112-team4-ExercisePlannerFork/tree/main/admin)
+[JSDocs](https://github.com/CSE-112-Team-4/cse112-team4-ExercisePlannerFork/wiki)
+
+[Other Documentation](https://github.com/CSE-112-Team-4/cse112-team4-ExercisePlannerFork/tree/main/admin)
