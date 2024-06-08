@@ -28,11 +28,17 @@
     <script src="./source/scripts/main.js"></script>
     <script src="./source/scripts/crud.js"></script>
     <script src="./source/scripts/localdata.js"></script>
+    <script src="./source/scripts/sorting.js"></script>
     <script src="./source/scripts/ExerciseCard.js"></script>
     <script src="./source/scripts/exercisetype.js"></script>
     <script src="./source/scripts/storeinfo.js"></script>
+    
     <header>
       <h1 id="title">Exercise Planner</h1>
+      
+      
+        
+      
     </header>
 
     <main>
@@ -79,11 +85,17 @@
         </div>
       </div>  
       <section id="main-container">
+        <div id="sort-title">
+          <h4>Sort By</h4>
+        </div>
+        <button id="fixed-new-button" onclick="return sortExerciseCards(event, 'newest')">Newest</button>
+        <button id="fixed-old-button" onclick="return sortExerciseCards(event, 'oldest')">Oldest</button>
         <button class="toggle" id="toggle-scheduled">Scheduled</button>
         <button class="toggle" id="toggle-completed">Completed</button>
         <div id="scheduled-container"></div>
         <div id="completed-container"></div>
         <button class="logout-button" onclick="logout()">Logout</button>
+        =
       </section>
     </main>
     <footer>

@@ -7,7 +7,6 @@ window.addEventListener("DOMContentLoaded", init);
  * Initialize the application by setting up event listeners and repopulating cards if data exists.
  */
 function init() {
-  // localStorage.clear();
   attachButtonListener();
   loadInitialCards();
 }
@@ -21,7 +20,7 @@ function attachButtonListener() {
     .addEventListener("click", createNewExerciseCard);
 
   /**
-   * Attach event listeners to the schedule container for save, delete, and discard actions.
+   * Attach event listeners to the main container for save, delete, and discard actions.
    * @param {Event} event - The event triggered by a click action.
    */
   const mainContainer = document.getElementById("main-container");
@@ -38,7 +37,7 @@ function attachButtonListener() {
 
 function loadInitialCards() {
   let existingData = getLocalCardData();
-  if (existingData != []) {
+  if (existingData.length > 0) {
     populateCardsFromLocal(existingData);
   }
 }
