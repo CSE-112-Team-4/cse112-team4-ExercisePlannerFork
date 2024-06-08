@@ -54,7 +54,6 @@
   text-shadow: 2px 2px 4px #000000;
   margin: 0 auto;
   font-weight: bold;
-  cursor: pointer;
   font-family: Inter, sans-serif;
   text-align: center;
 }
@@ -148,4 +147,14 @@
 
 .right-buttons {
   display: flex;
+}
+
+#delete-button, #discard-button, #save-button {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin: 5px;
+  cursor: pointer;
 }
