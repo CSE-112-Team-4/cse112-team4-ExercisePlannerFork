@@ -85,6 +85,7 @@ describe('basic UI tests', () => {
   it('+ button successfully adds card', () => {
     login();
     cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
 
     cy.get('#scheduled-container')      
       .get('exercise-card').should('exist')     // Ensure it contains a card
@@ -180,6 +181,8 @@ describe('basic UI tests', () => {
     let button = cy.get('#fixed-add-button')
     for(let i = 0; i < size; i++){
       button.click()
+      cy.get('button#cardio-button').click()
+
     }; 
     cy.get('#scheduled-container').children('exercise-card').should('have.length', size);
   
@@ -193,8 +196,11 @@ describe('basic UI tests', () => {
     let button = cy.get('#fixed-add-button')
     login();
     button.click()
+    cy.get('button#cardio-button').click()
+
     button.click()
-    
+    cy.get('button#cardio-button').click()
+
     const info1 = {
         note: 'This is a test note',
         calorie: '100',
