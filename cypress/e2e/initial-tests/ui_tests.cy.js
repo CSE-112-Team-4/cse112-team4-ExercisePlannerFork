@@ -377,6 +377,232 @@ describe('basic UI tests', () => {
   cy.get('exercise-card').eq(1).find('select[name="exercise-selection"]').should('have.value', info2.exercise);
   });
 
+  it('error detection : no exercise selected', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // fill out everything except the exercise
+    cy.get('textarea[name="notes"]').type('abcd');
+    cy.get('input[name="calories"]').type('1234');
+    cy.get('input[name="sets"]').type('5');
+    cy.get('input[name="duration"]').type('420');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('An exercise must be selected');
+   })
+  });
+
+  it('error detection : no calorie input', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // fill out everything except the calorie
+    cy.get('textarea[name="notes"]').type('abcd');
+    //cy.get('input[name="calories"]').type('1234');
+    cy.get('input[name="sets"]').type('5');
+    cy.get('input[name="duration"]').type('420');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Calories must be a positive number');
+   })
+  });
+
+  it('error detection : negative calorie input', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // fill out everything 
+    cy.get('textarea[name="notes"]').type('abcd');
+    cy.get('input[name="calories"]').type('-420');
+    cy.get('input[name="sets"]').type('5');
+    cy.get('input[name="duration"]').type('420');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Calories must be a positive number');
+   })
+  });
+
+  it('error detection : no sets input', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // fill out everything except the sets
+    cy.get('textarea[name="notes"]').type('abcd');
+    cy.get('input[name="calories"]').type('420');
+    //cy.get('input[name="sets"]').type('5');
+    cy.get('input[name="duration"]').type('420');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Sets must be a non-negative number');
+   })
+  });
+
+  it('error detection : negative sets input', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // fill out everything except the sets
+    cy.get('textarea[name="notes"]').type('abcd');
+    cy.get('input[name="calories"]').type('420');
+    cy.get('input[name="sets"]').type('-5');
+    cy.get('input[name="duration"]').type('420');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Sets must be a non-negative number');
+   })
+  });
+
+  it('error detection : no duration input', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // fill out everything except duration
+    cy.get('textarea[name="notes"]').type('abcd');
+    cy.get('input[name="calories"]').type('420');
+    cy.get('input[name="sets"]').type('5');
+    //cy.get('input[name="duration"]').type('420');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Duration must be a positive number');
+   })
+  });
+
+  it('error detection : 0 duration input', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // fill out everything w/ bad duration input
+    cy.get('textarea[name="notes"]').type('abcd');
+    cy.get('input[name="calories"]').type('420');
+    cy.get('input[name="sets"]').type('5');
+    cy.get('input[name="duration"]').type('0');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Duration must be a positive number');
+   })
+  });
+
+  it('error detection : negative duration input', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // fill out everything w/ bad duration input
+    cy.get('textarea[name="notes"]').type('abcd');
+    cy.get('input[name="calories"]').type('420');
+    cy.get('input[name="sets"]').type('5');
+    cy.get('input[name="duration"]').type('-40');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Duration must be a positive number');
+   })
+  });
+  
+  it('error detection : multiple bad inputs', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // add bad inputs
+    cy.get('textarea[name="notes"]').type('abcd');
+    //cy.get('input[name="calories"]').type('420');
+    cy.get('input[name="sets"]').type('-5');
+    //cy.get('input[name="duration"]').type('420');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Calories must be a positive number');
+      expect(t).to.contains('Sets must be a non-negative number');
+      expect(t).to.contains('Duration must be a positive number');
+   })
+  });
+
+  it('error detection : error does not save', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+  
+    // add bad inputs
+    cy.get('textarea[name="notes"]').type('abcd');
+    //cy.get('input[name="calories"]').type('420');
+    cy.get('input[name="sets"]').type('-5');
+    //cy.get('input[name="duration"]').type('420');
+    cy.get('select[name="exercise-selection"]').select('running');
+
+    // hit save. should fail and cause an alert
+    cy.get('button.save-button').click();
+
+    cy.on('window:alert',(t)=>{
+      //assertions
+      expect(t).to.contains('Invalid input');
+      expect(t).to.contains('Calories must be a positive number');
+      expect(t).to.contains('Sets must be a non-negative number');
+      expect(t).to.contains('Duration must be a positive number');
+    })
+
+    cy.reload();
+
+    cy.get('exercise-card').should('not.exist');  
+  });
 
 });
 
