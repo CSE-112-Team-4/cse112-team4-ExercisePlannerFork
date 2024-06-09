@@ -14,6 +14,8 @@ class ExerciseCard extends HTMLElement {
     super();
     this.data = {};
     this.id = `exercise-card-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    this._exerciseType = null;
+    this._exercise = null;
   }
   
   /**
@@ -33,6 +35,9 @@ class ExerciseCard extends HTMLElement {
       .then((data) => {
         this.innerHTML = data;
         this.dispatchEvent(new CustomEvent("template-loaded"));
+        if (this._exercise) {
+          this.querySelector(".exercise-selection").value = this._exercise;
+        }
       })
       .catch((error) =>
         console.error("Error loading the card template:", error),
@@ -53,6 +58,44 @@ class ExerciseCard extends HTMLElement {
    */
   set id(value) {
     this._id = value;
+  }
+
+  get exerciseType() {
+    return this._exerciseType;
+  }
+
+  set exerciseType(value) {
+    this._exerciseType = value;
+  }
+
+  get exercise() {
+    return this._exercise;
+  }
+
+  set exercise(value) {
+    this._exercise = value;
+    if (this.isConnected) {
+      this.querySelector(".exercise-selection").value = value;
+    }
+  }
+
+  get exerciseType() {
+    return this._exerciseType;
+  }
+
+  set exerciseType(value) {
+    this._exerciseType = value;
+  }
+
+  get exercise() {
+    return this._exercise;
+  }
+
+  set exercise(value) {
+    this._exercise = value;
+    if (this.isConnected) {
+      this.querySelector(".exercise-selection").value = value;
+    }
   }
 
   /**
@@ -150,7 +193,35 @@ class ExerciseCard extends HTMLElement {
   set completed(value) {
     this.querySelector("#completed").checked = value;
   }
- 
+
+  /**
+   * Populate the exercise selection dropdown with options.
+   * @param {Object} exerciseChoices - An object containing exercise choices.
+   */
+  populateExercises(exerciseChoices) {
+    const dropdown = this.querySelector(".exercise-selection");
+
+    // Add a placeholder option
+    const placeholderOption = document.createElement("option");
+    placeholderOption.value = "";
+    placeholderOption.textContent = "Select an exercise";
+    dropdown.appendChild(placeholderOption);
+
+    for (const choice in exerciseChoices) {
+      const option = document.createElement("option");
+      option.value = exerciseChoices[choice];
+      option.textContent = exerciseChoices[choice];
+      dropdown.appendChild(option);
+    }
+
+    dropdown.value = this._exercise || "";
+
+    // update the exercise when the user selects an option
+    dropdown.addEventListener("change", () => {
+      this.exercise = dropdown.value;
+    });
+  }
+
   /**
    * Get the card data as an object.
    * @returns {Object} - An object containing the card's data.
@@ -158,6 +229,8 @@ class ExerciseCard extends HTMLElement {
   cardData() {
     const data = {
       id: this.id,
+      exerciseType: this.exerciseType,
+      exercise: this.exercise,
       calories: this.calories,
       sets: this.sets,
       duration: this.duration,

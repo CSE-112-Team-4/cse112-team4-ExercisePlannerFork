@@ -19,11 +19,7 @@
 }
 
 header {
-  width: 90vw;
   margin: 0 auto;
-  text-align: center;
-  font-weight: bold;
-  font-size: 2.0rem;
 }
 
 header h1 {
@@ -38,6 +34,13 @@ h3 {
   font-weight: bold;
   color: white;
   font-size: 1.75rem;
+}
+
+h4 {
+  font-weight: bold;
+  color: white;
+  font-size: 1.25rem;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 body {
@@ -55,11 +58,35 @@ body {
 #main-container {
   width: 90vw;
   margin: auto;
-  display:none
+  display: none;
+}
+.content {
+  padding: 5px;
+  margin-top: 5px;
+  display: none;
+}
+
+button.toggle {
+  cursor: pointer;
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  display: inline-block;
+}
+
+button.toggle:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#toggle-scheduled {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 #scheduled-container {
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   gap: 50px;
@@ -68,8 +95,7 @@ body {
 }
 
 #completed-container {
-  margin: 0 auto;
-  display: grid;
+  display: none;
   grid-template-columns: 33% 33% 33%;
   gap: 50px;
   margin-bottom: 2%;
@@ -84,23 +110,131 @@ input[disabled] {
 }
 
 #fixed-add-button {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50px;
   height: 50px;
-  line-height: 50px;
-  background-color: #53cbfb;
+  background-color: #4c7faf;
   border-radius: 50%;
   position: fixed;
-  z-index: 1;
   right: 10px;
   bottom: 10px;
-  box-shadow: 3px 3px 5px gray;
-  display:none;
 }
 
-#fixed-add-button:hover {
-  background-color: #02aef2;
+#fixed-add-button:hover,
+#cardio-button:hover,
+#strength-button:hover {
+  background-color: #4370aa;
   cursor: pointer;
 }
 
+#cardio-button, #strength-button {
+  display: block;
+  width: 125px;
+  height: 50px;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 10px;
+  background-color: #4c7faf;
+  color: white;
+  transform: scale(0);
+}
 
+@keyframes scale-in {
+  from {
+      transform: scale(0);
+  }
+  to {
+      transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+      transform: scale(1);
+  }
+  to {
+      transform: scale(0);
+  }
+}
+
+#cardio-button {
+  right: 10px;
+  bottom: 70px;
+}
+
+#strength-button {
+  right: 100px;
+  bottom: 10px;
+}
+
+button {
+  background-color:rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.15rem;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: Inter, sans-serif;
+}
+
+
+
+button:hover,
+button:focus,
+button:active,
+button:visited {
+  transition-timing-function: cubic-bezier(0.6, 4, 0.3, 0.8);
+  animation: gelatine 0.5s 1;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes gelatine {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+#sort{
+  display: flex;
+}
+
+#fixed-new-button {
+  margin-left: 0px;
+}
+
+#fixed-new-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+#fixed-old-button {
+  margin-left: 0px;
+}
+
+#fixed-old-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+#sort-title{
+  display:none;
+  margin-left: 0px;
+}
