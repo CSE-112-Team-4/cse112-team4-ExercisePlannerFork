@@ -1,7 +1,8 @@
-# cse110-fa22-group30 Docs
+# CSE112 - Spring 24 - Group 4 Docs
+[Exercise Planner](https://cse-112-team-4.github.io/cse112-team4-ExercisePlannerFork/)
 
-[Exercise Planner](https://cse110-fa22-group30.github.io/cse110-fa22-group30/)
+[Team Page](https://github.com/CSE-112-Team-4/cse112-team4-ExercisePlannerFork/blob/DS2-Administration/admin/team.md)
 
-[Team Page](https://github.com/cse110-fa22-group30/cse110-fa22-group30/blob/9-cicd-pipeline/admin/team.md)
+[JSDocs](https://github.com/CSE-112-Team-4/cse112-team4-ExercisePlannerFork/wiki)
 
-[Documentation](https://cse110-fa22-group30.github.io/cse110-fa22-group30/jsDocs/index.html)
+[Other Documentation](https://github.com/CSE-112-Team-4/cse112-team4-ExercisePlannerFork/tree/DS2-Administration/admin)
