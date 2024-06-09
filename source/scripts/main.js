@@ -1,182 +1,137 @@
-// Wait for window to load
-window.addEventListener('DOMContentLoaded', init)
+/**
+ * Wait for the DOM to fully load before executing the init function.
+ */
+window.addEventListener("DOMContentLoaded", init);
 
 /**
- * Local storage initialization to set and return in 'cards'
- * @returns json representation of what is stored in 'cards'
+ * Initialize the application by setting up event listeners and repopulating cards if data exists.
  */
-function initializeStorage () {
-  // Check if storage is available
-  const options = {
-    // cardio or strength for exercise
-    cardioOptions: [
-      'running',
-      'cycling',
-      'swimming',
-      'walking',
-      'hiking',
-      'skating',
-      'skiing',
-      'rowing',
-      'elliptical',
-      'stairmaster'
-    ],
-    cardioStats: {
-      stats1: 'Distance',
-      stats2: 'Time'
-    },
-    strengthOptions: [
-      'squats',
-      'bench press',
-      'pull ups',
-      'push ups',
-      'sit ups',
-      'lunges',
-      'jumping jacks',
-      'crunches',
-      'leg raises',
-      'bicep curls',
-      'tricep dips',
-      'shoulder press',
-      'deadlifts'
-    ],
-    strengthStats: {
-      stats1: 'Sets',
-      stats2: 'Reps'
-    }
-  }
-
-  const data = []
-
-  if (localStorage.getItem('cards') == null) {
-    localStorage.setItem('cards', JSON.stringify(data))
-  }
-  localStorage.setItem('options', JSON.stringify(options))
-
-  return JSON.parse(localStorage.getItem('cards'))
+function init() {
+  attachButtonListener();
+  loadInitialCards();
 }
 
 /**
- * function that detects add button in scheduledContainer
- * @param {Object} scheduledContainer - contains exercise elements to be completed
+ * Attach event listeners for the add button and card action buttons.
  */
-function addExerciseListener (scheduledContainer) {
+function attachButtonListener() {
   document
-    .getElementById('fixedAddButton')
-    .addEventListener('click', function () {
-      const exercise = document.createElement('exercise-card')
-      const yourDate = new Date()
+    .getElementById("fixed-add-button")
+    .addEventListener("click", createNewExerciseCard);
 
-      exercise.data = {
-        completed: 'false',
-        type: '', // must be lower case, match case, or implement .tolowercase()
-        date: yourDate.toISOString().split('T')[0], // must be in this format to make coding the input of date easier
-        calories: '',
-        stat1: '',
-        stat2: '',
-        notes: ''
-      }
-      exercise.shadowRoot
-        .getElementById('checkBox')
-        .addEventListener('change', document.updateData)
-      exercise.shadowRoot.getElementById('expandButton').click()
-      exercise.shadowRoot.getElementById('editButton').click()
-      scheduledContainer.insertBefore(
-        exercise,
-        document.getElementById('insertPoint')
-      )
-    })
-}
+  const cardioButton = document.getElementById("cardio-button");
+  const strengthButton = document.getElementById("strength-button");
+  const scheduleContainer = document.getElementById("scheduled-container");
 
-function init () {
-  // Populate page
-  const scheduledContainer = document.getElementById('scheduledContainer')
+  // Create buttons for Cardio and Strength
+  cardioButton.addEventListener("click", function () {
+    const newExerciseCard = document.createElement("exercise-card");
+    newExerciseCard.exerciseType = ExerciseType.Cardio;
+    newExerciseCard.addEventListener("template-loaded", function () {
+      newExerciseCard.populateExercises(CardioExercise);
+    });
+    scheduleContainer.appendChild(newExerciseCard);
+    cardioButton.style.animation = "scale-out 0.3s forwards";
+    strengthButton.style.animation = "scale-out 0.3s forwards";
+    document.getElementById("fixed-add-button").disabled = false;
+  });
 
-  const data = initializeStorage()
+  strengthButton.addEventListener("click", function () {
+    const newExerciseCard = document.createElement("exercise-card");
+    newExerciseCard.exerciseType = ExerciseType.Strength;
+    newExerciseCard.addEventListener("template-loaded", function () {
+      newExerciseCard.populateExercises(StrengthExercise);
+    });
+    scheduleContainer.appendChild(newExerciseCard);
+    cardioButton.style.animation = "scale-out 0.3s forwards";
+    strengthButton.style.animation = "scale-out 0.3s forwards";
+    document.getElementById("fixed-add-button").disabled = false;
+  });
 
-  // set exercise data
-  data.forEach((element, index) => {
-    const exercise = document.createElement('exercise-card')
-    exercise.data = element
-    if (element.completed === 'true') {
-      document.addToCompleted(exercise)
-    } else {
-      document.addToScheduled(exercise)
+  /**
+   * Attach event listeners to the main container for save, delete, and discard actions.
+   * @param {Event} event - The event triggered by a click action.
+   */
+  const mainContainer = document.getElementById("main-container");
+  mainContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("save-button")) {
+      saveExerciseCard(event);
+    } else if (event.target.classList.contains("delete-button")) {
+      deleteExerciseCard(event);
+    } else if (event.target.classList.contains("discard-button")) {
+      discardExerciseCard(event);
     }
-    exercise.shadowRoot
-      .getElementById('checkBox')
-      .addEventListener('change', document.updateData)
-  })
-
-  addExerciseListener(scheduledContainer)
+  });
 }
 
-/**
- * Add exercise card to schedule
- * @param {Object} exercise - Exercise card
- */
-document.addToScheduled = function (exercise) {
-  const scheduledContainer = document.getElementById('scheduledContainer')
-  const scheduledList = scheduledContainer.getElementsByTagName('exercise-card')
+function loadInitialCards() {
+  let existingData = getLocalCardData();
+  if (existingData.length > 0) {
+    populateCardsFromLocal(existingData);
+  }
+}
 
-  // add element to scheduled list based on date
-  if (scheduledList.length === 0) {
-    scheduledContainer.appendChild(exercise)
+function addCardToCompletedContainer(exerciseCard) {
+  const completedContainer = document.getElementById("completed-container");
+  completedContainer.appendChild(exerciseCard);
+}
+
+function addCardToScheduledContainer(exerciseCard) {
+  const scheduledContainer = document.getElementById("scheduled-container");
+  scheduledContainer.appendChild(exerciseCard);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleScheduled = document.getElementById("toggle-scheduled");
+  const scheduledContainer = document.getElementById("scheduled-container");
+  const toggleCompleted = document.getElementById("toggle-completed");
+  const completedContainer = document.getElementById("completed-container");
+
+  if (localStorage.getItem("currentContainer") === "completed") {
+    completedContainer.style.display = "grid";
+    scheduledContainer.style.display = "none";
+
+    toggleCompleted.style.fontWeight = "bold";
+    toggleScheduled.style.fontWeight = "normal";
+
+    toggleCompleted.style.fontSize = "1.5em";
+    toggleScheduled.style.fontSize = "1em";
+
   } else {
-    for (let i = 0; i < scheduledList.length; i++) {
-      if (exercise.data.date < scheduledList[i].data.date) {
-        scheduledContainer.insertBefore(exercise, scheduledList[i])
-        break
-      } else if (i === scheduledList.length - 1) {
-        scheduledContainer.appendChild(exercise)
-        break
-      }
-    }
-  }
-}
+    
+    scheduledContainer.style.display = "grid";
+    completedContainer.style.display = "none";
 
-/**
- * Add to completed exercises in a order sorted by date
- * @param {Object} exercise - exercise card
- */
-document.addToCompleted = function (exercise) {
-  const completedContainer = document.getElementById('completedContainer')
-  const completedList = completedContainer.getElementsByTagName('exercise-card')
+    toggleScheduled.style.fontWeight = "bold";
+    toggleCompleted.style.fontWeight = "normal";
 
-  // add element to completed list based on date
-  if (completedList.length === 0) {
-    completedContainer.appendChild(exercise)
-  } else {
-    for (let i = 0; i < completedList.length; i++) {
-      if (exercise.data.date < completedList[i].data.date) {
-        completedContainer.insertBefore(exercise, completedList[i])
-        break
-      } else if (i === completedList.length - 1) {
-        completedContainer.appendChild(exercise)
-        break
-      }
-    }
-  }
-}
-
-/**
- * Saves current state of page & put it in local storage
- */
-document.updateData = function () {
-  const scheduledContainer = document.getElementById('scheduledContainer')
-  const completedContainer = document.getElementById('completedContainer')
-
-  const scheduledList = scheduledContainer.getElementsByTagName('exercise-card')
-  const completedList = completedContainer.getElementsByTagName('exercise-card')
-
-  const newData = []
-
-  for (let i = 0; i < scheduledList.length; i++) {
-    newData.push(scheduledList[i].getData())
-  }
-  for (let x = 0; x < completedList.length; x++) {
-    newData.push(completedList[x].getData())
+    toggleScheduled.style.fontSize = "1.5em";
+    toggleCompleted.style.fontSize = "1em";
   }
 
-  localStorage.setItem('cards', JSON.stringify(newData))
-}
+  toggleScheduled.addEventListener("click", function () {
+    localStorage.setItem("currentContainer", "scheduled");
+
+    scheduledContainer.style.display = "grid";
+    completedContainer.style.display = "none";
+
+    toggleScheduled.style.fontWeight = "bold";
+    toggleCompleted.style.fontWeight = "normal";
+
+    toggleScheduled.style.fontSize = "1.5em";
+    toggleCompleted.style.fontSize = "1em";
+  });
+
+  toggleCompleted.addEventListener("click", function () {
+    localStorage.setItem("currentContainer", "completed");
+
+    completedContainer.style.display = "grid";
+    scheduledContainer.style.display = "none";
+
+    toggleCompleted.style.fontWeight = "bold";
+    toggleScheduled.style.fontWeight = "normal";
+
+    toggleCompleted.style.fontSize = "1.5em";
+    toggleScheduled.style.fontSize = "1em";
+  });
+});
