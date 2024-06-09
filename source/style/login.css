@@ -26,7 +26,7 @@ h2 {
     
   }
   
-  button {
+  #login-button, #create-account-button {
     display: block;
     width: 20vh;
     padding: 10px;
@@ -41,7 +41,7 @@ h2 {
     
   }
   
-  button:hover {
+  #login-button:hover, #create-account-button:hover {
     background-color: #0056b3;
     align-items: center;
     text-align: center;

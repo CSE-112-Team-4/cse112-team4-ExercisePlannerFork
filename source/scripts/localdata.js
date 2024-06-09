@@ -43,6 +43,8 @@ function deleteExerciseCardFromLocal(exerciseCard) {
  * @param {HTMLElement} referenceCard - The exercise card providing new data.
  */
 function updateExerciseCardInLocal(cardToUpdate, referenceCard) {
+  cardToUpdate.exerciseType = referenceCard.exerciseType;
+  cardToUpdate.exercise = referenceCard.exercise;
   cardToUpdate.calories = referenceCard.calories;
   cardToUpdate.sets = referenceCard.sets;
   cardToUpdate.duration = referenceCard.duration;
@@ -89,12 +91,19 @@ function populateCardsFromLocal(existingData) {
     newExerciseCard.id = cardData.id;
 
     newExerciseCard.addEventListener("template-loaded", function () {
+      newExerciseCard.exerciseType = cardData.exerciseType;
+      newExerciseCard.exercise = cardData.exercise;
       newExerciseCard.calories = cardData.calories;
       newExerciseCard.sets = cardData.sets;
       newExerciseCard.duration = cardData.duration;
       newExerciseCard.time = cardData.time;
       newExerciseCard.notes = cardData.notes;
       newExerciseCard.completed = cardData.completed;
+      newExerciseCard.populateExercises(
+        newExerciseCard.exerciseType === ExerciseType.Cardio
+          ? CardioExercise
+          : StrengthExercise
+      );
     });
 
     // Append the populated card to the container

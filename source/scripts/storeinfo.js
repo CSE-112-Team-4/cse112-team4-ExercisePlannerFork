@@ -13,7 +13,7 @@ function showLoginForm() {
 function showMainPage(){
   document.getElementById('main-container').style.display = 'block';
   document.getElementById('login-form').style.display = 'none';
-  document.getElementById('fixed-add-button').style.display = 'block';
+  document.getElementById('fixed-add-button').style.display = 'flex';
   document.getElementById('fixed-old-button').style.display = 'block';
   document.getElementById('fixed-new-button').style.display = 'block';
   document.getElementById('sort-title').style.display = 'block';
