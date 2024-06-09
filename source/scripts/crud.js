@@ -11,28 +11,13 @@ function createNewExerciseCard() {
   strengthButton.style.animation = "scale-in 0.3s forwards";
 
   const scheduleContainer = document.getElementById("scheduled-container");
-  const newExerciseCard = document.createElement("exercise-card");
-
-  // Function to hide buttons and re-enable the add button
-  function hideButtons() {
-    cardioButton.style.animation = "scale-out 0.3s forwards";
-    strengthButton.style.animation = "scale-out 0.3s forwards";
-    document.getElementById("fixed-add-button").disabled = false;
-    document.removeEventListener("click", handleClickOutside, true);
-  }
-
-  // Handle click outside of buttons
-  function handleClickOutside(event) {
-    if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixed-add-button")) {
-      hideButtons();
-    }
-  }
 
   // Listen for clicks outside
   document.addEventListener("click", handleClickOutside, true);
 
   // Create buttons for Cardio and Strength
   cardioButton.addEventListener("click", function () {
+    const newExerciseCard = document.createElement("exercise-card");
     newExerciseCard.exerciseType = ExerciseType.Cardio;
     newExerciseCard.addEventListener("template-loaded", function () {
       newExerciseCard.populateExercises(CardioExercise);
@@ -44,6 +29,7 @@ function createNewExerciseCard() {
   });
 
   strengthButton.addEventListener("click", function () {
+    const newExerciseCard = document.createElement("exercise-card");
     newExerciseCard.exerciseType = ExerciseType.Strength;
     newExerciseCard.addEventListener("template-loaded", function () {
       newExerciseCard.populateExercises(StrengthExercise);
@@ -67,6 +53,21 @@ function createNewExerciseCard() {
 
   toggleScheduled.style.fontSize = "1.5em";
   toggleCompleted.style.fontSize = "1em";
+}
+
+// Function to hide buttons and re-enable the add button
+function hideButtons() {
+  cardioButton.style.animation = "scale-out 0.3s forwards";
+  strengthButton.style.animation = "scale-out 0.3s forwards";
+  document.getElementById("fixed-add-button").disabled = false;
+  document.removeEventListener("click", handleClickOutside, true);
+}
+
+// Handle click outside of buttons
+function handleClickOutside(event) {
+  if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixed-add-button")) {
+    hideButtons();
+  }
 }
   
 /**
