@@ -1,9 +1,18 @@
+/**
+ * @enum {string}
+ * @readonly
+ * Define exercise categories
+ */
 const ExerciseType = {
   Cardio: "cardio",
   Strength: "strength",
 };
 
-// Define cardio exercise types as const objects
+/**
+ * @enum {string}
+ * @readonly
+ * Define cardio exercise types as const objects
+ */
 const CardioExercise = {
   Running: "running",
   Cycling: "cycling",
@@ -17,7 +26,11 @@ const CardioExercise = {
   Stairmaster: "stairmaster",
 };
 
-// Define strength exercise types as const objects
+/**
+ * @enum {string}
+ * @readonly
+ * Define strength exercise types as const objects
+ */
 const StrengthExercise = {
   Squats: "squats",
   BenchPress: "bench press",

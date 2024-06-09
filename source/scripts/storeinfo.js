@@ -42,7 +42,7 @@ function register() {
 
 /**
  * Attempt to log in
- * @param {event} event 
+ * @param {Event} event - The event triggered by a click action.
  */
 function login(event) {
 
@@ -61,8 +61,13 @@ function login(event) {
   retrieveDataLocalStorage(email, password, username);
 }
 
+/**
+ * Retrieve user data from localStorage
+ * @param {string} email - Entered email
+ * @param {string} password - Entered password
+ * @param {string} username - Entered username
+ */
 function retrieveDataLocalStorage(email, password, username) {
-  // Retrieve user data from localStorage
   key = 'user_' + username + email;
   const storedData = localStorage.getItem(key);
   if (storedData) {
@@ -83,6 +88,7 @@ function retrieveDataLocalStorage(email, password, username) {
 
 /**
  * Give user access to main page upon successful login
+ * @param {boolean} - Is user auto logged in
  */
 function loginSuccess(autoLoggedIn) {
   if (!autoLoggedIn) {

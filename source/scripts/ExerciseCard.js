@@ -1,8 +1,6 @@
 /**
  * @class
- * This script defines a custom HTML element called <exercise-card> that represents
- * an exercise card with its properties.
- * The card can be dynamically created, rendered from a template, and its data can be accessed or modified.
+ * This script defines a custom HTML element called <exercise-card> that represents an exercise card with its properties. The card can be dynamically created, rendered from a template, and its data can be accessed or modified.
  */
 
 class ExerciseCard extends HTMLElement {
@@ -19,8 +17,7 @@ class ExerciseCard extends HTMLElement {
   }
   
   /**
-   * Invoked each time the custom element is appended into a document-connected element.
-   * It fetches and renders the card template.
+   * Invoked each time the custom element is appended into a document-connected element. It fetches and renders the card template.
    */
   connectedCallback() {
     this.render();
@@ -60,37 +57,34 @@ class ExerciseCard extends HTMLElement {
     this._id = value;
   }
 
+  /**
+   * Exercise type getter
+   * @returns {ExerciseType} - Current exercise type
+   */
   get exerciseType() {
     return this._exerciseType;
   }
 
+  /**
+   * Exercise type setter
+   * @param {ExerciseType} - New exercise type
+   */
   set exerciseType(value) {
     this._exerciseType = value;
   }
 
+  /**
+   * Exercise getter
+   * @returns {CardioExercise | StrengthExercise} - Current exercise
+   */
   get exercise() {
     return this._exercise;
   }
 
-  set exercise(value) {
-    this._exercise = value;
-    if (this.isConnected) {
-      this.querySelector(".exercise-selection").value = value;
-    }
-  }
-
-  get exerciseType() {
-    return this._exerciseType;
-  }
-
-  set exerciseType(value) {
-    this._exerciseType = value;
-  }
-
-  get exercise() {
-    return this._exercise;
-  }
-
+  /**
+   * Exercise setter
+   * @param {CardioExercise | StrengthExercise} - New exercise
+   */
   set exercise(value) {
     this._exercise = value;
     if (this.isConnected) {
