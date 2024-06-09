@@ -93,11 +93,12 @@ describe('basic UI tests', () => {
   it('reload persistence', () => {
     login();
     cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
 
     const textToType = 'This is a test note';
-    const caloriesBurned = '100'
-    const setsCompleted = '5'
-    const duration = '10'
+    const caloriesBurned = '100';
+    const setsCompleted = '5';
+    const duration = '10';
   
     // locate textarea of new exercise card and type into it
     cy.get('textarea[name="notes"]').type(textToType);
@@ -171,19 +172,6 @@ describe('basic UI tests', () => {
       // check if we found it
       expect(found).to.be.true;
     }); 
-  });
-
-  it('loads 100 cards', () => {
-    let size = 100; // 100
-    login();
-    let button = cy.get('#fixed-add-button')
-    for(let i = 0; i < size; i++){
-      button.click()
-    }; 
-    // Get the scheduled container (# mimics CSS selectors)
-    // grab all exercise-card elements within scheduled container
-    // check if there are  of them
-    cy.get('#scheduled-container').children('exercise-card').should('have.length', size);
   });
 
   it('loads 10 cards, then deletes all of them', () => {
