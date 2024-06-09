@@ -10,8 +10,11 @@ function createNewExerciseCard() {
   cardioButton.style.animation = "scale-in 0.3s forwards";
   strengthButton.style.animation = "scale-in 0.3s forwards";
 
-  // Listen for clicks outside
-  // document.addEventListener("click", handleClickOutside.bind(null, cardioButton, strengthButton), true);
+  const boundHandleClickOutside = function(event) {
+    handleClickOutside(event, cardioButton, strengthButton);
+  };
+
+  document.addEventListener("click", boundHandleClickOutside, true);
 
   const toggleScheduled = document.getElementById("toggle-scheduled");
   const scheduledContainer = document.getElementById("scheduled-container");
@@ -28,17 +31,16 @@ function createNewExerciseCard() {
   toggleCompleted.style.fontSize = "1em";
 }
 
-// Function to hide buttons and re-enable the add button
 function hideButtons(cardioButton, strengthButton) {
   cardioButton.style.animation = "scale-out 0.3s forwards";
   strengthButton.style.animation = "scale-out 0.3s forwards";
   document.getElementById("fixed-add-button").disabled = false;
-  document.removeEventListener("click", handleClickOutside, true);
+  document.removeEventListener("click", cardioButton._boundHandleClickExists, true);
 }
 
-// Handle click outside of buttons
 function handleClickOutside(event, cardioButton, strengthButton) {
   if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixed-add-button")) {
+    console.log("Outside Click Detected", event.target);
     hideButtons(cardioButton, strengthButton);
   }
 }
