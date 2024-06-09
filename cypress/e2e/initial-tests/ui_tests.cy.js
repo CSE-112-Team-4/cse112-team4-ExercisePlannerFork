@@ -150,6 +150,26 @@ describe('basic UI tests', () => {
   });
 
 
+  it('exercise type cardio works', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()  
+    cy.get('select.exercise-selection').eq(0).within(() => {
+      cy.get('option').eq(1).should('have.value', 'running').and('contain', 'running');
+    });
+
+  });
+
+  it('exercise type strength works', () => {
+    login();
+    cy.get('#fixed-add-button').click()
+    cy.get('button#strength-button').click()  
+    cy.get('select.exercise-selection').eq(0).within(() => {
+      cy.get('option').eq(1).should('have.value', 'squats').and('contain', 'squats');
+    });
+
+  });
+
   it('reload persistence', () => {
     login();
     cy.get('#fixed-add-button').click()
