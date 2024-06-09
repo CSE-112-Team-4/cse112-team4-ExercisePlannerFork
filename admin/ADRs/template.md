@@ -1,20 +1,20 @@
 # [Decision Name]
 
- - Status:[accepted/undecided]
- - Deciders:[list of people]
+ - Status: accepted/undecided
+ - Deciders: list of people
 
 ## Context and Problem Statement
 
-[]
+Explanation
 
 ## Considered Options
 
- - [List items]
+ - List items
 
 ## Decision outcome
 
-[]
+Chosen option
 
 ## Pros and cons
 
- - [List items]
+ - List items
