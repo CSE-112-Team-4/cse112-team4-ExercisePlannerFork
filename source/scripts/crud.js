@@ -40,7 +40,6 @@ function hideButtons(cardioButton, strengthButton) {
 
 function handleClickOutside(event, cardioButton, strengthButton) {
   if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixed-add-button")) {
-    console.log("Outside Click Detected", event.target);
     hideButtons(cardioButton, strengthButton);
   }
 }

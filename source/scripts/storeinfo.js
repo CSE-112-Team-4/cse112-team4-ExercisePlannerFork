@@ -5,7 +5,6 @@ function showCreateAccount() {
 }
 
 function showLoginForm() {
-  console.log('i got here!');
   document.getElementById('create-account-form').style.display = 'none';
   document.getElementById('login-form').style.display = 'block';
 }
@@ -27,8 +26,6 @@ function register() {
   // Store user data in localStorage
   const userData = { username, email, password, isLoggedIn };
   localStorage.setItem('user_' + username + email, JSON.stringify(userData));
-
-  //   alert('Account created successfully!');
   showLoginForm();
 }
 
@@ -60,7 +57,6 @@ function retrieveDataLocalStorage(email, password, username) {
       userData.isLoggedIn = 'true';
       const updatedUserData = JSON.stringify(userData);
       localStorage.setItem(key, updatedUserData);
-      // localStorage.getItem('user_' + username + email).isLoggedIn="true";          
       loginSuccess(autoLoggedIn);
     } else {
       alert('Incorrect password.');
@@ -115,9 +111,7 @@ function logout() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // const isLoggedIn = localStorage.getItem('isLoggedIn');
   // loop through localstorage, checking if any user has isLoggedIn
-  console.log('i recognized dom content loaded')
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     const value = localStorage.getItem(key);
