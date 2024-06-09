@@ -1,4 +1,4 @@
-# [Decision Name]
+# Decision Name
 
  - Status: accepted/undecided
  - Deciders: list of people
