@@ -149,7 +149,6 @@ describe('basic UI tests', () => {
     cy.get('exercise-card').eq(1).find('textarea[name="notes"]').should('have.value', info2.note);
   });
 
-
   it('exercise type cardio works', () => {
     login();
     cy.get('#fixed-add-button').click()
@@ -207,11 +206,6 @@ describe('basic UI tests', () => {
 
     // hit save
     cy.get('button.save-button').click();
-  
-    cy.window().its('localStorage').invoke('getItem', 'exerciseCardData').then((exerciseCardData) => {
-      expect(exerciseCardData).to.not.be.null; 
-      expect(exerciseCardData).to.not.be.undefined;
-    });
     
     // Check localStorage for the expected value
     cy.window().then((window) => {
