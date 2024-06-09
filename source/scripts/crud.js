@@ -54,6 +54,10 @@ function saveExerciseCard(event) {
   if (validateExerciseCard(exerciseCard)) {
     saveExerciseCardToLocal(exerciseCard);
   }
+  if (exerciseCard.completed) {
+    addCardToCompletedContainer(exerciseCard);
+    location.reload();
+  }
 }
 
 /**
