@@ -10,35 +10,8 @@ function createNewExerciseCard() {
   cardioButton.style.animation = "scale-in 0.3s forwards";
   strengthButton.style.animation = "scale-in 0.3s forwards";
 
-  const scheduleContainer = document.getElementById("scheduled-container");
-
   // Listen for clicks outside
-  document.addEventListener("click", handleClickOutside, true);
-
-  // Create buttons for Cardio and Strength
-  cardioButton.addEventListener("click", function () {
-    const newExerciseCard = document.createElement("exercise-card");
-    newExerciseCard.exerciseType = ExerciseType.Cardio;
-    newExerciseCard.addEventListener("template-loaded", function () {
-      newExerciseCard.populateExercises(CardioExercise);
-    });
-    scheduleContainer.appendChild(newExerciseCard);
-    cardioButton.style.animation = "scale-out 0.3s forwards";
-    strengthButton.style.animation = "scale-out 0.3s forwards";
-    document.getElementById("fixed-add-button").disabled = false;
-  });
-
-  strengthButton.addEventListener("click", function () {
-    const newExerciseCard = document.createElement("exercise-card");
-    newExerciseCard.exerciseType = ExerciseType.Strength;
-    newExerciseCard.addEventListener("template-loaded", function () {
-      newExerciseCard.populateExercises(StrengthExercise);
-    });
-    scheduleContainer.appendChild(newExerciseCard);
-    cardioButton.style.animation = "scale-out 0.3s forwards";
-    strengthButton.style.animation = "scale-out 0.3s forwards";
-    document.getElementById("fixed-add-button").disabled = false;
-  });
+  // document.addEventListener("click", handleClickOutside.bind(null, cardioButton, strengthButton), true);
 
   const toggleScheduled = document.getElementById("toggle-scheduled");
   const scheduledContainer = document.getElementById("scheduled-container");
@@ -56,7 +29,7 @@ function createNewExerciseCard() {
 }
 
 // Function to hide buttons and re-enable the add button
-function hideButtons() {
+function hideButtons(cardioButton, strengthButton) {
   cardioButton.style.animation = "scale-out 0.3s forwards";
   strengthButton.style.animation = "scale-out 0.3s forwards";
   document.getElementById("fixed-add-button").disabled = false;
@@ -64,9 +37,9 @@ function hideButtons() {
 }
 
 // Handle click outside of buttons
-function handleClickOutside(event) {
+function handleClickOutside(event, cardioButton, strengthButton) {
   if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixed-add-button")) {
-    hideButtons();
+    hideButtons(cardioButton, strengthButton);
   }
 }
   
