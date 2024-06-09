@@ -58,7 +58,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const toggleCompleted = document.getElementById("toggle-completed");
   const completedContainer = document.getElementById("completed-container");
 
+  if (localStorage.getItem("currentContainer") === "completed") {
+    completedContainer.style.display = "grid";
+    scheduledContainer.style.display = "none";
+
+    toggleCompleted.style.fontWeight = "bold";
+    toggleScheduled.style.fontWeight = "normal";
+
+    toggleCompleted.style.fontSize = "1.5em";
+    toggleScheduled.style.fontSize = "1em";
+
+  } else {
+    
+    scheduledContainer.style.display = "grid";
+    completedContainer.style.display = "none";
+
+    toggleScheduled.style.fontWeight = "bold";
+    toggleCompleted.style.fontWeight = "normal";
+
+    toggleScheduled.style.fontSize = "1.5em";
+    toggleCompleted.style.fontSize = "1em";
+  }
+
   toggleScheduled.addEventListener("click", function () {
+    localStorage.setItem("currentContainer", "scheduled");
+
     scheduledContainer.style.display = "grid";
     completedContainer.style.display = "none";
 
@@ -70,6 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   toggleCompleted.addEventListener("click", function () {
+    localStorage.setItem("currentContainer", "completed");
+
     completedContainer.style.display = "grid";
     scheduledContainer.style.display = "none";
 

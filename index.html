@@ -85,17 +85,18 @@
         </div>
       </div>  
       <section id="main-container">
-        <div id="sort-title">
-          <h4>Sort By</h4>
+        <div id="sort">
+          <div id="sort-title">
+            <h4>Sort By: </h4>
+          </div>
+          <button id="fixed-new-button" onclick="return sortExerciseCards(event, 'newest')">Newest</button>
+          <button id="fixed-old-button" onclick="return sortExerciseCards(event, 'oldest')">Oldest</button>
         </div>
-        <button id="fixed-new-button" onclick="return sortExerciseCards(event, 'newest')">Newest</button>
-        <button id="fixed-old-button" onclick="return sortExerciseCards(event, 'oldest')">Oldest</button>
         <button class="toggle" id="toggle-scheduled">Scheduled</button>
         <button class="toggle" id="toggle-completed">Completed</button>
         <div id="scheduled-container"></div>
         <div id="completed-container"></div>
         <button class="logout-button" onclick="logout()">Logout</button>
-        =
       </section>
     </main>
     <footer>

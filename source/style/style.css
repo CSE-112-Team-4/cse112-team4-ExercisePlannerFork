@@ -39,7 +39,8 @@ h3 {
 h4 {
   font-weight: bold;
   color: white;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 body {
@@ -57,6 +58,7 @@ body {
 #main-container {
   width: 90vw;
   margin: auto;
+  display: none;
 }
 .content {
   padding: 5px;
@@ -111,8 +113,8 @@ input[disabled] {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 53px;
-  height: 53px;
+  width: 50px;
+  height: 50px;
   background-color: #4c7faf;
   border-radius: 50%;
   position: fixed;
@@ -209,23 +211,26 @@ button:visited {
     transform: scale(0.95, 1.05);
   }
 }
+
+#sort{
+  display: flex;
+}
+
 #fixed-new-button {
-  display:none;
   margin-left: 0px;
 }
 
 #fixed-new-button:hover {
-  background-color: #02aef2;
+  background-color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
 #fixed-old-button {
-  display:none;
   margin-left: 0px;
 }
 
 #fixed-old-button:hover {
-  background-color: #02aef2;
+  background-color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
