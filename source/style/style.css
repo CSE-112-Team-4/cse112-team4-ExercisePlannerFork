@@ -25,7 +25,7 @@ header {
 header h1 {
   text-align: center;
   font-weight: bold;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 3.5rem;
   color: white;
 }
@@ -34,6 +34,13 @@ h3 {
   font-weight: bold;
   color: white;
   font-size: 1.75rem;
+}
+
+h4 {
+  font-weight: bold;
+  color: white;
+  font-size: 1.25rem;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 body {
@@ -48,11 +55,11 @@ body {
   position: absolute;
 }
 
-#mainContainer {
+#main-container {
   width: 90vw;
   margin: auto;
+  display: none;
 }
-
 .content {
   padding: 5px;
   margin-top: 5px;
@@ -67,33 +74,32 @@ button.toggle {
   color: white;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0);
+  display: inline-block;
 }
 
-button.toggle:focus {
-  outline: none;
+button.toggle:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-#toggleScheduled {
+#toggle-scheduled {
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-#scheduledContainer {
+#scheduled-container {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   gap: 50px;
   margin-bottom: 2%;
   padding-right: 5%;
-  margin: 0 auto;
 }
 
-#completedContainer {
+#completed-container {
   display: none;
   grid-template-columns: 33% 33% 33%;
   gap: 50px;
   margin-bottom: 2%;
   padding-right: 5%;
-  margin: 0 auto;
 }
 
 * :disabled,
@@ -103,12 +109,12 @@ input[disabled] {
   color: black;
 }
 
-#fixedAddButton {
+#fixed-add-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 53px;
-  height: 53px;
+  width: 50px;
+  height: 50px;
   background-color: #4c7faf;
   border-radius: 50%;
   position: fixed;
@@ -116,14 +122,14 @@ input[disabled] {
   bottom: 10px;
 }
 
-#fixedAddButton:hover,
-#cardioButton:hover,
-#strengthButton:hover {
+#fixed-add-button:hover,
+#cardio-button:hover,
+#strength-button:hover {
   background-color: #4370aa;
   cursor: pointer;
 }
 
-#cardioButton, #strengthButton {
+#cardio-button, #strength-button {
   display: block;
   width: 125px;
   height: 50px;
@@ -135,7 +141,7 @@ input[disabled] {
   transform: scale(0);
 }
 
-@keyframes scaleIn {
+@keyframes scale-in {
   from {
       transform: scale(0);
   }
@@ -144,7 +150,7 @@ input[disabled] {
   }
 }
 
-@keyframes scaleOut {
+@keyframes scale-out {
   from {
       transform: scale(1);
   }
@@ -153,12 +159,12 @@ input[disabled] {
   }
 }
 
-#cardioButton {
+#cardio-button {
   right: 10px;
   bottom: 70px;
 }
 
-#strengthButton {
+#strength-button {
   right: 100px;
   bottom: 10px;
 }
@@ -176,8 +182,10 @@ button {
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 5px;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
 }
+
+
 
 button:hover,
 button:focus,
@@ -185,6 +193,7 @@ button:active,
 button:visited {
   transition-timing-function: cubic-bezier(0.6, 4, 0.3, 0.8);
   animation: gelatine 0.5s 1;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 @keyframes gelatine {
@@ -203,3 +212,29 @@ button:visited {
   }
 }
 
+#sort{
+  display: flex;
+}
+
+#fixed-new-button {
+  margin-left: 0px;
+}
+
+#fixed-new-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+#fixed-old-button {
+  margin-left: 0px;
+}
+
+#fixed-old-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+#sort-title{
+  display:none;
+  margin-left: 0px;
+}

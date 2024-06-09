@@ -7,12 +7,8 @@ window.addEventListener("DOMContentLoaded", init);
  * Initialize the application by setting up event listeners and repopulating cards if data exists.
  */
 function init() {
-  // localStorage.clear();
   attachButtonListener();
-  let existingData = loadCardDataFromLocal();
-  if (existingData != []) {
-    repopulateCardsFromLocal(existingData);
-  }
+  loadInitialCards();
 }
 
 /**
@@ -20,15 +16,15 @@ function init() {
  */
 function attachButtonListener() {
   document
-    .getElementById("fixedAddButton")
+    .getElementById("fixed-add-button")
     .addEventListener("click", createNewExerciseCard);
 
   /**
-   * Attach event listeners to the schedule container for save, delete, and discard actions.
+   * Attach event listeners to the main container for save, delete, and discard actions.
    * @param {Event} event - The event triggered by a click action.
    */
-  const scheduleContainer = document.getElementById("scheduledContainer");
-  scheduleContainer.addEventListener("click", function (event) {
+  const mainContainer = document.getElementById("main-container");
+  mainContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("save-button")) {
       saveExerciseCard(event);
     } else if (event.target.classList.contains("delete-button")) {
@@ -39,13 +35,54 @@ function attachButtonListener() {
   });
 }
 
+function loadInitialCards() {
+  let existingData = getLocalCardData();
+  if (existingData.length > 0) {
+    populateCardsFromLocal(existingData);
+  }
+}
+
+function addCardToCompletedContainer(exerciseCard) {
+  const completedContainer = document.getElementById("completed-container");
+  completedContainer.appendChild(exerciseCard);
+}
+
+function addCardToScheduledContainer(exerciseCard) {
+  const scheduledContainer = document.getElementById("scheduled-container");
+  scheduledContainer.appendChild(exerciseCard);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleScheduled = document.getElementById("toggleScheduled");
-  const scheduledContainer = document.getElementById("scheduledContainer");
-  const toggleCompleted = document.getElementById("toggleCompleted");
-  const completedContainer = document.getElementById("completedContainer");
+  const toggleScheduled = document.getElementById("toggle-scheduled");
+  const scheduledContainer = document.getElementById("scheduled-container");
+  const toggleCompleted = document.getElementById("toggle-completed");
+  const completedContainer = document.getElementById("completed-container");
+
+  if (localStorage.getItem("currentContainer") === "completed") {
+    completedContainer.style.display = "grid";
+    scheduledContainer.style.display = "none";
+
+    toggleCompleted.style.fontWeight = "bold";
+    toggleScheduled.style.fontWeight = "normal";
+
+    toggleCompleted.style.fontSize = "1.5em";
+    toggleScheduled.style.fontSize = "1em";
+
+  } else {
+    
+    scheduledContainer.style.display = "grid";
+    completedContainer.style.display = "none";
+
+    toggleScheduled.style.fontWeight = "bold";
+    toggleCompleted.style.fontWeight = "normal";
+
+    toggleScheduled.style.fontSize = "1.5em";
+    toggleCompleted.style.fontSize = "1em";
+  }
 
   toggleScheduled.addEventListener("click", function () {
+    localStorage.setItem("currentContainer", "scheduled");
+
     scheduledContainer.style.display = "grid";
     completedContainer.style.display = "none";
 
@@ -57,6 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   toggleCompleted.addEventListener("click", function () {
+    localStorage.setItem("currentContainer", "completed");
+
     completedContainer.style.display = "grid";
     scheduledContainer.style.display = "none";
 
