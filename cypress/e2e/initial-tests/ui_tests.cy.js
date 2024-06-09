@@ -91,6 +91,65 @@ describe('basic UI tests', () => {
       .get('exercise-card').should('exist')     // Ensure it contains a card
   })
   
+  it('correctly sorts both ways', () => {
+    login();
+    const info1 = {
+      note: 'This is a test note',
+      calorie: '100',
+      sets: '5',
+      duration: '10'
+    }
+
+    const info2 = {
+        note: 'This is a test note 2',
+        calorie: '69',
+        sets: '420',
+        duration: '5318008'
+    }
+
+    const info3 = {
+        note: 'This is a test note 3',
+        calorie: '13',
+        sets: '33',
+        duration: '300'
+    }
+
+    const info4 = {
+        note: 'This is a test note 4',
+        calorie: '4',
+        sets: '14',
+        duration: '400'
+    }
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+    cy.get('#fixed-add-button').click()
+    cy.get('button#cardio-button').click()
+    // populate and save
+    cy.get('exercise-card').eq(0).find('textarea[name="notes"]').type(info1.note);
+    cy.get('exercise-card').eq(0).find('input[name="calories"]').type(info1.calorie);
+    cy.get('exercise-card').eq(0).find('input[name="sets"]').type(info1.sets);
+    cy.get('exercise-card').eq(0).find('input[name="duration"]').type(info1.duration);
+    cy.get('exercise-card').eq(0).find('button.save-button').click();
+
+    cy.get('exercise-card').eq(1).find('textarea[name="notes"]').type(info2.note);
+    cy.get('exercise-card').eq(1).find('input[name="calories"]').type(info2.calorie);
+    cy.get('exercise-card').eq(1).find('input[name="sets"]').type(info2.sets);
+    cy.get('exercise-card').eq(1).find('input[name="duration"]').type(info2.duration);
+    cy.get('exercise-card').eq(1).find('button.save-button').click();
+
+
+    cy.get('button#fixed-new-button').click();
+    login();
+    cy.get('exercise-card').eq(0).find('textarea[name="notes"]').should('have.value', info2.note);
+    cy.get('exercise-card').eq(1).find('textarea[name="notes"]').should('have.value', info1.note);
+
+    cy.get('button#fixed-old-button').click();
+    login();
+    cy.get('exercise-card').eq(0).find('textarea[name="notes"]').should('have.value', info1.note);
+    cy.get('exercise-card').eq(1).find('textarea[name="notes"]').should('have.value', info2.note);
+  });
+
+
   it('reload persistence', () => {
     login();
     cy.get('#fixed-add-button').click()
@@ -280,9 +339,7 @@ describe('basic UI tests', () => {
     cy.get('exercise-card').eq(1).find('input[name="sets"]').should('have.value', info2.sets);
     cy.get('exercise-card').eq(1).find('input[name="duration"]').should('have.value', info2.duration);
   });
-  it('correctly sorts by newest', () => {
-    
-  });
+
 
 });
 
