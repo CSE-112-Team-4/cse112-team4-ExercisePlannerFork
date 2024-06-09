@@ -19,6 +19,35 @@ function attachButtonListener() {
     .getElementById("fixed-add-button")
     .addEventListener("click", createNewExerciseCard);
 
+  const cardioButton = document.getElementById("cardio-button");
+  const strengthButton = document.getElementById("strength-button");
+  const scheduleContainer = document.getElementById("scheduled-container");
+
+  // Create buttons for Cardio and Strength
+  cardioButton.addEventListener("click", function () {
+    const newExerciseCard = document.createElement("exercise-card");
+    newExerciseCard.exerciseType = ExerciseType.Cardio;
+    newExerciseCard.addEventListener("template-loaded", function () {
+      newExerciseCard.populateExercises(CardioExercise);
+    });
+    scheduleContainer.appendChild(newExerciseCard);
+    cardioButton.style.animation = "scale-out 0.3s forwards";
+    strengthButton.style.animation = "scale-out 0.3s forwards";
+    document.getElementById("fixed-add-button").disabled = false;
+  });
+
+  strengthButton.addEventListener("click", function () {
+    const newExerciseCard = document.createElement("exercise-card");
+    newExerciseCard.exerciseType = ExerciseType.Strength;
+    newExerciseCard.addEventListener("template-loaded", function () {
+      newExerciseCard.populateExercises(StrengthExercise);
+    });
+    scheduleContainer.appendChild(newExerciseCard);
+    cardioButton.style.animation = "scale-out 0.3s forwards";
+    strengthButton.style.animation = "scale-out 0.3s forwards";
+    document.getElementById("fixed-add-button").disabled = false;
+  });
+
   /**
    * Attach event listeners to the main container for save, delete, and discard actions.
    * @param {Event} event - The event triggered by a click action.

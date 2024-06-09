@@ -10,50 +10,11 @@ function createNewExerciseCard() {
   cardioButton.style.animation = "scale-in 0.3s forwards";
   strengthButton.style.animation = "scale-in 0.3s forwards";
 
-  const scheduleContainer = document.getElementById("scheduled-container");
-  const newExerciseCard = document.createElement("exercise-card");
+  const boundHandleClickOutside = function(event) {
+    handleClickOutside(event, cardioButton, strengthButton);
+  };
 
-  // Function to hide buttons and re-enable the add button
-  function hideButtons() {
-    cardioButton.style.animation = "scale-out 0.3s forwards";
-    strengthButton.style.animation = "scale-out 0.3s forwards";
-    document.getElementById("fixed-add-button").disabled = false;
-    document.removeEventListener("click", handleClickOutside, true);
-  }
-
-  // Handle click outside of buttons
-  function handleClickOutside(event) {
-    if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixed-add-button")) {
-      hideButtons();
-    }
-  }
-
-  // Listen for clicks outside
-  document.addEventListener("click", handleClickOutside, true);
-
-
-  // Create buttons for Cardio and Strength
-  cardioButton.addEventListener("click", function () {
-    newExerciseCard.exerciseType = ExerciseType.Cardio;
-    newExerciseCard.addEventListener("template-loaded", function () {
-      newExerciseCard.populateExercises(CardioExercise);
-    });
-    scheduleContainer.appendChild(newExerciseCard);
-    cardioButton.style.animation = "scale-out 0.3s forwards";
-    strengthButton.style.animation = "scale-out 0.3s forwards";
-    document.getElementById("fixed-add-button").disabled = false;
-  });
-
-  strengthButton.addEventListener("click", function () {
-    newExerciseCard.exerciseType = ExerciseType.Strength;
-    newExerciseCard.addEventListener("template-loaded", function () {
-      newExerciseCard.populateExercises(StrengthExercise);
-    });
-    scheduleContainer.appendChild(newExerciseCard);
-    cardioButton.style.animation = "scale-out 0.3s forwards";
-    strengthButton.style.animation = "scale-out 0.3s forwards";
-    document.getElementById("fixed-add-button").disabled = false;
-  });
+  document.addEventListener("click", boundHandleClickOutside, true);
 
   const toggleScheduled = document.getElementById("toggle-scheduled");
   const scheduledContainer = document.getElementById("scheduled-container");
@@ -69,6 +30,19 @@ function createNewExerciseCard() {
   toggleScheduled.style.fontSize = "1.5em";
   toggleCompleted.style.fontSize = "1em";
 }
+
+function hideButtons(cardioButton, strengthButton) {
+  cardioButton.style.animation = "scale-out 0.3s forwards";
+  strengthButton.style.animation = "scale-out 0.3s forwards";
+  document.getElementById("fixed-add-button").disabled = false;
+  document.removeEventListener("click", cardioButton._boundHandleClickExists, true);
+}
+
+function handleClickOutside(event, cardioButton, strengthButton) {
+  if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixed-add-button")) {
+    hideButtons(cardioButton, strengthButton);
+  }
+}
   
 /**
  * Save the data from the exercise card associated with the clicked save button.
@@ -76,22 +50,15 @@ function createNewExerciseCard() {
  */
 function saveExerciseCard(event) {
   const exerciseCard = event.target.closest("exercise-card");
-  // Save to local storage
-  saveExerciseCardToLocal(exerciseCard);
-  console.log(exerciseCard);
+
+  // save card info to local storage only if each field is valid value
+  if (validateExerciseCard(exerciseCard)) {
+    saveExerciseCardToLocal(exerciseCard);
+  }
   if (exerciseCard.completed) {
     addCardToCompletedContainer(exerciseCard);
     location.reload();
   }
-}
-
-function updateExerciseCardContent(cardElement, data) {
-  // Set the new values using setAttribute
-  cardElement.querySelector("#calories").setAttribute('value', data.calories);
-  cardElement.querySelector("#sets").setAttribute('value', data.sets);
-  cardElement.querySelector("#duration").setAttribute('value', data.duration);
-  cardElement.querySelector(".schedule-edit").setAttribute('value', data.time);
-  cardElement.querySelector("#notes").setAttribute('value', data.notes);
 }
 
 /**
