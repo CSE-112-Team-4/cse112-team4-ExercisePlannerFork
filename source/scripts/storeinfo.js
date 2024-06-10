@@ -1,15 +1,23 @@
-
+/**
+ * Transition to new account creation
+ */
 function showCreateAccount() {
   document.getElementById('login-form').style.display = 'none';
   document.getElementById('create-account-form').style.display = 'block';
 }
 
+/**
+ * Transition to login form
+ */
 function showLoginForm() {
   document.getElementById('create-account-form').style.display = 'none';
   document.getElementById('login-form').style.display = 'block';
 }
 
-function showMainPage() {
+/**
+ * Transition to main page
+ */
+function showMainPage(){
   document.getElementById('main-container').style.display = 'block';
   document.getElementById('login-form').style.display = 'none';
   document.getElementById('fixed-add-button').style.display = 'flex';
@@ -18,6 +26,9 @@ function showMainPage() {
   document.getElementById('sort-title').style.display = 'block';
 }
 
+/**
+ * Register a new user
+ */
 function register() {
   const username = document.getElementById('register-username').value;
   const email = document.getElementById('register-email').value;
@@ -29,6 +40,10 @@ function register() {
   showLoginForm();
 }
 
+/**
+ * Attempt to log in
+ * @param {Event} event - The event triggered by a click action.
+ */
 function login(event) {
 
   const email = document.getElementById('login-email').value;
@@ -46,8 +61,13 @@ function login(event) {
   retrieveDataLocalStorage(email, password, username);
 }
 
+/**
+ * Retrieve user data from localStorage
+ * @param {string} email - Entered email
+ * @param {string} password - Entered password
+ * @param {string} username - Entered username
+ */
 function retrieveDataLocalStorage(email, password, username) {
-  // Retrieve user data from localStorage
   key = 'user_' + username + email;
   const storedData = localStorage.getItem(key);
   if (storedData) {
@@ -66,6 +86,10 @@ function retrieveDataLocalStorage(email, password, username) {
   }
 }
 
+/**
+ * Give user access to main page upon successful login
+ * @param {boolean} - Is user auto logged in
+ */
 function loginSuccess(autoLoggedIn) {
   if (!autoLoggedIn) {
     alert('Login successful!');
@@ -74,6 +98,9 @@ function loginSuccess(autoLoggedIn) {
   showMainPage();
 }
 
+/**
+ * End user's session, hide the main page, and show the login form
+ */
 function logout() {
   // Hide the main page and show the login form
 

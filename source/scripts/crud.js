@@ -31,6 +31,11 @@ function createNewExerciseCard() {
   toggleCompleted.style.fontSize = "1em";
 }
 
+/**
+ * Hide choice between cardio and strength buttons
+ * @param {HTMLButtonElement} cardioButton - Cardio button
+ * @param {HTMLButtonElement} strengthButton - Strength button
+ */
 function hideButtons(cardioButton, strengthButton) {
   cardioButton.style.animation = "scale-out 0.3s forwards";
   strengthButton.style.animation = "scale-out 0.3s forwards";
@@ -38,6 +43,12 @@ function hideButtons(cardioButton, strengthButton) {
   document.removeEventListener("click", cardioButton._boundHandleClickExists, true);
 }
 
+/**
+ * Handle clicking out of bounds
+ * @param {Event} event - The event triggered by a click action.
+ * @param {HTMLButtonElement} cardioButton - Cardio button
+ * @param {HTMLButtonElement} strengthButton - Strength button
+ */
 function handleClickOutside(event, cardioButton, strengthButton) {
   if (!cardioButton.contains(event.target) && !strengthButton.contains(event.target) && !event.target.closest("#fixed-add-button")) {
     hideButtons(cardioButton, strengthButton);
@@ -74,9 +85,7 @@ function deleteExerciseCard(event) {
 }
 
 /**
- * Discards an exercise card based on the event triggered.
- * If an exercise card is found in the event's target hierarchy, its data is retrieved from local storage
- * and the card's information is updated using the found data.
+ * Discards an exercise card based on the event triggered. If an exercise card is found in the event's target hierarchy, its data is retrieved from local storage and the card's information is updated using the found data.
  * @param {Event} event - The event triggered by a click action.
  */
 function discardExerciseCard(event) {

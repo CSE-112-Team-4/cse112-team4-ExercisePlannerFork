@@ -64,18 +64,29 @@ function attachButtonListener() {
   });
 }
 
+/**
+ * Load cards from local storage
+ */
 function loadInitialCards() {
   let existingData = getLocalCardData();
   if (existingData.length > 0) {
     populateCardsFromLocal(existingData);
   }
 }
-
+  
+/**
+ * Add the exercise card to the completed container
+ * @param {ExerciseCard} exerciseCard - Card to be added
+ */
 function addCardToCompletedContainer(exerciseCard) {
   const completedContainer = document.getElementById("completed-container");
   completedContainer.appendChild(exerciseCard);
 }
-
+  
+/**
+ * Add the exercise card to the scheduled container
+ * @param {ExerciseCard} exerciseCard - Card to be added
+ */
 function addCardToScheduledContainer(exerciseCard) {
   const scheduledContainer = document.getElementById("scheduled-container");
   scheduledContainer.appendChild(exerciseCard);
