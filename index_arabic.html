@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="مخطط التمارين" />
+    <meta name="author" content="مدير اللياقة" />
+    <meta name="keywords" content="تمارين، لياقة، صحة" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مدير اللياقة</title>
+    <link rel="stylesheet" href="./source/style/style.css" type="text/css" />
+    <link rel="icon" href="./admin/branding/logo.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      @import url("./source/style/login.css");
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var userLang = navigator.language || navigator.userLanguage;
+        if (!userLang.startsWith("ar")) {
+          window.location.href = "index.html";
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <script src="./source/scripts/main.js"></script>
+    <script src="./source/scripts/crud.js"></script>
+    <script src="./source/scripts/localdata.js"></script>
+    <script src="./source/scripts/sorting.js"></script>
+    <script src="./source/scripts/ExerciseCard.js"></script>
+    <script src="./source/scripts/exercisetype.js"></script>
+    <script src="./source/scripts/storeinfo.js"></script>
+    <script src="./source/scripts/errorhandle.js"></script>
+
+    <header>
+      <h1 id="title">مخطط التمارين</h1>
+    </header>
+
+    <main>
+      <div class="container1">
+        <div id="login-form">
+            <h2>تسجيل الدخول إلى حسابك</h2>
+            <form id-unique="login-form" action="#" method="post" onsubmit="return login(event)">
+                <div class="form-group">
+                    <label for="login-username">:اسم المستخدم</label>
+                    <input type="text" id="login-username" name="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-email">:البريد الإلكتروني</label>
+                    <input type="email" id="login-email" name="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">:كلمة المرور</label>
+                    <input type="password" id="login-password" name="login-password" required>
+                </div>
+                
+                <button type="submit" id="login-button" onclick="login()" >تسجيل الدخول</button>
+               
+            </form>
+            <p>ليس لديك حساب؟ <a href="#" id="create-account" onclick="showCreateAccount()">إنشاء حساب</a></p>
+        </div>
+        <div id="create-account-form">
+            <h2>إنشاء حساب</h2>
+            <form id="register-form" action="#" method="post">
+                <div class="form-group">
+                    <label for="register-username">:اسم المستخدم</label>
+                    <input type="text" id="register-username" name="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">:البريد الإلكتروني</label>
+                    <input type="email" id="register-email" name="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">:كلمة المرور</label>
+                    <input type="password" id="register-password" name="register-password" required>
+                </div>
+                <button type="button" id="create-account-button" onclick="register()">إنشاء حساب</button>
+            </form>
+            <p>هل لديك حساب؟ <a href="#" onclick="showLoginForm()">تسجيل الدخول</a></p>
+        </div>
+      </div>  
+      <section id="main-container">
+        <div id="sort">
+          <div id="sort-title">
+            <h4>الترتيب حسب:</h4>
+          </div>
+          <button id="fixed-new-button" onclick="return sortExerciseCards(event, 'newest')">الأحدث</button>
+          <button id="fixed-old-button" onclick="return sortExerciseCards(event, 'oldest')">الأقدم</button>
+        </div>
+        <button class="toggle" id="toggle-scheduled">المجدولة</button>
+        <button class="toggle" id="toggle-completed">المكتملة</button>
+        <div id="scheduled-container"></div>
+        <div id="completed-container"></div>
+        <button class="logout-button" onclick="logout()">تسجيل الخروج</button>
+      </section>
+    </main>
+    <footer>
+      <button id="fixed-add-button" class="material-icons">
+        <i class="fas fa-plus"></i>
+      </button>
+      <button id="cardio-button">الكارديو</button>
+      <button id="strength-button">القوة</button>
+    </footer>
+  </body>
+</html>
