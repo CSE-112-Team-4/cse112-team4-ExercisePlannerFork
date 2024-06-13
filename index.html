@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var userLang = navigator.language || navigator.userLanguage;
+        if (userLang.startsWith("ar")) {
+          window.location.href = "index_arabic.html";
+        }
+      });
+    </script>
+  </head>
+>>>>>>> Stashed changes
 
 <head>
   <meta charset="UTF-8" />
