@@ -1,7 +1,5 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<<<<<<< Updated upstream
-=======
   <head>
     <meta charset="utf-8" />
     <meta name="description" content="Exercise Planner" />
@@ -23,57 +21,91 @@
     <style>
       @import url("./source/style/login.css");
     </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        var userLang = navigator.language || navigator.userLanguage;
-        if (userLang.startsWith("ar")) {
-          window.location.href = "index_arabic.html";
-        }
-      });
-    </script>
   </head>
->>>>>>> Stashed changes
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fitness Manager</title>
-  <link rel="stylesheet" href="./source/style/style.css" type="text/css" />
-  <link rel="icon" href="./admin/branding/logo.png" type="image/png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-</head>
+  <body>
+    <!-- import necessary scripts -->
+    <script src="./source/scripts/main.js"></script>
+    <script src="./source/scripts/crud.js"></script>
+    <script src="./source/scripts/localdata.js"></script>
+    <script src="./source/scripts/sorting.js"></script>
+    <script src="./source/scripts/ExerciseCard.js"></script>
+    <script src="./source/scripts/exercisetype.js"></script>
+    <script src="./source/scripts/storeinfo.js"></script>
+        <script src="./source/scripts/errorhandle.js"></script>
 
-<body>
+    <header>
+      <h1 id="title">Exercise Planner</h1>
+      
+      
+        
+      
+    </header>
 
-  <script src="./source/scripts/main.js"></script>
-  <script src="./source/scripts/ExerciseCard.js" type="module"></script>
-  <style>
-    input:disabled {
-      background: red !important;
-    }
-
-    input[disabled] {
-      background: red !important;
-    }
-  </style>
-  <header>
-    <h1 id="title">Exercise Planner</h1>
-  </header>
-  <main>
-    <section id="mainContainer">
-      <div id="scheduledContainer">
-        <h3>Scheduled</h3>
-        <div id="insertPoint"></div>
-      </div>
-      <div id="completedContainer">
-        <h3>Completed</h3>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <span id="fixedAddButton" class="material-icons">add</span>
-  </footer>
-</body>
-
+    <main>
+      <div class="container1">
+        <div id="login-form">
+            <h2>Login to Your Account</h2>
+            <form id-unique="login-form" action="#" method="post" onsubmit="return login(event)">
+                <div class="form-group">
+                    <label for="register-username">Username:</label>
+                    <input type="text" id="login-username" name="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="login-password" required>
+                </div>
+                
+                <button type="submit" id="login-button" onclick="login()" >Login</button>
+               
+            </form>
+            <p>Don't have an account? <a href="#" id="create-account" onclick="showCreateAccount()">Create one</a></p>
+        </div>
+        <div id="create-account-form">
+            <h2 >Create an Account</h2>
+            <form id="register-form" action="#" method="post">
+                <div class="form-group">
+                    <label for="register-username">Username:</label>
+                    <input type="text" id="register-username" name="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" name="register-email"  required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" name="register-password" required>
+                </div>
+                <button type="button" id="create-account-button" onclick="register()">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
+        </div>
+      </div>  
+      <section id="main-container">
+        <div id="sort">
+          <div id="sort-title">
+            <h4>Sort By: </h4>
+          </div>
+          <button id="fixed-new-button" onclick="return sortExerciseCards(event, 'newest')">Newest</button>
+          <button id="fixed-old-button" onclick="return sortExerciseCards(event, 'oldest')">Oldest</button>
+        </div>
+        <button class="toggle" id="toggle-scheduled">Scheduled</button>
+        <button class="toggle" id="toggle-completed">Completed</button>
+        <div id="scheduled-container"></div>
+        <div id="completed-container"></div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+      </section>
+    </main>
+    <footer>
+      <button id="fixed-add-button" class="material-icons">
+        <i class="fas fa-plus"></i>
+      </button>
+      <button id="cardio-button">Cardio</button>
+      <button id="strength-button">Strength</button>
+    </footer>
+  </body>
 </html>
