@@ -79,4 +79,4 @@ Once logged in, you will be directed to the Exercise Planner dashboard.
 
 ## Video
 [Public Video](https://www.youtube.com/watch?v=ZjitSmifKJ8)
-[Private Video](https://youtu.be/OhU2UpVu1PU)
+[Private Video](https://youtu.be/5_BKo9uTKpg)
